@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -117,7 +118,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
         });
         activeTab = 0;
         getDataFromServer(0, AppUrls.GET_INTEREST_RECEIVED, 0, true);
-        recyclerAdapterReceived = new RecyclerAdapter(recieveList, this, R.layout.item_interest_recieved, this, 0);
+        recyclerAdapterReceived = new RecyclerAdapter(recieveList, this, R.layout.item_2_bottom_icon, this, 0);
     }
 
     @Override
@@ -146,7 +147,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 getDataFromServer(currentPage, AppUrls.GET_INTEREST_RECEIVED, 0, true);
                 tvSent.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 tvSent.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterReceived = new RecyclerAdapter(recieveList, this, R.layout.item_interest_recieved, this, 0);
+                recyclerAdapterReceived = new RecyclerAdapter(recieveList, this, R.layout.item_2_bottom_icon, this, 0);
                 break;
             case R.id.tv_tab2:
                 activeTab = 1;
@@ -158,7 +159,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 getDataFromServer(currentPage, AppUrls.GET_INTEREST_SENT, 1, true);
                 tvReceived.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 tvReceived.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterSend = new RecyclerAdapter(sendList, this, R.layout.item_interest_sent, this, 1);
+                recyclerAdapterSend = new RecyclerAdapter(sendList, this, R.layout.item_3_bottom_icon, this, 1);
                 break;
         }
     }
@@ -387,12 +388,14 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void getAdapterView(View view, final List objects, final int position, int from) {
+        LinearLayout lltime = (LinearLayout) view.findViewById(R.id.ll_timing_interest);
         TextView tvInterestTiming = (TextView) view.findViewById(R.id.tv_timing_interest);
-        ImageView ivNoOgimage = (ImageView) view.findViewById(R.id.iv_no_Of_image_interest);
-        ImageView ivProfileic = (ImageView) view.findViewById(R.id.iv_profile_pic_item_search);
-        RelativeLayout rlMessage = (RelativeLayout) view.findViewById(R.id.rl_message_view_search_item);
-        TextView tvFirstMessage = (TextView) view.findViewById(R.id.tv_first_message_item_interest_received);
-        TextView tvFullMessage = (TextView) view.findViewById(R.id.full_message_item_interest_received);
+        ImageView ivNoOgimage = (ImageView) view.findViewById(R.id.iv_no_Of_image);
+        ImageView ivProfilePic = (ImageView) view.findViewById(R.id.iv_profile_pic);
+        RelativeLayout rlData = (RelativeLayout) view.findViewById(R.id.rl_data);
+        RelativeLayout rlMessage = (RelativeLayout) view.findViewById(R.id.rl_message_view);
+        TextView tvFirstMessage = (TextView) view.findViewById(R.id.tv_first_message);
+        TextView tvFullMessage = (TextView) view.findViewById(R.id.full_message);
         TextView tvUserId = (TextView) view.findViewById(R.id.userid_item_searchResult);
         TextView tvLastOnline = (TextView) view.findViewById(R.id.lastOnline_item_searchResult);
         TextView tvAge = (TextView) view.findViewById(R.id.age_item_searchResult);
@@ -403,15 +406,24 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
         TextView tvQualification = (TextView) view.findViewById(R.id.study_item_searchResult);
         TextView tvCity = (TextView) view.findViewById(R.id.city_item_searchResult);
         TextView tvMemberShip = (TextView) view.findViewById(R.id.membership_item_searchResult);
-        RelativeLayout rlAccept = (RelativeLayout) view.findViewById(R.id.rl_accept_item_interest_received);
-        RelativeLayout rlReject = (RelativeLayout) view.findViewById(R.id.rl_reject_item_interest_received);
-        RelativeLayout rlReminder = (RelativeLayout) view.findViewById(R.id.rl_reminder_item_interest_received);
-        RelativeLayout rlCancelSent = (RelativeLayout) view.findViewById(R.id.rl_cancel_item_interest_sent);
-        RelativeLayout rlContact = (RelativeLayout) view.findViewById(R.id.rl_contact_item_interest_sent);
+        ImageView ivItem1 = (ImageView) view.findViewById(R.id.iv_item1);
+        ImageView ivItem2 = (ImageView) view.findViewById(R.id.iv_item2);
+        ImageView ivItem3 = (ImageView) view.findViewById(R.id.iv_item3);
+        ImageView ivItem4 = (ImageView) view.findViewById(R.id.iv_item4);
+        TextView tvItem1 = (TextView) view.findViewById(R.id.tv_item1);
+        TextView tvItem2 = (TextView) view.findViewById(R.id.tv_item2);
+        TextView tvItem3 = (TextView) view.findViewById(R.id.tv_item3);
+        TextView tvItem4 = (TextView) view.findViewById(R.id.tv_item4);
+        // ImageView ivItem4 = (ImageView) view.findViewById(R.id.iv_item4);
+        RelativeLayout rlItem1 = (RelativeLayout) view.findViewById(R.id.rl_item1);
+        RelativeLayout rlItem2 = (RelativeLayout) view.findViewById(R.id.rl_item2);
+        RelativeLayout rlItem3 = (RelativeLayout) view.findViewById(R.id.rl_item3);
         switch (from) {
             case 0:
                 tvInterestTiming.setText("He sent an request on 24-07-2017");
-                rlMessage.setVisibility(View.GONE);
+                tvItem1.setText("Accept");
+                tvItem2.setText("Reject");
+                //rlMessage.setVisibility(View.GONE);
                 tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
                 tvLastOnline.setText("Today");
                 tvAge.setText(((UserModel) objects.get(position)).getAge() + " " + ((UserModel) objects.get(position)).getHeight());
@@ -428,13 +440,13 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                         toastMessage("coming soon");
                     }
                 });
-                rlAccept.setOnClickListener(new View.OnClickListener() {
+                rlItem1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
                     }
                 });
-                rlReject.setOnClickListener(new View.OnClickListener() {
+                rlItem2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
@@ -444,6 +456,9 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 break;
             case 1:
                 tvInterestTiming.setText("He sent an request on 24-07-2017");
+                tvItem1.setText("Accept");
+                tvItem2.setText("Reject");
+                tvItem3.setText("Accept");
                 tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
                 tvLastOnline.setText("Today");
                 tvAge.setText(((UserModel) objects.get(position)).getAge() + " " + ((UserModel) objects.get(position)).getHeight());
@@ -460,20 +475,20 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
 
                     }
                 });
-                rlReminder.setOnClickListener(new View.OnClickListener() {
+                rlItem1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         toastMessage("coming soon");
                     }
                 });
-                rlCancelSent.setOnClickListener(new View.OnClickListener() {
+                rlItem2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         deleteposition = position;
                         cancelInterest(((UserModel) objects.get(position)).getInterest_id());
                     }
                 });
-                rlContact.setOnClickListener(new View.OnClickListener() {
+                rlItem3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         getContactDetail(((UserModel) objects.get(position)).getUserId());

@@ -264,7 +264,7 @@
                 android:src="@drawable/interest_white" />
 
             <TextView
-                android:id="@+id/tv_message_item_interest_received"
+                android:id="@+id/tv_item1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_item1"

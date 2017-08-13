@@ -214,7 +214,7 @@
         android:visibility="gone">
 
         <TextView
-            android:id="@+id/tv_first_message_item_interest_received"
+            android:id="@+id/tv_first_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
@@ -223,10 +223,10 @@
             android:textSize="@dimen/_14sdp" />
 
         <TextView
-            android:id="@+id/full_message_item_interest_received"
+            android:id="@+id/full_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_first_message_item_interest_received"
+            android:layout_below="@+id/tv_first_message"
             android:layout_marginLeft="@dimen/_10sdp"
             android:background="@color/white"
             android:padding="@dimen/_5sdp"
@@ -264,7 +264,7 @@
                 android:src="@drawable/interest_white" />
 
             <TextView
-                android:id="@+id/tv_message_item_interest_received"
+                android:id="@+id/tv_item1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_item1"
