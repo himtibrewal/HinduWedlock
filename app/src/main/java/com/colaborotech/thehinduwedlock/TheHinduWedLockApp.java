@@ -5,11 +5,14 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.colaborotech.thehinduwedlock.models.DataModel;
+import com.crashlytics.android.Crashlytics;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 
 /**
@@ -64,6 +67,7 @@ public class TheHinduWedLockApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         theHinduWedLockApp = this;
         // super.onCreate();
         MultiDex.install(this);
