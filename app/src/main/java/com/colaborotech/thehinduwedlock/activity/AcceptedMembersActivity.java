@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -114,7 +115,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
         });
         activeTab = 0;
         getDataFromServer(0, AppUrls.ACCEPTED_BY_ME, 0, true);
-        recyclerAdapterReceived = new RecyclerAdapter(whoacceptedme, this, R.layout.item_acceptance, this, 0);
+        recyclerAdapterReceived = new RecyclerAdapter(whoacceptedme, this, R.layout.item_3_bottom_icon, this, 0);
     }
 
     @Override
@@ -145,7 +146,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 getDataFromServer(currentPage, AppUrls.ACCEPTED_BY_ME, 0, true);
                 tvAcceptedMe.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 tvAcceptedMe.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterReceived = new RecyclerAdapter(acceptedByMe, this, R.layout.item_acceptance, this, 0);
+                recyclerAdapterReceived = new RecyclerAdapter(acceptedByMe, this, R.layout.item_3_bottom_icon, this, 0);
                 break;
             case R.id.tv_accepted_me:
                 activeTab = 1;
@@ -157,7 +158,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 getDataFromServer(currentPage, AppUrls.ACCEPTED_ME, 1, true);
                 tvAcceptedByMe.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 tvAcceptedByMe.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterSend = new RecyclerAdapter(whoacceptedme, this, R.layout.item_acceptance, this, 1);
+                recyclerAdapterSend = new RecyclerAdapter(whoacceptedme, this, R.layout.item_3_bottom_icon, this, 1);
                 break;
 
         }
@@ -177,11 +178,14 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void getAdapterView(View view, List objects, int position, int from) {
+        LinearLayout lltime = (LinearLayout) view.findViewById(R.id.ll_timing_interest);
         TextView tvInterestTiming = (TextView) view.findViewById(R.id.tv_timing_interest);
-        ImageView ivNoOgimage = (ImageView) view.findViewById(R.id.iv_no_Of_image_interest);
-        ImageView ivProfileic = (ImageView) view.findViewById(R.id.iv_profile_pic_item_search);
-        TextView tvFirstMessage = (TextView) view.findViewById(R.id.tv_first_message_item_interest_received);
-        TextView tvFullMessage = (TextView) view.findViewById(R.id.full_message_item_interest_received);
+        ImageView ivNoOgimage = (ImageView) view.findViewById(R.id.iv_no_Of_image);
+        ImageView ivProfilePic = (ImageView) view.findViewById(R.id.iv_profile_pic);
+        RelativeLayout rlData = (RelativeLayout) view.findViewById(R.id.rl_data);
+        RelativeLayout rlMessage = (RelativeLayout) view.findViewById(R.id.rl_message_view);
+        TextView tvFirstMessage = (TextView) view.findViewById(R.id.tv_first_message);
+        TextView tvFullMessage = (TextView) view.findViewById(R.id.full_message);
         TextView tvUserId = (TextView) view.findViewById(R.id.userid_item_searchResult);
         TextView tvLastOnline = (TextView) view.findViewById(R.id.lastOnline_item_searchResult);
         TextView tvAge = (TextView) view.findViewById(R.id.age_item_searchResult);
@@ -192,9 +196,18 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
         TextView tvQualification = (TextView) view.findViewById(R.id.study_item_searchResult);
         TextView tvCity = (TextView) view.findViewById(R.id.city_item_searchResult);
         TextView tvMemberShip = (TextView) view.findViewById(R.id.membership_item_searchResult);
-        RelativeLayout rlMessage = (RelativeLayout) view.findViewById(R.id.rl_message_item_interest_received);
-        RelativeLayout rlContact = (RelativeLayout) view.findViewById(R.id.rl_contact_item_interest_received);
-        RelativeLayout rlDecline = (RelativeLayout) view.findViewById(R.id.rl_decline_item_interest_received);
+        ImageView ivItem1 = (ImageView) view.findViewById(R.id.iv_item1);
+        ImageView ivItem2 = (ImageView) view.findViewById(R.id.iv_item2);
+        ImageView ivItem3 = (ImageView) view.findViewById(R.id.iv_item3);
+        ImageView ivItem4 = (ImageView) view.findViewById(R.id.iv_item4);
+        TextView tvItem1 = (TextView) view.findViewById(R.id.tv_item1);
+        TextView tvItem2 = (TextView) view.findViewById(R.id.tv_item2);
+        TextView tvItem3 = (TextView) view.findViewById(R.id.tv_item3);
+        TextView tvItem4 = (TextView) view.findViewById(R.id.tv_item4);
+        // ImageView ivItem4 = (ImageView) view.findViewById(R.id.iv_item4);
+        RelativeLayout rlItem1 = (RelativeLayout) view.findViewById(R.id.rl_item1);
+        RelativeLayout rlItem2 = (RelativeLayout) view.findViewById(R.id.rl_item2);
+        RelativeLayout rlItem3 = (RelativeLayout) view.findViewById(R.id.rl_item3);
         tvInterestTiming.setText("He sent an request on");
         ivNoOgimage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,18 +221,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 toastMessage("coming soon");
             }
         });
-        rlContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toastMessage("coming soon");
-            }
-        });
-        rlDecline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toastMessage("coming soon");
-            }
-        });
+
     }
 
     @Override
