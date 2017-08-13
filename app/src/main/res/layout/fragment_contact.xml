@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:text="Complete your profile by filling details marked red"
+        android:textSize="@dimen/_10sdp" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_email_id_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/TextView_up_style"
+                android:text="Email id" />
+
+            <TextView
+                android:id="@+id/tv_email_id_contact"
+                style="@style/TextView_style"
+                android:text="" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/email_id_verify_conatct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="Verify" />
+    </RelativeLayout>
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_alt_email_id_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:id="@+id/titlealt_email"
+                style="@style/TextView_up_style"
+                android:text="Alternate Email id" />
+
+            <TextView
+                android:id="@+id/tv_alt_email_contact"
+                style="@style/TextView_style"
+                android:text="" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_verify_alt_email_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="Verify" />
+    </RelativeLayout>
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_mobile_no_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:id="@+id/title_mobile_no"
+                style="@style/TextView_up_style"
+                android:text="Mobile Number" />
+
+            <TextView
+                android:id="@+id/tv_Mobile_no_conatct"
+                style="@style/TextView_style"
+                android:text="" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_setting_mobile_no_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/_4sdp"
+            android:drawableRight="@drawable/settings_grey"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="Not Visible" />
+    </RelativeLayout>
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_alt_mobile_no_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:id="@+id/title_alt_mobile_no"
+                style="@style/TextView_up_style"
+                android:text="Alt. Mobile Number" />
+
+            <TextView
+                android:id="@+id/tv_alt_mobile_no_contact"
+                style="@style/TextView_style"
+                android:text="" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_settings_alt_mobile_no_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/_4sdp"
+            android:drawableRight="@drawable/settings_grey"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="Not Visible" />
+    </RelativeLayout>
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_landline_no_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:id="@+id/title_landline_no"
+                style="@style/TextView_up_style"
+                android:text="Landline Number" />
+
+            <TextView
+                android:id="@+id/tv_landline_no_contact"
+                style="@style/TextView_style"
+                android:text="" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_settings_landline_no_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/_4sdp"
+            android:drawableRight="@drawable/settings_grey"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="Not Visible" />
+    </RelativeLayout>
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        android:id="@+id/ctv_suitable_time_to_call_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:heading="Suitable time to call"
+        custom:value="detail text" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+
+</LinearLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:text="Complete your profile by filling details marked red"
+        android:textSize="@dimen/_10sdp" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+
+    <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        android:id="@+id/ctv_about_my_family_family_info_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:heading="About My Family"
+        custom:value="detail text" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        android:id="@+id/ctv_family_family_info_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:heading="Family"
+        custom:value="detail text" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        android:id="@+id/ctv_parent_family_info_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:heading="Parent"
+        custom:value="detail text" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+
+    <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        android:id="@+id/ctv_siblings_family_info_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:heading="Siblings"
+        custom:value="detail text" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+</LinearLayout>

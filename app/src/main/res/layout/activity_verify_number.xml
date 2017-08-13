@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusableInTouchMode="true">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_image_text_text" />
+
+    <TextView
+        android:id="@+id/infotext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:gravity="center"
+        android:text="Mention the number you want to verify."
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/maininput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/infotext"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/colorAccent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="10">
+
+            <EditText
+                android:id="@+id/et_std_verify_number"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_weight="2.5"
+                android:background="@color/white"
+                android:gravity="right|center_vertical"
+                android:hint="ISD"
+                android:text="+91" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="-"
+                android:textSize="@dimen/_18sdp" />
+
+            <EditText
+                android:id="@+id/et_phone_number_verify_number"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_weight="6.5"
+                android:background="@color/white"
+                android:hint="Enter Number"
+                android:text="8882254010" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/colorAccent" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/maininput"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center"
+        android:text="We will send verification code to this number" />
+
+    <LinearLayout
+        android:id="@+id/ll_next_verify_number"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:elevation="@dimen/_4sdp">
+
+        <TextView
+            android:id="@+id/tv_next_verify_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawable_bottom_selection"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Verify this Number"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

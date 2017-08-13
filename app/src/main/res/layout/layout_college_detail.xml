@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_highest_education_college_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="@string/highest_education"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_pg_college_college_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Pg College(optional)"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout
+            android:id="@+id/ll_pg_college"
+            style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_pg_degree_college_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Pg Degree(optional)"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout
+            android:id="@+id/ll_pg_degree"
+            style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_ug_college_college_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Graduation college(optional)"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout
+            android:id="@+id/ll_ug_college"
+            style="@style/LinearLayout_Spinner" />
+
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_ug_degree_college_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Ug Degree(optional)"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout
+            android:id="@+id/ll_ug_degree"
+            style="@style/LinearLayout_Spinner" />
+
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_school_name_college_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="School Name"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+    </LinearLayout>
+</ScrollView>

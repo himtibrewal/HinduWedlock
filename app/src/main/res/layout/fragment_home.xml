@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/_5sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_edit_detail_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none" />
+
+            <include
+                android:id="@+id/layout_home_leftitem"
+                layout="@layout/layout_home_leftitem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rv_edit_detail_home"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp" />
+
+            <include
+                android:id="@+id/layout_home_fixed_item"
+                layout="@layout/layout_home_accept_match"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_home_leftitem"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp" />
+
+            <RelativeLayout
+                android:id="@+id/rl_interest_received_home"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout_home_fixed_item">
+
+                <TextView
+                    android:id="@+id/tv_interest_received_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Interest Received 3" />
+
+                <TextView
+                    android:id="@+id/tv_view_all_interest_received_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:text="View All" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/firstList1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_interest_received_home"
+                android:scrollbars="none" />
+
+            <TextView
+                android:id="@+id/daily_recomendation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/firstList1"
+                android:padding="@dimen/_5sdp"
+                android:text="Match Of the  the Day" />
+
+            <TextView
+                android:id="@+id/view_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/firstList1"
+                android:padding="@dimen/_5sdp"
+                android:text="Match Of the  the Day" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/firstList11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_all"
+                android:scrollbars="none" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

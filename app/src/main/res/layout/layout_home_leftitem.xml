@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/light_black"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_bigText_leftinfo_homefragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:text="Add About Family"
+            android:textSize="@dimen/_22sdp"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:id="@+id/tv_smallText_leftinfo_homefragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_below="@+id/tv_bigText_leftinfo_homefragment"
+            android:text="Get more interest and response"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_25sdp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:src="@drawable/ic_menu_camera"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

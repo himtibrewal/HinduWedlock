@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "595186909741",
+    "firebase_url": "https://thehindu-24e87.firebaseio.com",
+    "project_id": "thehindu-24e87",
+    "storage_bucket": "thehindu-24e87.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595186909741:android:16e2bed5e6f066a9",
+        "android_client_info": {
+          "package_name": "com.colaborotech.thehinduwedlock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595186909741-ba7r0rrf0ifg8aq5kk32hgfa8hit3rq6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.colaborotech.thehinduwedlock",
+            "certificate_hash": "27195bd1afcd65d77b2ec3b4c466e8c670ec62ed"
+          }
+        },
+        {
+          "client_id": "595186909741-jmp12j4o9ms26qlrtk4gm4n680clr9ap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMnoeLGZcUK-lGCY2zaZ3zLNSevfN5x38"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595186909741-jmp12j4o9ms26qlrtk4gm4n680clr9ap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

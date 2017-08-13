@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:text="Complete your profile by filling details marked red"
+        android:textSize="@dimen/_10sdp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/colorAccent" />
+
+    <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        android:id="@+id/ctv_aboutme_basic_info_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:heading="About Me"
+        custom:value="detail text" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        android:id="@+id/ctv_basic_detail_info_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:heading="Basic Details"
+        custom:value="detail text" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        android:id="@+id/ctv_ethnicity_basic_info_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:heading="Ethnicity"
+        custom:value="detail text" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        android:id="@+id/ctv_appearance_basic_info_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:heading="Appearance"
+        custom:value="detail text" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        android:id="@+id/ctv_special_cases_basic_info_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:heading="Special Cases"
+        custom:value="detail text" />
+
+    <LinearLayout style="@style/LinearLayout_Spinner" />
+
+
+</LinearLayout>

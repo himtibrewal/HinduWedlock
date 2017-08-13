@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="?actionBarSize">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_full_name_login_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="65"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/title_full_name"
+                    style="@style/TextView_up_style"
+                    android:text="Full Name" />
+
+                <EditText
+                    android:id="@+id/et_full_name_value_login_detail"
+                    style="@style/TextView_style"
+                    android:background="@color/white"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:text="" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_Show_to_all_login_detail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="25"
+                android:drawablePadding="@dimen/_2sdp"
+                android:drawableRight="@drawable/settings_grey"
+                android:gravity="center"
+                android:paddingRight="@dimen/_10sdp"
+                android:singleLine="true"
+                android:text="Show to all"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <LinearLayout
+            android:id="@+id/ll_email_id_login_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/title_email_id_login_detail"
+                    style="@style/TextView_up_style"
+                    android:text="Email ID" />
+
+                <EditText
+                    android:id="@+id/et_value_email_id_login_detail"
+                    style="@style/TextView_style"
+                    android:background="@color/white"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:text="" />
+            </LinearLayout>
+
+            <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:padding="@dimen/_10sdp"-->
+            <!--android:src="@drawable/ic_menu_camera" />-->
+        </LinearLayout>
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_password_login_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="80"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/title_password_login_detail"
+                    style="@style/TextView_up_style"
+                    android:text="Password(Min 8 char)" />
+
+                <EditText
+                    android:id="@+id/et_value_password_login_detail"
+                    style="@style/TextView_style"
+                    android:background="@color/white"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:text="" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/show_password_login_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="Show" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_phone_number_login_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/title_phone_no_login_detail"
+                    style="@style/TextView_up_style"
+                    android:text="Phone Number" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp">
+
+                    <EditText
+                        android:id="@+id/et_country_code_phone_number_login_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:background="@color/white"
+                        android:paddingLeft="@dimen/_2sdp"
+                        android:singleLine="true"
+                        android:text="+91"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="normal" />
+
+                    <EditText
+                        android:id="@+id/et_phone_number_login_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="90"
+                        android:background="@color/white"
+                        android:imeOptions="actionDone"
+                        android:inputType="phone"
+                        android:maxLength="15"
+                        android:text=""
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="normal" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+    </LinearLayout>
+</ScrollView>

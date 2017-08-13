@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:text="Search if you know profile id"
+        android:textSize="@dimen/_14sdp" />
+
+    <EditText
+        android:id="@+id/editText_profile_id_search"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_margin="@dimen/_6sdp"
+        android:background="@color/white"
+        android:hint="Profile ID" />
+
+    <TextView
+        android:id="@+id/submit_searchby_id"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/drawable_bottom_selection"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="Search"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp" />
+
+
+</LinearLayout>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_marital_stats_social_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="@string/marital_status"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <!--<com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue-->
+            <!--android:id="@+id/ctv_have_child_social_detail"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--custom:heading="Have Child"-->
+            <!--custom:value="@string/not_filled" />-->
+
+            <!--<LinearLayout style="@style/LinearLayout_Spinner" />-->
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_mother_tongue_social_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Mother Tongue"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_Religion_social_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Religion"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+
+            <!--<com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue-->
+            <!--android:id="@+id/ctv_caste_social_detail"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--custom:heading="Caste"-->
+            <!--custom:value="@string/not_filled" />-->
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/ll_caste_social"-->
+            <!--style="@style/LinearLayout_Spinner" />-->
+
+            <LinearLayout
+                android:id="@+id/ll_open_for_all_caste_social_detail"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize">
+
+                <ImageView
+                    android:id="@+id/iv_open_for_all_caste_social_detail"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/circle_strok_black_bg_white_hollow"
+                    android:padding="@dimen/_9sdp"
+                    android:src="@drawable/tick_white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="i am open to marry people of all castes \n (Caste No Bar)" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_caste_no_bar_social"
+                style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_manglik_social_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Manglik"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout
+                android:id="@+id/ll_manglik_social"
+                style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_horoscope_social_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Horoscope Must for Marriage?"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout
+                android:id="@+id/ll_horo_social"
+                style="@style/LinearLayout_Spinner" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_next_social_detail"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:elevation="@dimen/_4sdp">
+
+        <TextView
+            android:id="@+id/tv_next_social_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawable_bottom_selection"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="NEXT"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

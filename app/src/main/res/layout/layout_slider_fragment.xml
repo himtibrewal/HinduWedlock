@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/drawer_list"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/title_slider"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/_10sdp"
+        android:text="Title"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <ListView
+        android:id="@+id/list_slider"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/colorAccent"
+        android:dividerHeight="0.5dp"></ListView>
+
+    <RelativeLayout
+        android:id="@+id/sliderfragment_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right">
+
+        <Button
+            android:id="@+id/btn_done"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/drawable_bottom_selection"
+            android:text="Done"
+            android:textColor="@color/white" />
+
+        <ListView
+            android:id="@+id/multiple_lists"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/btn_done"
+            android:layout_gravity="right"
+            android:drawSelectorOnTop="true">
+
+        </ListView>
+    </RelativeLayout>
+
+</LinearLayout>

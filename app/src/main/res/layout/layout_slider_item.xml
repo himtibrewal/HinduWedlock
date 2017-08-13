@@ -1,0 +1,15 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/spinner_item"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@color/drawer_list"
+    android:clickable="true"
+    android:ellipsize="marquee"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/_5sdp"
+    android:text="hello"
+    android:textColor="@color/white"
+    android:textSize="14dp"
+    android:textStyle="normal" />
+
+

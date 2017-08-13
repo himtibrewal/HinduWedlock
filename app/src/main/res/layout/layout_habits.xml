@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true">
+
+    <LinearLayout xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_diet_habits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Please specify your diet"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_smoke_habits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Do you smoke?"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_drink_habits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Do you drink?"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_pets_habits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Open to Pets"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+
+    </LinearLayout>
+</ScrollView>
+

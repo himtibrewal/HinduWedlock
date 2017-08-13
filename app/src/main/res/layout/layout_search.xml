@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="?actionBarSize"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                    android:id="@+id/lower_age_limit_searchActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    custom:value="" />
+
+                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                    android:id="@+id/upper_age_limit_searchActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    custom:value="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                    android:id="@+id/lower_height_limit_searchActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    custom:value="" />
+
+                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                    android:id="@+id/upper_height_limit_searchActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    custom:value="" />
+            </LinearLayout>
+
+            <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                android:id="@+id/religion_searchActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:value="" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                android:id="@+id/mother_tongue_searchActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:value="" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                    android:id="@+id/lower_income_limit_searchActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    custom:value="" />
+
+                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                    android:id="@+id/upper_income_limit_searchActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    custom:value="" />
+            </LinearLayout>
+
+            <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                android:id="@+id/country_searchActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:value="" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                android:id="@+id/state_searchActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:value="" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_12sdp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/profile_with_photo_searchActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_racangle_solid_pinkfill"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_15sdp"
+                    android:text="Profile with photo"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/all_profile_searchActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_ractagle_hollow_pinkline"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_15sdp"
+                    android:text="All Profile" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/submit_searchActivity"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/drawable_bottom_selection"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="Search"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

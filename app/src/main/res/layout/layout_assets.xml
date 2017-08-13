@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true">
+
+    <LinearLayout xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_own_house_assets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Own a House?"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_own_car_assets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Do you smoke?"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+
+    </LinearLayout>
+</ScrollView>
+

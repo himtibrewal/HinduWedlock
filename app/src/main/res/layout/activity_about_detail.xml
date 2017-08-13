@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusableInTouchMode="true">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar" />
+
+    <TextView
+        android:id="@+id/detail_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:gravity="left"
+        android:padding="@dimen/_5sdp"
+        android:text="@string/write_about_yourself" />
+
+    <TextView
+        android:id="@+id/min_100_char_static"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/detail_text"
+        android:text="Type min 100 chars" />
+
+    <TextView
+        android:id="@+id/tv_count_about_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/detail_text"
+        android:text="count - 0" />
+
+    <EditText
+        android:id="@+id/et_about_about_detail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_175sdp"
+        android:layout_below="@+id/min_100_char_static"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/drawable_ractagle_hollow_pinkline"
+        android:gravity="start" />
+
+    <LinearLayout
+        android:id="@+id/ll_next_about_your_self"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:elevation="@dimen/_4sdp">
+
+        <TextView
+            android:id="@+id/tv_next_about_your_self"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawable_bottom_selection"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Complete my Profile"
+            android:textAllCaps="true"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

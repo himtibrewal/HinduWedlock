@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/rl_self"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_ractagle_hollow_pinkline">
+
+                    <ImageView
+                        android:id="@+id/self_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/self_grey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/self_image"
+                        android:layout_centerHorizontal="true"
+                        android:text="Self" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_relative"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_ractagle_hollow_pinkline">
+
+                    <ImageView
+                        android:id="@+id/relative_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/relative_grey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/relative_image"
+                        android:layout_centerHorizontal="true"
+                        android:text="Relative" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/rl_sister"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_ractagle_hollow_pinkline">
+
+                    <ImageView
+                        android:id="@+id/sister_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/sister_grey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/sister_image"
+                        android:layout_centerHorizontal="true"
+                        android:text="Sister" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_brother"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_ractagle_hollow_pinkline">
+
+                    <ImageView
+                        android:id="@+id/brother_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/brother_grey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/brother_image"
+                        android:layout_centerHorizontal="true"
+                        android:text="Brother" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/rl_son"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_ractagle_hollow_pinkline">
+
+                    <ImageView
+                        android:id="@+id/son_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/son_grey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/son_image"
+                        android:layout_centerHorizontal="true"
+                        android:text="Son" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_daughter"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_ractagle_hollow_pinkline">
+
+                    <ImageView
+                        android:id="@+id/daughter_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/daughter_grey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/daughter_image"
+                        android:layout_centerHorizontal="true"
+                        android:text="Daughter" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/rl_client"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_ractagle_hollow_pinkline">
+
+                    <ImageView
+                        android:id="@+id/client_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/client_grey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/client_image"
+                        android:layout_centerHorizontal="true"
+                        android:text="Client(Marriage bureau)" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_friend"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_ractagle_hollow_pinkline">
+
+                    <ImageView
+                        android:id="@+id/friend_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/friend_grey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/friend_image"
+                        android:layout_centerHorizontal="true"
+                        android:text="Friend" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

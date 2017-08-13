@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_family_status_family_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Family Status"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_family_values_family_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Family Values"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_family_type_family_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Family Type"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_family_income_family_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Family Income"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_father_occupations_family_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Father Occupation"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_mother_occupations_family_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Mother Occupation"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_Brothers_family_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Brother(s)"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <!--<com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue-->
+            <!--android:id="@+id/ctv_married_brothers_family_detail"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--custom:heading="Of Which Married"-->
+            <!--custom:value="@string/not_filled" />-->
+
+            <!--<LinearLayout style="@style/LinearLayout_Spinner" />-->
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_sisters_family_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Sister(s)"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <!--<com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue-->
+            <!--android:id="@+id/ctv_married_sisters_family_detail"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--custom:heading="Of Which Married"-->
+            <!--custom:value="@string/not_filled" />-->
+
+            <!--<LinearLayout style="@style/LinearLayout_Spinner" />-->
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_family_based_out_of_family_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Family based out of"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+                android:id="@+id/ctv_gotra_family_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:heading="Gotra"
+                custom:value="@string/not_filled" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_next_family_detail"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:elevation="@dimen/_4sdp">
+
+        <TextView
+            android:id="@+id/tv_next_family_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawable_bottom_selection"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="NEXT"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

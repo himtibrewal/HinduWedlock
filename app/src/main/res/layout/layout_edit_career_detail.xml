@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_organization_name_edit_career_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Organization Name"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_occupation_edit_career_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Occupation"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+
+        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            android:id="@+id/ctv_annual_income_edit_career_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:heading="Organization Name"
+            custom:value="@string/not_filled" />
+
+        <LinearLayout style="@style/LinearLayout_Spinner" />
+    </LinearLayout>
+</ScrollView>
