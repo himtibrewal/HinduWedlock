@@ -301,7 +301,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_item2"
                 android:layout_centerHorizontal="true"
-                android:text="Contact"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/_8sdp" />
 
@@ -333,7 +333,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_item3"
                 android:layout_centerHorizontal="true"
-                android:text="Decline"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/_8sdp" />
 
@@ -365,7 +365,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_item4"
                 android:layout_centerHorizontal="true"
-                android:text="Decline"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/_8sdp" />
 

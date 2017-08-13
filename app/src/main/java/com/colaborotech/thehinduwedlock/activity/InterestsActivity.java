@@ -118,7 +118,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
         });
         activeTab = 0;
         getDataFromServer(0, AppUrls.GET_INTEREST_RECEIVED, 0, true);
-        recyclerAdapterReceived = new RecyclerAdapter(recieveList, this, R.layout.item_2_bottom_icon, this, 0);
+        recyclerAdapterReceived = new RecyclerAdapter(recieveList, this, R.layout.item_4_bottom_icon, this, 0);
     }
 
     @Override
@@ -147,7 +147,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 getDataFromServer(currentPage, AppUrls.GET_INTEREST_RECEIVED, 0, true);
                 tvSent.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 tvSent.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterReceived = new RecyclerAdapter(recieveList, this, R.layout.item_2_bottom_icon, this, 0);
+                recyclerAdapterReceived = new RecyclerAdapter(recieveList, this, R.layout.item_4_bottom_icon, this, 0);
                 break;
             case R.id.tv_tab2:
                 activeTab = 1;
@@ -159,7 +159,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 getDataFromServer(currentPage, AppUrls.GET_INTEREST_SENT, 1, true);
                 tvReceived.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 tvReceived.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterSend = new RecyclerAdapter(sendList, this, R.layout.item_3_bottom_icon, this, 1);
+                recyclerAdapterSend = new RecyclerAdapter(sendList, this, R.layout.item_4_bottom_icon, this, 1);
                 break;
         }
     }
@@ -406,6 +406,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
         TextView tvQualification = (TextView) view.findViewById(R.id.study_item_searchResult);
         TextView tvCity = (TextView) view.findViewById(R.id.city_item_searchResult);
         TextView tvMemberShip = (TextView) view.findViewById(R.id.membership_item_searchResult);
+        LinearLayout llBottom = (LinearLayout) view.findViewById(R.id.ll_bottom_layout);
         ImageView ivItem1 = (ImageView) view.findViewById(R.id.iv_item1);
         ImageView ivItem2 = (ImageView) view.findViewById(R.id.iv_item2);
         ImageView ivItem3 = (ImageView) view.findViewById(R.id.iv_item3);
@@ -421,6 +422,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
         switch (from) {
             case 0:
                 tvInterestTiming.setText("He sent an request on 24-07-2017");
+                llBottom.setWeightSum(2);
                 tvItem1.setText("Accept");
                 tvItem2.setText("Reject");
                 //rlMessage.setVisibility(View.GONE);
@@ -456,6 +458,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 break;
             case 1:
                 tvInterestTiming.setText("He sent an request on 25-07-2017");
+                llBottom.setWeightSum(3);
                 tvItem1.setText("Accept");
                 tvItem2.setText("Reject");
                 tvItem3.setText("Accept");
