@@ -9,14 +9,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.colaborotech.thehinduwedlock.TheHinduWedLockApp"
+        android:name=".TheHinduWedLockApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.SplashActivty">
+        <activity android:name=".activity.SplashActivty">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,59 +24,59 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.LoginActivity" />
+        <activity android:name=".activity.LoginActivity" />
         <activity
-            android:name="com.colaborotech.thehinduwedlock.activity.SearchActivity"
+            android:name=".activity.SearchActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name="com.colaborotech.thehinduwedlock.activity.DrawerActivity"
+            android:name=".activity.DrawerActivity"
             android:launchMode="singleTask" />
 
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.CreateForRegister" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.PersonalDetailActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.CareerDetailActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.SocialDetailActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.LoginDetailActivity" />
+        <activity android:name=".activity.CreateForRegister" />
+        <activity android:name=".activity.PersonalDetailActivity" />
+        <activity android:name=".activity.CareerDetailActivity" />
+        <activity android:name=".activity.SocialDetailActivity" />
+        <activity android:name=".activity.LoginDetailActivity" />
 
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.WriteAboutActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.FamilyDetailActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.ActivityVerifyNumber" />
+        <activity android:name=".activity.WriteAboutActivity" />
+        <activity android:name=".activity.FamilyDetailActivity" />
+        <activity android:name=".activity.ActivityVerifyNumber" />
 
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.ProfileListActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.ProfileDetailActivity" />
+        <activity android:name=".activity.ProfileListActivity" />
+        <activity android:name=".activity.ProfileDetailActivity" />
 
         <activity android:name=".activity.InterestsActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.ProfileEditActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.BasicDetailActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.EthinicityActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.AppearanceActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.SpclCaseActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.CollegeDetailActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.EditCareerDetailActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.EditFamilyDetailActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.ParentsActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.SbilingsActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.EnterDataActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.HabitsActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.AssetsActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.SkillsActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.FavouriteActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.VerificationScreenActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.MobileVerificationActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.AcceptedMembersActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.SearchByIdActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.JustJoinedActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.SavedSearchActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.AboutUsActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.ContactUsActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.SettingsActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.HelpActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.DeclinedActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.BlockedActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.MessageActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.ShortListProfileActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.WhoViewMyContactActivity" />
-        <activity android:name="com.colaborotech.thehinduwedlock.activity.PhoneBookActivity" />
+        <activity android:name=".activity.ProfileEditActivity" />
+        <activity android:name=".activity.BasicDetailActivity" />
+        <activity android:name=".activity.EthinicityActivity" />
+        <activity android:name=".activity.AppearanceActivity" />
+        <activity android:name=".activity.SpclCaseActivity" />
+        <activity android:name=".activity.CollegeDetailActivity" />
+        <activity android:name=".activity.EditCareerDetailActivity" />
+        <activity android:name=".activity.EditFamilyDetailActivity" />
+        <activity android:name=".activity.ParentsActivity" />
+        <activity android:name=".activity.SbilingsActivity" />
+        <activity android:name=".activity.EnterDataActivity" />
+        <activity android:name=".activity.HabitsActivity" />
+        <activity android:name=".activity.AssetsActivity" />
+        <activity android:name=".activity.SkillsActivity" />
+        <activity android:name=".activity.FavouriteActivity" />
+        <activity android:name=".activity.VerificationScreenActivity" />
+        <activity android:name=".activity.MobileVerificationActivity" />
+        <activity android:name=".activity.AcceptedMembersActivity" />
+        <activity android:name=".activity.SearchByIdActivity" />
+        <activity android:name=".activity.JustJoinedActivity" />
+        <activity android:name=".activity.SavedSearchActivity" />
+        <activity android:name=".activity.AboutUsActivity" />
+        <activity android:name=".activity.ContactUsActivity" />
+        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.HelpActivity" />
+        <activity android:name=".activity.DeclinedActivity" />
+        <activity android:name=".activity.BlockedActivity" />
+        <activity android:name=".activity.MessageActivity" />
+        <activity android:name=".activity.ShortListProfileActivity" />
+        <activity android:name=".activity.WhoViewMyContactActivity" />
+        <activity android:name=".activity.PhoneBookActivity" />
 
 
         <service
