@@ -115,7 +115,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
         });
         activeTab = 0;
         getDataFromServer(0, AppUrls.ACCEPTED_BY_ME, 0, true);
-        recyclerAdapterReceived = new RecyclerAdapter(whoacceptedme, this, R.layout.item_3_bottom_icon, this, 0);
+        recyclerAdapterReceived = new RecyclerAdapter(whoacceptedme, this, R.layout.item_4_bottom_icon, this, 0);
     }
 
     @Override
@@ -146,7 +146,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 getDataFromServer(currentPage, AppUrls.ACCEPTED_BY_ME, 0, true);
                 tvAcceptedMe.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 tvAcceptedMe.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterReceived = new RecyclerAdapter(acceptedByMe, this, R.layout.item_3_bottom_icon, this, 0);
+                recyclerAdapterReceived = new RecyclerAdapter(acceptedByMe, this, R.layout.item_4_bottom_icon, this, 0);
                 break;
             case R.id.tv_accepted_me:
                 activeTab = 1;
@@ -158,7 +158,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 getDataFromServer(currentPage, AppUrls.ACCEPTED_ME, 1, true);
                 tvAcceptedByMe.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 tvAcceptedByMe.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterSend = new RecyclerAdapter(whoacceptedme, this, R.layout.item_3_bottom_icon, this, 1);
+                recyclerAdapterSend = new RecyclerAdapter(whoacceptedme, this, R.layout.item_4_bottom_icon, this, 1);
                 break;
 
         }
