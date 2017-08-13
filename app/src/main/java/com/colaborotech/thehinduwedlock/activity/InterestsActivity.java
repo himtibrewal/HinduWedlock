@@ -455,7 +455,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 });
                 break;
             case 1:
-                tvInterestTiming.setText("He sent an request on 24-07-2017");
+                tvInterestTiming.setText("He sent an request on 25-07-2017");
                 tvItem1.setText("Accept");
                 tvItem2.setText("Reject");
                 tvItem3.setText("Accept");
@@ -478,7 +478,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 rlItem1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        toastMessage("coming soon");
+                        toastMessage("coming soon Reminder");
                     }
                 });
                 rlItem2.setOnClickListener(new View.OnClickListener() {
