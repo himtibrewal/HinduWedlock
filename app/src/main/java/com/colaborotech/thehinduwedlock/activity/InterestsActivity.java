@@ -437,7 +437,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 ivNoOgimage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        toastMessage("coming soon");
+                        toastMessage("coming soon No image");
                     }
                 });
                 rlItem1.setOnClickListener(new View.OnClickListener() {
