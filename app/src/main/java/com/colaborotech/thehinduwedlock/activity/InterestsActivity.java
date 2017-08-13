@@ -335,6 +335,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                     String response_code = jsonObject.getString("response_code");
                     if (response_code.equalsIgnoreCase("200")) {
                         toastMessage(jsonObject.getString("message"));
+
                     }
                 } catch (Exception e) {
 

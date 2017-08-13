@@ -55,16 +55,16 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
 
     @Override
     public int getActivityLayout() {
-        return R.layout.activity_accepted_member;
+        return R.layout.layout_rl_two_tab;
     }
 
     @Override
     public void initialize() {
         ivBack = (ImageView) findViewById(R.id.iv_back);
         tvTitle = (TextView) findViewById(R.id.toolbar_title);
-        tvAcceptedByMe = (TextView) findViewById(R.id.tv_accepted_by_me);
-        tvAcceptedMe = (TextView) findViewById(R.id.tv_accepted_me);
-        rlMainList = (RecyclerView) findViewById(R.id.rv_acceptance);
+        tvAcceptedMe = (TextView) findViewById(R.id.tv_tab1);
+        tvAcceptedByMe = (TextView) findViewById(R.id.tv_tab2);
+        rlMainList = (RecyclerView) findViewById(R.id.rv_list);
         tvNodata = (TextView) findViewById(R.id.tv_no_data);
         ivBack.setOnClickListener(this);
         tvAcceptedMe.setOnClickListener(this);
@@ -114,15 +114,16 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
             }
         });
         activeTab = 0;
-        getDataFromServer(0, AppUrls.ACCEPTED_BY_ME, 0, true);
+        getDataFromServer(0, AppUrls.ACCEPTED_ME, 0, true);
         recyclerAdapterReceived = new RecyclerAdapter(whoacceptedme, this, R.layout.item_4_bottom_icon, this, 0);
+
     }
 
     @Override
     public void init(Bundle save) {
         tvTitle.setText("Accepted Members");
-        tvAcceptedMe.setText("Accepted me");
-        tvAcceptedByMe.setText("Accepted by me");
+        tvAcceptedMe.setText("Who Accepted Me");
+        tvAcceptedByMe.setText("Accepted by Me");
     }
 
     @Override
@@ -136,31 +137,30 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
             case R.id.iv_back:
                 onBackPressed();
                 break;
-            case R.id.tv_accepted_by_me:
-                activeTab = 0;
-                currentPage = 0;
-                tvAcceptedByMe.setBackgroundColor(getResources().getColor(R.color.red_dark));
-                tvAcceptedByMe.setTextColor(getResources().getColor(R.color.white));
-                tvAcceptedByMe.setText("Accepted by me(" + acceptedByMe.size() + ")");
-                tvAcceptedMe.setText("Who accepted me");
-                getDataFromServer(currentPage, AppUrls.ACCEPTED_BY_ME, 0, true);
-                tvAcceptedMe.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                tvAcceptedMe.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterReceived = new RecyclerAdapter(acceptedByMe, this, R.layout.item_4_bottom_icon, this, 0);
-                break;
-            case R.id.tv_accepted_me:
+            case R.id.tv_tab1:
                 activeTab = 1;
                 currentPage = 0;
                 tvAcceptedMe.setBackgroundColor(getResources().getColor(R.color.red_dark));
                 tvAcceptedMe.setTextColor(getResources().getColor(R.color.white));
                 tvAcceptedMe.setText("Who accepted me(" + whoacceptedme.size() + ")");
                 tvAcceptedByMe.setText("Accepted by me");
-                getDataFromServer(currentPage, AppUrls.ACCEPTED_ME, 1, true);
+                getDataFromServer(currentPage, AppUrls.ACCEPTED_ME, 0, true);
                 tvAcceptedByMe.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 tvAcceptedByMe.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterSend = new RecyclerAdapter(whoacceptedme, this, R.layout.item_4_bottom_icon, this, 1);
+                recyclerAdapterSend = new RecyclerAdapter(whoacceptedme, this, R.layout.item_4_bottom_icon, this, 0);
                 break;
-
+            case R.id.tv_tab2:
+                activeTab = 0;
+                currentPage = 0;
+                tvAcceptedByMe.setBackgroundColor(getResources().getColor(R.color.red_dark));
+                tvAcceptedByMe.setTextColor(getResources().getColor(R.color.white));
+                tvAcceptedByMe.setText("Accepted by me(" + acceptedByMe.size() + ")");
+                tvAcceptedMe.setText("Who accepted me");
+                getDataFromServer(currentPage, AppUrls.ACCEPTED_BY_ME, 1, true);
+                tvAcceptedMe.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                tvAcceptedMe.setTextColor(getResources().getColor(R.color.light_black));
+                recyclerAdapterReceived = new RecyclerAdapter(acceptedByMe, this, R.layout.item_4_bottom_icon, this, 1);
+                break;
         }
 
     }
@@ -208,20 +208,14 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
         RelativeLayout rlItem1 = (RelativeLayout) view.findViewById(R.id.rl_item1);
         RelativeLayout rlItem2 = (RelativeLayout) view.findViewById(R.id.rl_item2);
         RelativeLayout rlItem3 = (RelativeLayout) view.findViewById(R.id.rl_item3);
+        RelativeLayout rlItem4 = (RelativeLayout) view.findViewById(R.id.rl_item4);
         tvInterestTiming.setText("He sent an request on");
-        ivNoOgimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toastMessage("coming soon");
-            }
-        });
-        rlMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toastMessage("coming soon");
-            }
-        });
-
+        switch (from) {
+            case 0:
+                break;
+            case 1:
+                break;
+        }
     }
 
     @Override
@@ -389,23 +383,6 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
 
                 }
                 break;
-//            case 20:
-//                try {
-//                    JSONObject jsonObject = new JSONObject(responseData);
-//                    String response_code = jsonObject.getString("response_code");
-//                    if (response_code.equalsIgnoreCase("200")) {
-//                        toastMessage(jsonObject.getString("message"));
-//                        acceptedByMe.remove(deleteposition);
-//                        tvSent.setText("Sent(" + acceptedByMe.size() + ")");
-//                        if (acceptedByMe.size() == 0) {
-//                            tvNodata.setVisibility(View.VISIBLE);
-//                        }
-//                        recyclerAdapterSend.notifyDataSetChanged();
-//                    }
-//                } catch (Exception e) {
-//
-//                }
-//                break;
             case 30:
                 try {
                     JSONObject jsonObject = new JSONObject(responseData);
