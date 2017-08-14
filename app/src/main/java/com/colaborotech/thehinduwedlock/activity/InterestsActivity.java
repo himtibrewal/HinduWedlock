@@ -191,11 +191,15 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                         }
                         count = jsonObject.getInt("count");
                         JSONArray jsonArray = jsonObject.getJSONArray("results");
-                        JSONArray idArray = jsonObject.getJSONArray("interest_id");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             Map<String, Object> userMapObject = new Gson().fromJson(jsonArray.getJSONObject(i).toString(), Map.class);
                             UserModel userModel = new UserModel();
-                            userModel.setInterest_id(idArray.getInt(i));
+                            if (userMapObject.containsKey("interest_id")) {
+                                userModel.setInterest_id(jsonArray.getJSONObject(i).getInt("interest_id"));
+                            }
+                            if (userMapObject.containsKey("time")) {
+                                userModel.setTime(userMapObject.get("time").toString());
+                            }
                             if (userMapObject.containsKey("user_id")) {
                                 userModel.setUserId(jsonArray.getJSONObject(i).getString("user_id"));
                             }
@@ -265,11 +269,15 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                         }
                         count = jsonObject.getInt("count");
                         JSONArray jsonArray = jsonObject.getJSONArray("results");
-                        JSONArray idArray = jsonObject.getJSONArray("interest_id");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             Map<String, Object> userMapObject = new Gson().fromJson(jsonArray.getJSONObject(i).toString(), Map.class);
                             UserModel userModel = new UserModel();
-                            userModel.setInterest_id(idArray.getInt(i));
+                            if (userMapObject.containsKey("interest_id")) {
+                                userModel.setInterest_id(jsonArray.getJSONObject(i).getInt("interest_id"));
+                            }
+                            if (userMapObject.containsKey("time")) {
+                                userModel.setTime(userMapObject.get("time").toString());
+                            }
                             if (userMapObject.containsKey("user_id")) {
                                 userModel.setUserId(jsonArray.getJSONObject(i).getString("user_id"));
                             }
@@ -422,7 +430,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
         RelativeLayout rlItem3 = (RelativeLayout) view.findViewById(R.id.rl_item3);
         switch (from) {
             case 0:
-                tvInterestTiming.setText("He sent an request on 24-07-2017");
+                tvInterestTiming.setText("He sent an request on " + ((UserModel) objects.get(position)).getTime());
                 llBottom.setWeightSum(2);
                 tvItem1.setText("Accept");
                 tvItem2.setText("Reject");
@@ -458,11 +466,11 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 });
                 break;
             case 1:
-                tvInterestTiming.setText("He sent an request on 25-07-2017");
+                tvInterestTiming.setText("He sent an request on " + ((UserModel) objects.get(position)).getTime());
                 llBottom.setWeightSum(3);
-                tvItem1.setText("Accept");
-                tvItem2.setText("Reject");
-                tvItem3.setText("Accept");
+                tvItem1.setText("Send Reminder");
+                tvItem2.setText("Cancel Interest");
+                tvItem3.setText("Contact");
                 tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
                 tvLastOnline.setText("Today");
                 tvAge.setText(((UserModel) objects.get(position)).getAge() + " " + ((UserModel) objects.get(position)).getHeight());

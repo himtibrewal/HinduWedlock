@@ -7,8 +7,8 @@ package com.colaborotech.thehinduwedlock.utility;
 public class AppUrls {
     public static final String BASE_URL_ADMIN = "http://192.168.0.102:2000/apiadmin/";
     //public static final String BASE_URL = "http://192.168.0.107:3000/api/";
-    public static final String BASE_URL = "https://mysterious-springs-87429.herokuapp.com/api/";
-    public static final String GET_ALL_DATA = BASE_URL + "alldata"; //http://127.0.0.1:2000/api/alldata
+    public static final String BASE_URL = "https://thehinduwedlock.herokuapp.com/api/";
+    public static final String GET_ALL_DATA = BASE_URL + "alldata";
     public static final String LOGIN = BASE_URL + "login"; //
     public static final String REGISTER_URL = BASE_URL + "users";
     public static final String UPDATE_ABOUT_YOURSELF = BASE_URL + "update_your_self";

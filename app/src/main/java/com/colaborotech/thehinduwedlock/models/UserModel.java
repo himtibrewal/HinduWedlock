@@ -26,6 +26,15 @@ public class UserModel {
     private String religion;
     private String email;
     private String phone;
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public int getInterest_id() {
         return interest_id;
