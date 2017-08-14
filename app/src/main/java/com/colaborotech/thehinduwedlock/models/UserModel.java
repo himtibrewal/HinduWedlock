@@ -27,6 +27,16 @@ public class UserModel {
     private String email;
     private String phone;
     private String time;
+    private String interestResponseTime;
+
+
+    public String getInterestResponseTime() {
+        return interestResponseTime;
+    }
+
+    public void setInterestResponseTime(String interestResponseTime) {
+        this.interestResponseTime = interestResponseTime;
+    }
 
     public String getTime() {
         return time;

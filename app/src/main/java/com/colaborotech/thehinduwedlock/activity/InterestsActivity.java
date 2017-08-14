@@ -116,9 +116,26 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 return isLoading;
             }
         });
-        activeTab = 0;
-        getDataFromServer(0, AppUrls.GET_INTEREST_RECEIVED, 0, true);
-        recyclerAdapterReceived = new RecyclerAdapter(recieveList, this, R.layout.item_4_bottom_icon, this, 0);
+        if (getIntent().getExtras() != null) {
+            if (getIntent().getExtras().getString("select").equalsIgnoreCase("tab2")) {
+                activeTab = 1;
+                getDataFromServer(0, AppUrls.GET_INTEREST_SENT, 1, true);
+                recyclerAdapterSend = new RecyclerAdapter(sendList, this, R.layout.item_4_bottom_icon, this, 0);
+                tvSent.setBackgroundColor(getResources().getColor(R.color.red_dark));
+                tvSent.setTextColor(getResources().getColor(R.color.white));
+                tvReceived.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                tvReceived.setTextColor(getResources().getColor(R.color.light_black));
+            }
+        } else {
+            activeTab = 0;
+            getDataFromServer(0, AppUrls.GET_INTEREST_RECEIVED, 0, true);
+            recyclerAdapterReceived = new RecyclerAdapter(recieveList, this, R.layout.item_4_bottom_icon, this, 0);
+            tvReceived.setBackgroundColor(getResources().getColor(R.color.red_dark));
+            tvReceived.setTextColor(getResources().getColor(R.color.white));
+            tvSent.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            tvSent.setTextColor(getResources().getColor(R.color.light_black));
+        }
+
     }
 
     @Override

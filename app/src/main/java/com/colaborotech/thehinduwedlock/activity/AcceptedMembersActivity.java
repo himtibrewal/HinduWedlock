@@ -38,10 +38,10 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
     TextView tvAcceptedMe;
     TextView tvAcceptedByMe;
     private RecyclerView rlMainList;
-    private RecyclerAdapter recyclerAdapterReceived;
-    private RecyclerAdapter recyclerAdapterSend;
-    private List<UserModel> acceptedByMe = new ArrayList<UserModel>();
+    private RecyclerAdapter recyclerAdapterWhoAcceptMe;
+    private RecyclerAdapter recyclerAdapteAccepedByMe;
     private List<UserModel> whoacceptedme = new ArrayList<UserModel>();
+    private List<UserModel> acceptedByMe = new ArrayList<UserModel>();
     private ImageView ivBack;
     private TextView tvTitle;
     private TextView tvNodata;
@@ -78,9 +78,9 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
             public void onRefresh() {
                 currentPage = 0;
                 if (activeTab == 0) {
-                    getDataFromServer(currentPage, AppUrls.GET_INTEREST_RECEIVED, 0, true);
+                    getDataFromServer(currentPage, AppUrls.ACCEPTED_ME, 0, true);
                 } else if (activeTab == 1) {
-                    getDataFromServer(currentPage, AppUrls.GET_INTEREST_SENT, 1, true);
+                    getDataFromServer(currentPage, AppUrls.ACCEPTED_BY_ME, 1, true);
                 }
             }
         });
@@ -115,15 +115,14 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
         });
         activeTab = 0;
         getDataFromServer(0, AppUrls.ACCEPTED_ME, 0, true);
-        recyclerAdapterReceived = new RecyclerAdapter(whoacceptedme, this, R.layout.item_4_bottom_icon, this, 0);
-
+        recyclerAdapterWhoAcceptMe = new RecyclerAdapter(whoacceptedme, this, R.layout.item_4_bottom_icon, this, 0);
     }
 
     @Override
     public void init(Bundle save) {
         tvTitle.setText("Accepted Members");
         tvAcceptedMe.setText("Who Accepted Me");
-        tvAcceptedByMe.setText("Accepted by Me");
+        tvAcceptedByMe.setText("Accepted By Me");
     }
 
     @Override
@@ -147,7 +146,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 getDataFromServer(currentPage, AppUrls.ACCEPTED_ME, 0, true);
                 tvAcceptedByMe.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 tvAcceptedByMe.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterSend = new RecyclerAdapter(whoacceptedme, this, R.layout.item_4_bottom_icon, this, 0);
+                recyclerAdapterWhoAcceptMe = new RecyclerAdapter(whoacceptedme, this, R.layout.item_4_bottom_icon, this, 0);
                 break;
             case R.id.tv_tab2:
                 activeTab = 0;
@@ -159,7 +158,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 getDataFromServer(currentPage, AppUrls.ACCEPTED_BY_ME, 1, true);
                 tvAcceptedMe.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 tvAcceptedMe.setTextColor(getResources().getColor(R.color.light_black));
-                recyclerAdapterReceived = new RecyclerAdapter(acceptedByMe, this, R.layout.item_4_bottom_icon, this, 1);
+                recyclerAdapteAccepedByMe = new RecyclerAdapter(acceptedByMe, this, R.layout.item_4_bottom_icon, this, 1);
                 break;
         }
 
@@ -196,6 +195,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
         TextView tvQualification = (TextView) view.findViewById(R.id.study_item_searchResult);
         TextView tvCity = (TextView) view.findViewById(R.id.city_item_searchResult);
         TextView tvMemberShip = (TextView) view.findViewById(R.id.membership_item_searchResult);
+        LinearLayout llBottom = (LinearLayout) view.findViewById(R.id.ll_bottom_layout);
         ImageView ivItem1 = (ImageView) view.findViewById(R.id.iv_item1);
         ImageView ivItem2 = (ImageView) view.findViewById(R.id.iv_item2);
         ImageView ivItem3 = (ImageView) view.findViewById(R.id.iv_item3);
@@ -204,7 +204,6 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
         TextView tvItem2 = (TextView) view.findViewById(R.id.tv_item2);
         TextView tvItem3 = (TextView) view.findViewById(R.id.tv_item3);
         TextView tvItem4 = (TextView) view.findViewById(R.id.tv_item4);
-        // ImageView ivItem4 = (ImageView) view.findViewById(R.id.iv_item4);
         RelativeLayout rlItem1 = (RelativeLayout) view.findViewById(R.id.rl_item1);
         RelativeLayout rlItem2 = (RelativeLayout) view.findViewById(R.id.rl_item2);
         RelativeLayout rlItem3 = (RelativeLayout) view.findViewById(R.id.rl_item3);
@@ -212,15 +211,84 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
         tvInterestTiming.setText("He sent an request on");
         switch (from) {
             case 0:
+                tvInterestTiming.setText("He sent an request on " + ((UserModel) objects.get(position)).getTime());
+                llBottom.setWeightSum(2);
+                tvItem1.setText("Accept");
+                tvItem2.setText("Reject");
+                //rlMessage.setVisibility(View.GONE);
+                tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
+                tvLastOnline.setText("Today");
+                tvAge.setText(((UserModel) objects.get(position)).getAge() + " " + ((UserModel) objects.get(position)).getHeight());
+                tvWork.setText(((UserModel) objects.get(position)).getOccupation());
+                tvCaste.setText(((UserModel) objects.get(position)).getReligion() + " " + ((UserModel) objects.get(position)).getCaste());
+                tvIncome.setText(((UserModel) objects.get(position)).getIncome());
+                tvLanguage.setText(((UserModel) objects.get(position)).getMotherTongue());
+                tvQualification.setText(((UserModel) objects.get(position)).getHighestEducation());
+                tvCity.setText(((UserModel) objects.get(position)).getState() + " " + ((UserModel) objects.get(position)).getCity());
+                tvMemberShip.setText("Free");
+                ivNoOgimage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toastMessage("coming soon No image");
+                    }
+                });
+                rlItem1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
+                    }
+                });
+                rlItem2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //  acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
+
+                    }
+                });
                 break;
             case 1:
+                tvInterestTiming.setText("He sent an request on " + ((UserModel) objects.get(position)).getTime());
+                llBottom.setWeightSum(3);
+                tvItem1.setText("Accept");
+                tvItem2.setText("Reject");
+                tvItem3.setText("Reject");
+                //rlMessage.setVisibility(View.GONE);
+                tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
+                tvLastOnline.setText("Today");
+                tvAge.setText(((UserModel) objects.get(position)).getAge() + " " + ((UserModel) objects.get(position)).getHeight());
+                tvWork.setText(((UserModel) objects.get(position)).getOccupation());
+                tvCaste.setText(((UserModel) objects.get(position)).getReligion() + " " + ((UserModel) objects.get(position)).getCaste());
+                tvIncome.setText(((UserModel) objects.get(position)).getIncome());
+                tvLanguage.setText(((UserModel) objects.get(position)).getMotherTongue());
+                tvQualification.setText(((UserModel) objects.get(position)).getHighestEducation());
+                tvCity.setText(((UserModel) objects.get(position)).getState() + " " + ((UserModel) objects.get(position)).getCity());
+                tvMemberShip.setText("Free");
+                ivNoOgimage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toastMessage("coming soon No image");
+                    }
+                });
+                rlItem1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
+                    }
+                });
+                rlItem2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //  acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
+
+                    }
+                });
                 break;
         }
     }
 
     @Override
     public void getWebServiceResponse(String responseData, int serviceCounter) {
-        Log.e("response", "is" + responseData);
+        Log.e("response", "serviceCounter->" + serviceCounter + "is" + responseData);
         mSwipeRefreshLayout.setRefreshing(false);
         int count = 0;
         switch (serviceCounter) {
@@ -230,15 +298,22 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                     String response_code = jsonObject.getString("response_code");
                     if (response_code.equalsIgnoreCase("200")) {
                         if (currentPage == 0) {
-                            acceptedByMe.clear();
+                            whoacceptedme.clear();
                         }
                         count = jsonObject.getInt("count");
                         JSONArray jsonArray = jsonObject.getJSONArray("results");
-                        JSONArray idArray = jsonObject.getJSONArray("interest_id");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             Map<String, Object> userMapObject = new Gson().fromJson(jsonArray.getJSONObject(i).toString(), Map.class);
                             UserModel userModel = new UserModel();
-                            userModel.setInterest_id(idArray.getInt(i));
+                            if (userMapObject.containsKey("interest_id")) {
+                                userModel.setInterest_id(jsonArray.getJSONObject(i).getInt("interest_id"));
+                            }
+                            if (userMapObject.containsKey("time")) {
+                                userModel.setTime(userMapObject.get("time").toString());
+                            }
+                            if (userMapObject.containsKey("response_time")) {
+                                userModel.setInterestResponseTime(userMapObject.get("response_time").toString());
+                            }
                             if (userMapObject.containsKey("user_id")) {
                                 userModel.setUserId(jsonArray.getJSONObject(i).getString("user_id"));
                             }
@@ -274,7 +349,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                             if (userMapObject.containsKey("income")) {
                                 userModel.setIncome(userMapObject.get("income").toString());
                             }
-                            acceptedByMe.add(userModel);
+                            whoacceptedme.add(userModel);
                         }
                     }
                 } catch (Exception e) {
@@ -293,10 +368,10 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 } else {
                     tvNodata.setVisibility(View.GONE);
                 }
-                tvAcceptedByMe.setText("Accepted by me(" + count + ")");
-                tvAcceptedMe.setText("Who Accepted me");
-                rlMainList.setAdapter(recyclerAdapterReceived);
-                recyclerAdapterReceived.notifyDataSetChanged();
+                tvAcceptedMe.setText("Who Accepted Me(" + count + ")");
+                tvAcceptedByMe.setText("Accepted By Me");
+                rlMainList.setAdapter(recyclerAdapterWhoAcceptMe);
+                recyclerAdapterWhoAcceptMe.notifyDataSetChanged();
                 break;
             case 1:
                 try {
@@ -308,11 +383,18 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                         }
                         count = jsonObject.getInt("count");
                         JSONArray jsonArray = jsonObject.getJSONArray("results");
-                        JSONArray idArray = jsonObject.getJSONArray("interest_id");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             Map<String, Object> userMapObject = new Gson().fromJson(jsonArray.getJSONObject(i).toString(), Map.class);
                             UserModel userModel = new UserModel();
-                            userModel.setInterest_id(idArray.getInt(i));
+                            if (userMapObject.containsKey("interest_id")) {
+                                userModel.setInterest_id(jsonArray.getJSONObject(i).getInt("interest_id"));
+                            }
+                            if (userMapObject.containsKey("time")) {
+                                userModel.setTime(userMapObject.get("time").toString());
+                            }
+                            if (userMapObject.containsKey("response_time")) {
+                                userModel.setInterestResponseTime(userMapObject.get("response_time").toString());
+                            }
                             if (userMapObject.containsKey("user_id")) {
                                 userModel.setUserId(jsonArray.getJSONObject(i).getString("user_id"));
                             }
@@ -367,10 +449,10 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                     isLoading = false;
                     isLastPage = true;
                 }
-                tvAcceptedMe.setText("who Accepted me(" + count + ")");
-                tvAcceptedByMe.setText("Accepted by me");
-                rlMainList.setAdapter(recyclerAdapterSend);
-                recyclerAdapterSend.notifyDataSetChanged();
+                tvAcceptedMe.setText("Who Accepted Me");
+                tvAcceptedByMe.setText("Accepted By Me(" + count + ")");
+                rlMainList.setAdapter(recyclerAdapteAccepedByMe);
+                recyclerAdapteAccepedByMe.notifyDataSetChanged();
                 break;
             case 10:
                 try {

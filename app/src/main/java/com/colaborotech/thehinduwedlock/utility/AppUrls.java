@@ -33,6 +33,10 @@ public class AppUrls {
     public static final String CONTACT_DETAIL = BASE_URL + "get_contact_detail";
     public static final String ACCEPTED_BY_ME = BASE_URL + "get_accepted_by_me";
     public static final String ACCEPTED_ME = BASE_URL + "get_accepted_me";
+    public static final String USER_FULL_DETAIL = BASE_URL + "get_user_detail";
+    public static final String I_DECLINED = BASE_URL + "get_i_declined";
+    public static final String THEY_DECLINED = BASE_URL + "get_they_declined";
+    public static final String BLOCKED_USER_LIST = BASE_URL + "block_user_list";
 
 
 }

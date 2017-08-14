@@ -114,7 +114,7 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
         listImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendToThisActivity(ProfileDetailActivity.class);
+                sendToThisActivity(ProfileDetailActivity.class, new String[]{"profile_id;" + ((UserModel) objects.get(position)).getUserId()});
             }
         });
         rlSendInterest.setOnClickListener(new View.OnClickListener() {

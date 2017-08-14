@@ -256,6 +256,7 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.drawer_interest_sent:
                 intent = new Intent(getActivity(), InterestsActivity.class);
+                intent.putExtra("select", "tab2");
                 startActivity(intent);
                 getActivity().onBackPressed();
                 break;

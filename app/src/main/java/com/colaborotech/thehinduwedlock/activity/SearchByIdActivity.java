@@ -63,7 +63,7 @@ public class SearchByIdActivity extends BaseActivity implements View.OnClickList
             toastMessage("please enter  profile id");
             return;
         } else {
-            sendToThisActivity(ProfileDetailActivity.class);
+            sendToThisActivity(ProfileDetailActivity.class, new String[]{"profile_id;" + profileid});
         }
     }
 
