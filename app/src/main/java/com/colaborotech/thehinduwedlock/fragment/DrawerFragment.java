@@ -23,6 +23,7 @@ import com.colaborotech.thehinduwedlock.activity.JustJoinedActivity;
 import com.colaborotech.thehinduwedlock.activity.MessageActivity;
 import com.colaborotech.thehinduwedlock.activity.PhoneBookActivity;
 import com.colaborotech.thehinduwedlock.activity.ProfileEditActivity;
+import com.colaborotech.thehinduwedlock.activity.ProfileVisitorsActivity;
 import com.colaborotech.thehinduwedlock.activity.SavedSearchActivity;
 import com.colaborotech.thehinduwedlock.activity.SearchActivity;
 import com.colaborotech.thehinduwedlock.activity.SearchByIdActivity;
@@ -216,7 +217,7 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                 getActivity().onBackPressed();
                 break;
             case R.id.drawer_profile_visitors:
-                intent = new Intent(getActivity(), JustJoinedActivity.class);
+                intent = new Intent(getActivity(), ProfileVisitorsActivity.class);
                 startActivity(intent);
                 getActivity().onBackPressed();
                 break;
