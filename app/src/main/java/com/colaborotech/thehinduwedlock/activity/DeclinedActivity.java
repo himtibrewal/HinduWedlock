@@ -22,10 +22,8 @@ import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -37,9 +35,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DeclinedActivity extends BaseActivity implements View.OnClickListener, RecyclerAdapter.ReturnView, GetWebServiceData {
 
-    SwipeRefreshLayout mSwipeRefreshLayout;
-    TextView tvIDeclined;
-    TextView tvTheyDeclined;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private TextView tvIDeclined;
+    private TextView tvTheyDeclined;
     private RecyclerView rlMainList;
     private RecyclerAdapter recyclerAdapterIDeclined;
     private RecyclerAdapter recyclerAdapterTheyDeclined;

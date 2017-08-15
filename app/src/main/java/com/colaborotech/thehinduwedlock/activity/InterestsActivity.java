@@ -36,7 +36,7 @@ import java.util.Map;
 public class InterestsActivity extends BaseActivity implements View.OnClickListener, RecyclerAdapter.ReturnView, GetWebServiceData {
 
     //paging
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private TextView tvReceived;
     private TextView tvSent;
     private RecyclerView rlMainList;

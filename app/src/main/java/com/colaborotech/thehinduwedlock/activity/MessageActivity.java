@@ -36,15 +36,16 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
         rlList = (RecyclerView) findViewById(R.id.rv_list);
         tvNoData = (TextView) findViewById(R.id.tv_no_data);
         ivBack.setOnClickListener(this);
-        tvHeader.setText("My Message");
-        tvTab1.setText("ONLINE MATCHES");
-        tvTab2.setText("ACCEPTANCE");
+
 
     }
 
     @Override
     public void init(Bundle save) {
-
+        tvHeader.setText("My Message");
+        tvTab1.setText("ONLINE MATCHES");
+        tvTab2.setText("ACCEPTANCE");
+        tvNoData.setText("coming soon");
     }
 
     @Override
@@ -55,6 +56,16 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_back:
+                onBackPressed();
+                break;
+        }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

@@ -8,20 +8,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
+import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
+import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
+
+import java.util.List;
 
 /**
  * Created by ubuntu on 9/8/17.
  */
 
-public class ShortListProfileActivity extends BaseActivity implements View.OnClickListener {
+public class ShortListProfileActivity extends BaseActivity implements View.OnClickListener, RecyclerAdapter.ReturnView, GetWebServiceData {
 
-    ImageView ivBack;
-    TextView tvHeader;
-    TextView tvTab1;
-    TextView tvTab2;
-    RecyclerView rlList;
-    TextView tvNoData;
-    LinearLayout llTab;
+    private ImageView ivBack;
+    private TextView tvHeader;
+    private TextView tvTab1;
+    private TextView tvTab2;
+    private RecyclerView rlList;
+    private TextView tvNoData;
+    private LinearLayout llTab;
 
 
     @Override
@@ -47,6 +51,17 @@ public class ShortListProfileActivity extends BaseActivity implements View.OnCli
 
     @Override
     public void init(Bundle save) {
+
+    }
+
+
+    @Override
+    public void getAdapterView(View view, List objects, int position, int from) {
+
+    }
+
+    @Override
+    public void getWebServiceResponse(String responseData, int serviceCounter) {
 
     }
 

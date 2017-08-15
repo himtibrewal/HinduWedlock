@@ -35,14 +35,12 @@ import java.util.Map;
 
 public class BlockedActivity extends BaseActivity implements View.OnClickListener, GetWebServiceData, RecyclerAdapter.ReturnView {
 
-    ImageView ivBack;
-    TextView tvHeader;
-    TextView tvTab1;
-    TextView tvTab2;
-    RecyclerView rlList;
-    TextView tvNoData;
-    LinearLayout llTab;
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    private ImageView ivBack;
+    private TextView tvHeader;
+    private RecyclerView rlList;
+    private TextView tvNoData;
+    private LinearLayout llTab;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private List<UserModel> blockuserList = new ArrayList<UserModel>();
     private RecyclerAdapter recyclerAdapter;
     private boolean isLoading = false;
@@ -60,8 +58,6 @@ public class BlockedActivity extends BaseActivity implements View.OnClickListene
     public void initialize() {
         ivBack = (ImageView) findViewById(R.id.iv_back);
         tvHeader = (TextView) findViewById(R.id.toolbar_title);
-        tvTab1 = (TextView) findViewById(R.id.tv_tab1);
-        tvTab2 = (TextView) findViewById(R.id.tv_tab2);
         rlList = (RecyclerView) findViewById(R.id.rv_list);
         tvNoData = (TextView) findViewById(R.id.tv_no_data);
         llTab = (LinearLayout) findViewById(R.id.ll_recived_send);
