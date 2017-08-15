@@ -229,6 +229,7 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                 intent = new Intent(getActivity(), JustJoinedActivity.class);
                 startActivity(intent);
                 getActivity().onBackPressed();
+                break;
             case R.id.drawer_all_acceptance:
                 intent = new Intent(getActivity(), AcceptedMembersActivity.class);
                 intent.putExtra("select", "tab2");
