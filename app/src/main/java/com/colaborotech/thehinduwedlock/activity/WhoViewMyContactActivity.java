@@ -99,7 +99,7 @@ public class WhoViewMyContactActivity extends BaseActivity implements View.OnCli
 
     @Override
     public void init(Bundle save) {
-        tvHeader.setText("Shortlisted Profile");
+        tvHeader.setText("Who Viewed My Contact");
         getShortlistUser(AppPref.getInstance().getuserId(), currentPage);
     }
 
@@ -139,9 +139,9 @@ public class WhoViewMyContactActivity extends BaseActivity implements View.OnCli
         RelativeLayout rlItem4 = (RelativeLayout) view.findViewById(R.id.rl_item4);
         tvInterestTiming.setText("You Shortlist Him on " + ((UserModel) objects.get(position)).getTime());
         llBottom.setWeightSum(2);
-        tvItem1.setText("Send Interest");
-        tvItem2.setText("Shortlist");
-        tvItem3.setText("Contact");
+        tvItem1.setText("Message");
+        tvItem2.setText("Contact");
+        tvItem3.setText("Decline");
         //rlMessage.setVisibility(View.GONE);
         tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
         tvLastOnline.setText("Today");
@@ -186,6 +186,7 @@ public class WhoViewMyContactActivity extends BaseActivity implements View.OnCli
                     contactViewList.clear();
                 }
                 count = jsonObject.getInt("count");
+                tvHeader.setText("Who Viewed My Contact " + count);
                 JSONArray jsonArray = jsonObject.getJSONArray("results");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Map<String, Object> userMapObject = new Gson().fromJson(jsonArray.getJSONObject(i).toString(), Map.class);

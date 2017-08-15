@@ -138,7 +138,7 @@ public class ShortListProfileActivity extends BaseActivity implements View.OnCli
         RelativeLayout rlItem3 = (RelativeLayout) view.findViewById(R.id.rl_item3);
         RelativeLayout rlItem4 = (RelativeLayout) view.findViewById(R.id.rl_item4);
         tvInterestTiming.setText("You Shortlist Him on " + ((UserModel) objects.get(position)).getTime());
-        llBottom.setWeightSum(2);
+        llBottom.setWeightSum(3);
         tvItem1.setText("Send Interest");
         tvItem2.setText("Shortlist");
         tvItem3.setText("Contact");
@@ -186,6 +186,7 @@ public class ShortListProfileActivity extends BaseActivity implements View.OnCli
                     shortlistList.clear();
                 }
                 count = jsonObject.getInt("count");
+                tvHeader.setText("Shortlisted Profile " + count);
                 JSONArray jsonArray = jsonObject.getJSONArray("results");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Map<String, Object> userMapObject = new Gson().fromJson(jsonArray.getJSONObject(i).toString(), Map.class);

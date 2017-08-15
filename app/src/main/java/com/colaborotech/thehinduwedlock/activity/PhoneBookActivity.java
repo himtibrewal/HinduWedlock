@@ -40,14 +40,14 @@ public class PhoneBookActivity extends BaseActivity implements View.OnClickListe
         llTab = (LinearLayout) findViewById(R.id.ll_recived_send);
         llTab.setVisibility(View.GONE);
         ivBack.setOnClickListener(this);
-        tvHeader.setText("Phonebook");
 
 
     }
 
     @Override
     public void init(Bundle save) {
-
+        tvHeader.setText("Phonebook");
+        tvNoData.setText("coming soon");
     }
 
     @Override
@@ -58,6 +58,15 @@ public class PhoneBookActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_back:
+                onBackPressed();
+                break;
+        }
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
