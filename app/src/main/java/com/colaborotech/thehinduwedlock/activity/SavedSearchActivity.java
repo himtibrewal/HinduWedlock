@@ -7,17 +7,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
+import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
+
+import java.util.List;
 
 /**
  * Created by ubuntu on 5/8/17.
  */
 
-public class SavedSearchActivity extends BaseActivity implements View.OnClickListener {
-    ImageView ivBack;
-    TextView tvHeader;
-    TextView tvManage;
-    RecyclerView rlList;
-    TextView tvNodata;
+public class SavedSearchActivity extends BaseActivity implements View.OnClickListener, RecyclerAdapter.ReturnView {
+    private ImageView ivBack;
+    private TextView tvHeader;
+    private TextView tvManage;
+    private RecyclerView rlList;
+    private TextView tvNodata;
+    private RecyclerAdapter recyclerAdapter;
+
 
     @Override
     public int getActivityLayout() {
@@ -32,6 +37,7 @@ public class SavedSearchActivity extends BaseActivity implements View.OnClickLis
         rlList = (RecyclerView) findViewById(R.id.rv_saved_search);
         tvNodata = (TextView) findViewById(R.id.tv_no_data);
         ivBack.setOnClickListener(this);
+        tvManage.setOnClickListener(this);
 
 
     }
@@ -43,6 +49,15 @@ public class SavedSearchActivity extends BaseActivity implements View.OnClickLis
         tvManage.setTextColor(getResources().getColor(R.color.red_dark));
         tvNodata.setText("Not Saved Any Data");
         tvNodata.setVisibility(View.VISIBLE);
+        recyclerAdapter =  new RecyclerAdapter()
+
+
+    }
+
+
+    @Override
+    public void getAdapterView(View view, List objects, int position, int from) {
+
     }
 
     @Override
@@ -55,6 +70,8 @@ public class SavedSearchActivity extends BaseActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.iv_back:
                 onBackPressed();
+                break;
+            case R.id.toolbar_last:
                 break;
         }
     }
