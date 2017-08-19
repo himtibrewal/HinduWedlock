@@ -120,7 +120,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
             if (getIntent().getExtras().getString("select").equalsIgnoreCase("tab2")) {
                 activeTab = 1;
                 getDataFromServer(0, AppUrls.GET_INTEREST_SENT, 1, true);
-                recyclerAdapterSend = new RecyclerAdapter(sendList, this, R.layout.item_4_bottom_icon, this, 0);
+                recyclerAdapterSend = new RecyclerAdapter(sendList, this, R.layout.item_4_bottom_icon, this, 1);
                 tvSent.setBackgroundColor(getResources().getColor(R.color.red_dark));
                 tvSent.setTextColor(getResources().getColor(R.color.white));
                 tvReceived.setBackgroundColor(getResources().getColor(R.color.colorAccent));

@@ -8,7 +8,10 @@ import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
+import com.colaborotech.thehinduwedlock.models.DataModel;
+import com.colaborotech.thehinduwedlock.models.SaveSearchModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +25,7 @@ public class SavedSearchActivity extends BaseActivity implements View.OnClickLis
     private RecyclerView rlList;
     private TextView tvNodata;
     private RecyclerAdapter recyclerAdapter;
+    private List<SaveSearchModel> saveSearchList = new ArrayList<SaveSearchModel>();
 
 
     @Override
@@ -38,6 +42,7 @@ public class SavedSearchActivity extends BaseActivity implements View.OnClickLis
         tvNodata = (TextView) findViewById(R.id.tv_no_data);
         ivBack.setOnClickListener(this);
         tvManage.setOnClickListener(this);
+        AppTempData();
 
 
     }
@@ -49,8 +54,25 @@ public class SavedSearchActivity extends BaseActivity implements View.OnClickLis
         tvManage.setTextColor(getResources().getColor(R.color.red_dark));
         tvNodata.setText("Not Saved Any Data");
         tvNodata.setVisibility(View.VISIBLE);
-        recyclerAdapter =  new RecyclerAdapter()
+        recyclerAdapter =  new RecyclerAdapter(saveSearchList,this,R.layout.item_search_result)
 
+
+    }
+
+
+    private void AppTempData() {
+        List<DataModel> list = new ArrayList<DataModel>();
+        list.add(new DataModel(1, "data1"));
+        list.add(new DataModel(2, "data2"));
+        SaveSearchModel saveSearchModel = new SaveSearchModel();
+        saveSearchModel.setSearchType(0);
+        saveSearchModel.setViewed(list);
+        saveSearchModel.setPhoto(list);
+        saveSearchModel.setHeightFrom(list);
+        saveSearchModel.setHeightTo(list);
+        for (int i = 0; i < 5; i++) {
+            saveSearchList.add(saveSearchModel);
+        }
 
     }
 

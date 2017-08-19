@@ -143,9 +143,8 @@ public class BlockedActivity extends BaseActivity implements View.OnClickListene
         RelativeLayout rlItem3 = (RelativeLayout) view.findViewById(R.id.rl_item3);
         RelativeLayout rlItem4 = (RelativeLayout) view.findViewById(R.id.rl_item4);
         tvInterestTiming.setText("He sent an request on " + ((UserModel) objects.get(position)).getTime());
-        llBottom.setWeightSum(2);
-        tvItem1.setText("Accept");
-        tvItem2.setText("Reject");
+        llBottom.setWeightSum(1);
+        tvItem1.setText("Unblock");
         //rlMessage.setVisibility(View.GONE);
         tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
         tvLastOnline.setText("Today");
@@ -268,6 +267,15 @@ public class BlockedActivity extends BaseActivity implements View.OnClickListene
                 onBackPressed();
                 break;
         }
+    }
+
+
+    private void unblockUser(int blockId) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("user_id=").append(blockId);
+        String content = stringBuilder.toString();
+        GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.BLOCKED_USER_LIST, 0, content, true, "Please Wait", this);
+        getDataUsingWService.execute();
     }
 
 
