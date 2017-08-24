@@ -69,7 +69,6 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
         tvHeader.setText("No Matches");
         tvNoData.setText("There are no recently joined profile");
         tvNoData.setVisibility(View.VISIBLE);
-        justJoinedList.add(new UserModel());
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rlJustJoined.setLayoutManager(llm);
@@ -144,6 +143,9 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
                     if (userMapObject.containsKey("user_id")) {
                         userModel.setUserId(jsonArray.getJSONObject(i).getString("user_id"));
                     }
+                    if (userMapObject.containsKey("time")) {
+                        userModel.setTime(userMapObject.get("time").toString());
+                    }
                     if (userMapObject.containsKey("dob")) {
                         String[] date = userMapObject.get("dob").toString().split("-");
                         int age = Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(date[date.length - 1]);
@@ -196,6 +198,7 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
             tvNoData.setVisibility(View.GONE);
         }
         rlJustJoined.setAdapter(recyclerAdapter);
+        tvHeader.setText("Just Joined Matches(" + justJoinedList.size() + ")");
         recyclerAdapter.notifyDataSetChanged();
     }
 
