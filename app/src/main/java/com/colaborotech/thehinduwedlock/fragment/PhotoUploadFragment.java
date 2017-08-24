@@ -15,9 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.colaborotech.thehinduwedlock.R;
+import com.colaborotech.thehinduwedlock.activity.ImageSlidingActivity;
 import com.colaborotech.thehinduwedlock.service.MyUploadService;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
@@ -37,8 +39,11 @@ import static android.content.ContentValues.TAG;
 
 public class PhotoUploadFragment extends Fragment implements View.OnClickListener {
 
-    RelativeLayout rlGallery;
-    ImageView ivMainImage;
+    private RelativeLayout rlGallery;
+    private RelativeLayout rlCamera;
+    private RelativeLayout rlFacebook;
+    private ImageView ivMainImage;
+    private TextView tvProfileChange;
     private static final int RC_TAKE_PICTURE = 101;
     private static final String KEY_FILE_URI = "key_file_uri";
     private static final String KEY_DOWNLOAD_URL = "key_download_url";
@@ -117,7 +122,6 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
             @Override
             public void getWebServiceResponse(String responseData, int serviceCounter) {
                 Log.e("responsse", "is" + responseData);
-                ///{"data":[{"_id":"596f8ea553ccdb00118881c1","user_id":"","image":"%2FImage_%2FImage1","__v":0}],"response_code":"200","message":"Login in Successfully !!"}
                 try {
                     JSONObject jsonObject = new JSONObject(responseData);
                     String response_code = jsonObject.getString("response_code");
@@ -143,9 +147,16 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
     }
 
     private void initViews(View view) {
-        rlGallery = (RelativeLayout) view.findViewById(R.id.rl_gallery_photo_upload);
+        rlGallery = (RelativeLayout) view.findViewById(R.id.rl_item1);
+        rlCamera = (RelativeLayout) view.findViewById(R.id.rl_item2);
+        rlFacebook = (RelativeLayout) view.findViewById(R.id.rl_item3);
         ivMainImage = (ImageView) view.findViewById(R.id.iv_main_Image_photo_upload_fragment);
+        tvProfileChange = (TextView) view.findViewById(R.id.tv_profile_change);
         rlGallery.setOnClickListener(this);
+        rlCamera.setOnClickListener(this);
+        rlFacebook.setOnClickListener(this);
+        ivMainImage.setOnClickListener(this);
+        tvProfileChange.setOnClickListener(this);
     }
 
 
@@ -159,9 +170,20 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.rl_gallery_photo_upload:
+            case R.id.rl_item1:
                 launchCamera();
                 break;
+            case R.id.rl_item2:
+                launchCamera();
+                break;
+            case R.id.rl_item3:
+                launchCamera();
+                break;
+            case R.id.iv_main_Image_photo_upload_fragment:
+                Intent intent = new Intent(getActivity(), ImageSlidingActivity.class);
+                startActivity(intent);
+                break;
+
         }
     }
 
@@ -185,8 +207,6 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
 
     private void launchCamera() {
         Log.d(TAG, "launchCamera");
-
-        // Pick an image from storage
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent, RC_TAKE_PICTURE);
