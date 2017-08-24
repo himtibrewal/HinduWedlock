@@ -15,7 +15,9 @@ import com.colaborotech.thehinduwedlock.activity.AboutUsActivity;
 import com.colaborotech.thehinduwedlock.activity.AcceptedMembersActivity;
 import com.colaborotech.thehinduwedlock.activity.BlockedActivity;
 import com.colaborotech.thehinduwedlock.activity.ContactUsActivity;
+import com.colaborotech.thehinduwedlock.activity.DailyRecommendationActivity;
 import com.colaborotech.thehinduwedlock.activity.DeclinedActivity;
+import com.colaborotech.thehinduwedlock.activity.DesiredPartnerMacthActivity;
 import com.colaborotech.thehinduwedlock.activity.DrawerActivity;
 import com.colaborotech.thehinduwedlock.activity.HelpActivity;
 import com.colaborotech.thehinduwedlock.activity.InterestsActivity;
@@ -198,12 +200,12 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                 getActivity().onBackPressed();
                 break;
             case R.id.drawer_desired_partner_match:
-                intent = new Intent(getActivity(), JustJoinedActivity.class);
+                intent = new Intent(getActivity(), DesiredPartnerMacthActivity.class);
                 startActivity(intent);
                 getActivity().onBackPressed();
                 break;
             case R.id.drawer_daily_recommendation:
-                intent = new Intent(getActivity(), JustJoinedActivity.class);
+                intent = new Intent(getActivity(), DailyRecommendationActivity.class);
                 startActivity(intent);
                 getActivity().onBackPressed();
                 break;
