@@ -1,18 +1,26 @@
 package com.colaborotech.thehinduwedlock.fragment;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +28,8 @@ import android.widget.Toast;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.activity.ImageSlidingActivity;
+import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
+import com.colaborotech.thehinduwedlock.models.MenuModel;
 import com.colaborotech.thehinduwedlock.service.MyUploadService;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
@@ -30,6 +40,9 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
@@ -37,13 +50,15 @@ import static android.content.ContentValues.TAG;
  * Created by him on 24-Jun-17.
  */
 
-public class PhotoUploadFragment extends Fragment implements View.OnClickListener {
+public class PhotoUploadFragment extends Fragment implements View.OnClickListener, RecyclerAdapter.ReturnView {
 
     private RelativeLayout rlGallery;
     private RelativeLayout rlCamera;
     private RelativeLayout rlFacebook;
     private ImageView ivMainImage;
     private TextView tvProfileChange;
+    private TextView tvPhotoPrivacy;
+    private TextView tvPhotoCount;
     private static final int RC_TAKE_PICTURE = 101;
     private static final String KEY_FILE_URI = "key_file_uri";
     private static final String KEY_DOWNLOAD_URL = "key_download_url";
@@ -134,12 +149,12 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
                             String imageurl = "https://firebasestorage.googleapis.com/v0/b/thehindu-24e87.appspot.com/o/" + jsonObject1.getString("image") + "?alt=media";
 
                         }
-
                     }
 
                 } catch (Exception e) {
 
                 }
+                tvPhotoCount.setText(AppPref.getInstance().getNoOfImage() + " Photo");
 
             }
         });
@@ -152,11 +167,15 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
         rlFacebook = (RelativeLayout) view.findViewById(R.id.rl_item3);
         ivMainImage = (ImageView) view.findViewById(R.id.iv_main_Image_photo_upload_fragment);
         tvProfileChange = (TextView) view.findViewById(R.id.tv_profile_change);
+        tvPhotoPrivacy = (TextView) view.findViewById(R.id.tv_ptoto_privacy);
+        tvPhotoCount = (TextView) view.findViewById(R.id.tv_photo_count);
         rlGallery.setOnClickListener(this);
         rlCamera.setOnClickListener(this);
         rlFacebook.setOnClickListener(this);
         ivMainImage.setOnClickListener(this);
         tvProfileChange.setOnClickListener(this);
+        tvPhotoPrivacy.setOnClickListener(this);
+        tvPhotoCount.setText(AppPref.getInstance().getNoOfImage() + " Photo");
     }
 
 
@@ -179,6 +198,9 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.rl_item3:
                 launchCamera();
+                break;
+            case R.id.tv_ptoto_privacy:
+                dialogPrivacy();
                 break;
             case R.id.iv_main_Image_photo_upload_fragment:
                 intent.putExtra("from", 0);
@@ -249,6 +271,65 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
 
         // Show loading spinner
         showProgressDialog("uploading..");
+    }
+
+    RecyclerAdapter recyclerAdapter;
+    List<MenuModel> list;
+
+    private void dialogPrivacy() {
+        final Dialog privacyDialog = new Dialog(getActivity());
+        privacyDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        privacyDialog.setContentView(R.layout.dialog_privacy_photo);
+        privacyDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = privacyDialog.getWindow();
+        window.setGravity(Gravity.CENTER);
+        privacyDialog.setCanceledOnTouchOutside(true);
+        lp.copyFrom(window.getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        window.setAttributes(lp);
+        RecyclerView recyclerView = (RecyclerView) privacyDialog.findViewById(R.id.recyclcerView);
+        TextView tvSubmit = (TextView) privacyDialog.findViewById(R.id.tv_submit);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(llm);
+        list = new ArrayList<MenuModel>();
+        list.add(new MenuModel(0, "Visible to all(Recommended)", false));
+        list.add(new MenuModel(1, "Visible to those you have accepted or expressed interest in", false));
+
+        recyclerAdapter = new RecyclerAdapter(list, getActivity(), R.layout.item_drawer_privacy, this, 0);
+        recyclerView.setAdapter(recyclerAdapter);
+
+        tvSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                privacyDialog.dismiss();
+            }
+        });
+        privacyDialog.show();
+    }
+
+
+    @Override
+    public void getAdapterView(View view, final List objects, final int position, int from) {
+        TextView tvData = (TextView) view.findViewById(R.id.tv_data);
+        tvData.setText(((MenuModel) objects.get(position)).getData());
+        final ImageView ivSelected = (ImageView) view.findViewById(R.id.iv_selected);
+        RelativeLayout rlMain = (RelativeLayout) view.findViewById(R.id.rl_main);
+        if (((MenuModel) objects.get(position)).isSelected()) {
+            ivSelected.setVisibility(View.VISIBLE);
+        } else {
+            ivSelected.setVisibility(View.GONE);
+        }
+        rlMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.get(position).setSelected(true);
+                recyclerAdapter.notifyDataSetChanged();
+            }
+        });
+
     }
 
 

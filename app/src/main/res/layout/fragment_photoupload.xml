@@ -124,6 +124,7 @@
             android:text="Profile photo(Change)" />
 
         <TextView
+            android:id="@+id/tv_ptoto_privacy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -142,6 +143,7 @@
         android:src="@color/background_tab_pressed" />
 
     <TextView
+        android:id="@+id/tv_photo_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_top_layout"
