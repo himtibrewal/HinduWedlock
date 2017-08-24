@@ -169,6 +169,7 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), ImageSlidingActivity.class);
         switch (v.getId()) {
             case R.id.rl_item1:
                 launchCamera();
@@ -180,7 +181,11 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
                 launchCamera();
                 break;
             case R.id.iv_main_Image_photo_upload_fragment:
-                Intent intent = new Intent(getActivity(), ImageSlidingActivity.class);
+                intent.putExtra("from", 0);
+                startActivity(intent);
+                break;
+            case R.id.tv_profile_change:
+                intent.putExtra("from", 1);
                 startActivity(intent);
                 break;
 
@@ -235,7 +240,6 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
 
         // Save the File URI
         mFileUri = fileUri;
-
 
         // Start MyUploadService to upload the file, so that the file is uploaded
         // even if this Activity is killed or put in the background

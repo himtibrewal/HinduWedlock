@@ -21,6 +21,7 @@ public class ImageSlidingActivity extends BaseActivity implements View.OnClickLi
     private ViewPager viewPager;
     int images[] = {R.drawable.profilepic, R.drawable.profilepic, R.drawable.profilepic, R.drawable.profilepic};
     MyCustomPagerAdapter myCustomPagerAdapter;
+    private int callingFrom = -1;
 
 
     @Override
@@ -38,13 +39,22 @@ public class ImageSlidingActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void init(Bundle save) {
+        if (getIntent().getExtras() != null) {
+            callingFrom = getIntent().getExtras().getInt("from");
+            if (callingFrom == 0) {
+                tvSave.setVisibility(View.GONE);
+            } else if (callingFrom == 1) {
+                tvSave.setVisibility(View.VISIBLE);
+            } else {
+                toastMessage("Something Went Wrong");
+            }
+        }
         tvSave.setText("Save");
         tvHeader.setText("My Photos \n 1 of 2");
         tvBack.setText("Back");
-        tvSave.setVisibility(View.GONE);
         tvBack.setOnClickListener(this);
         tvSave.setOnClickListener(this);
-        myCustomPagerAdapter = new MyCustomPagerAdapter(ImageSlidingActivity.this, images);
+        myCustomPagerAdapter = new MyCustomPagerAdapter(ImageSlidingActivity.this, images, callingFrom);
         viewPager.setAdapter(myCustomPagerAdapter);
     }
 
@@ -52,7 +62,6 @@ public class ImageSlidingActivity extends BaseActivity implements View.OnClickLi
     public int getActivityTitle() {
         return R.string.app_name;
     }
-
 
     @Override
     public void onClick(View v) {
