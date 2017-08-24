@@ -297,7 +297,6 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
         list = new ArrayList<MenuModel>();
         list.add(new MenuModel(0, "Visible to all(Recommended)", false));
         list.add(new MenuModel(1, "Visible to those you have accepted or expressed interest in", false));
-
         recyclerAdapter = new RecyclerAdapter(list, getActivity(), R.layout.item_drawer_privacy, this, 0);
         recyclerView.setAdapter(recyclerAdapter);
 
@@ -325,6 +324,9 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
         rlMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for (int i = 0; i < list.size(); i++) {
+                    list.get(i).setSelected(false);
+                }
                 list.get(position).setSelected(true);
                 recyclerAdapter.notifyDataSetChanged();
             }
