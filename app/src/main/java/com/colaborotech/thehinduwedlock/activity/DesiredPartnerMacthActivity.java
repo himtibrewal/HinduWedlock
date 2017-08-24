@@ -29,10 +29,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by him on 20-Aug-17.
+ * Created by ubuntu on 24/8/17.
  */
 
-public class ProfileVerifiedByVisit extends BaseActivity implements View.OnClickListener, RecyclerAdapter.ReturnView, GetWebServiceData {
+public class DesiredPartnerMacthActivity extends BaseActivity implements View.OnClickListener, RecyclerAdapter.ReturnView, GetWebServiceData {
     private RecyclerView rlJustJoined;
     private TextView tvNoData;
     private ImageView ivBack;
@@ -198,7 +198,7 @@ public class ProfileVerifiedByVisit extends BaseActivity implements View.OnClick
             tvNoData.setVisibility(View.GONE);
         }
         rlJustJoined.setAdapter(recyclerAdapter);
-        tvHeader.setText("Verified Matches(" + profilebyVisitList.size() + ")");
+        tvHeader.setText("Desired Partner..(" + profilebyVisitList.size() + ")");
         recyclerAdapter.notifyDataSetChanged();
     }
 
@@ -300,8 +300,3 @@ public class ProfileVerifiedByVisit extends BaseActivity implements View.OnClick
     }
 
 }
-
-
-
-
-
