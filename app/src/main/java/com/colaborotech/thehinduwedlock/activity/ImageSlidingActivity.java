@@ -7,7 +7,13 @@ import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.adapter.MyCustomPagerAdapter;
+import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ubuntu on 24/8/17.
@@ -22,6 +28,7 @@ public class ImageSlidingActivity extends BaseActivity implements View.OnClickLi
     int images[] = {R.drawable.profilepic, R.drawable.profilepic, R.drawable.profilepic, R.drawable.profilepic};
     MyCustomPagerAdapter myCustomPagerAdapter;
     private int callingFrom = -1;
+    List<String> imageList = new ArrayList<String>();
 
 
     @Override
@@ -49,12 +56,15 @@ public class ImageSlidingActivity extends BaseActivity implements View.OnClickLi
                 toastMessage("Something Went Wrong");
             }
         }
+        Gson gson = new Gson();
+        imageList = gson.fromJson(AppPref.getInstance().getImageUrls(), new TypeToken<List<String>>() {
+        }.getType());
         tvSave.setText("Save");
         tvHeader.setText("My Photos \n 1 of 2");
         tvBack.setText("Back");
         tvBack.setOnClickListener(this);
         tvSave.setOnClickListener(this);
-        myCustomPagerAdapter = new MyCustomPagerAdapter(ImageSlidingActivity.this, images, callingFrom);
+        myCustomPagerAdapter = new MyCustomPagerAdapter(ImageSlidingActivity.this, imageList, callingFrom);
         viewPager.setAdapter(myCustomPagerAdapter);
     }
 

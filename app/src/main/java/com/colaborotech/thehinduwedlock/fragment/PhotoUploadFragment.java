@@ -35,6 +35,7 @@ import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -144,17 +145,22 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
                         int imageCount = jsonArray.length();
                         AppPref.getInstance().setNoOfImage(imageCount);
+                        List<String> imageList = new ArrayList<String>();
                         for (int i = 0; i < imageCount; i++) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                             String imageurl = "https://firebasestorage.googleapis.com/v0/b/thehindu-24e87.appspot.com/o/" + jsonObject1.getString("image") + "?alt=media";
-
+                            imageList.add(imageurl);
                         }
+                        Gson gson = new Gson();
+                        String imageUrls = gson.toJson(imageList);
+                        AppPref.getInstance().setImageUrls(imageUrls);
+                        tvPhotoCount.setText(imageCount + " Photo");
                     }
 
                 } catch (Exception e) {
 
                 }
-                tvPhotoCount.setText(AppPref.getInstance().getNoOfImage() + " Photo");
+
 
             }
         });
@@ -333,6 +339,4 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
         });
 
     }
-
-
 }

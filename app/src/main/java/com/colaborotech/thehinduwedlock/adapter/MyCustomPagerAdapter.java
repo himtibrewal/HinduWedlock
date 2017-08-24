@@ -11,23 +11,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.colaborotech.thehinduwedlock.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyCustomPagerAdapter extends PagerAdapter {
     Context context;
-    int images[];
+    List<String> imageList = new ArrayList<String>();
     LayoutInflater layoutInflater;
     int from;
 
-    public MyCustomPagerAdapter(Context context, int images[], int from) {
+    public MyCustomPagerAdapter(Context context, List<String> imageList, int from) {
         this.context = context;
-        this.images = images;
         this.from = from;
+        this.imageList = imageList;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return images.length;
+        return imageList.size();
     }
 
     @Override
@@ -48,7 +52,8 @@ public class MyCustomPagerAdapter extends PagerAdapter {
             ivDelete.setVisibility(View.GONE);
             tvSetProfile.setVisibility(View.VISIBLE);
         }
-        imageView.setImageResource(images[position]);
+        Picasso.with(context).load(imageList.get(position).toString()).into(imageView);
+        // imageView.setImageResource(images[position]);
         container.addView(itemView);
 
         //listening to image click

@@ -864,12 +864,12 @@ public class AppPref {
         sEditor.commit();
     }
 
-    public boolean getImageUrls() {
-        return sharedPreferences.getBoolean(PREF_IMAGE_URL, false);
+    public String getImageUrls() {
+        return sharedPreferences.getString(PREF_IMAGE_URL, "");
     }
 
-    public void setImageUrls(boolean mobileurls) {
-        sEditor.putBoolean(PREF_IMAGE_URL, mobileurls);
+    public void setImageUrls(String imageUrls) {
+        sEditor.putString(PREF_IMAGE_URL, imageUrls);
         sEditor.commit();
     }
 
