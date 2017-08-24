@@ -11,6 +11,7 @@ public class SaveSearchModel {
     private List<DataModel> viewed;
     private List<DataModel> photo;
     private List<DataModel> name;
+    private String dataName;
     private List<DataModel> heightFrom;
     private List<DataModel> heightTo;
     private List<DataModel> incomeFrom;
@@ -35,7 +36,24 @@ public class SaveSearchModel {
     private List<DataModel> mothertongue;
     private List<DataModel> caste;
     private List<DataModel> subcaste;
+    private boolean makeEdit;
 
+
+    public String getDataName() {
+        return dataName;
+    }
+
+    public void setDataName(String dataName) {
+        this.dataName = dataName;
+    }
+
+    public boolean isMakeEdit() {
+        return makeEdit;
+    }
+
+    public void setMakeEdit(boolean makeEdit) {
+        this.makeEdit = makeEdit;
+    }
 
     public int getSearchType() {
         return searchType;

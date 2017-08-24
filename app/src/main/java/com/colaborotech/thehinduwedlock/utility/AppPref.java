@@ -97,10 +97,9 @@ public class AppPref {
     private final String PREF_ALT_EMAIL = "alt_email";
     private final String PREF_ALT_MOBILE = "alt_mobile";
     private final String PREF_MOBILE_VERIFY = "mobile_verify";
-
-
     private final String PREF_No_Of_IMAGE = "image_count";
     private final String PREF_IMAGE_URL = "image_urls";
+    private final String PREF_SAVED_SEARCH = "saved_search";
 
 
     private AppPref(Context context) {
@@ -871,6 +870,15 @@ public class AppPref {
 
     public void setImageUrls(boolean mobileurls) {
         sEditor.putBoolean(PREF_IMAGE_URL, mobileurls);
+        sEditor.commit();
+    }
+
+    public String getSavedSearch() {
+        return sharedPreferences.getString(PREF_SAVED_SEARCH, "");
+    }
+
+    public void setSavedSearch(String data) {
+        sEditor.putString(PREF_SAVED_SEARCH, data);
         sEditor.commit();
     }
 

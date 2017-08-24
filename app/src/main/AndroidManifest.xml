@@ -78,6 +78,7 @@
         <activity android:name=".activity.WhoViewMyContactActivity" />
         <activity android:name=".activity.PhoneBookActivity" />
         <activity android:name=".activity.ProfileVisitorsActivity" />
+        <activity android:name=".activity.ProfileVerifiedByVisit" />
 
 
         <service

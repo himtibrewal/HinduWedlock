@@ -37,6 +37,4 @@ public class AppUrls {
     public static final String I_DECLINED = BASE_URL + "get_i_declined";
     public static final String THEY_DECLINED = BASE_URL + "get_they_declined";
     public static final String BLOCKED_USER_LIST = BASE_URL + "block_user_list";
-
-
 }
