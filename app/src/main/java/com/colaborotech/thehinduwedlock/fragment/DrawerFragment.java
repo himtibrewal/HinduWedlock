@@ -22,6 +22,7 @@ import com.colaborotech.thehinduwedlock.activity.DrawerActivity;
 import com.colaborotech.thehinduwedlock.activity.HelpActivity;
 import com.colaborotech.thehinduwedlock.activity.InterestsActivity;
 import com.colaborotech.thehinduwedlock.activity.JustJoinedActivity;
+import com.colaborotech.thehinduwedlock.activity.LookingForMeActivity;
 import com.colaborotech.thehinduwedlock.activity.MessageActivity;
 import com.colaborotech.thehinduwedlock.activity.PhoneBookActivity;
 import com.colaborotech.thehinduwedlock.activity.ProfileEditActivity;
@@ -215,7 +216,7 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                 getActivity().onBackPressed();
                 break;
             case R.id.drawer_member_looking_for_me:
-                intent = new Intent(getActivity(), JustJoinedActivity.class);
+                intent = new Intent(getActivity(), LookingForMeActivity.class);
                 startActivity(intent);
                 getActivity().onBackPressed();
                 break;

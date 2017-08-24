@@ -81,6 +81,7 @@
         <activity android:name=".activity.ProfileVerifiedByVisit" />
         <activity android:name=".activity.DesiredPartnerMacthActivity" />
         <activity android:name=".activity.DailyRecommendationActivity" />
+        <activity android:name=".activity.LookingForMeActivity" />
 
 
         <service
