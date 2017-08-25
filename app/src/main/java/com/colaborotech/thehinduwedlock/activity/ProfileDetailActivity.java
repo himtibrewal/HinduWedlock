@@ -11,16 +11,12 @@ import com.colaborotech.thehinduwedlock.adapter.ViewPagerAdapter;
 import com.colaborotech.thehinduwedlock.fragment.AboutFragment;
 import com.colaborotech.thehinduwedlock.fragment.OneFragment;
 import com.colaborotech.thehinduwedlock.fragment.UserFamilyFragment;
-import com.colaborotech.thehinduwedlock.models.UserModel;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
+import com.colaborotech.thehinduwedlock.utility.FragementData;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
-import com.google.gson.Gson;
 
 import org.json.JSONObject;
-
-import java.util.Calendar;
-import java.util.Map;
 
 
 /**
@@ -32,7 +28,8 @@ public class ProfileDetailActivity extends BaseActivity implements GetWebService
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private CollapsingToolbarLayout collapsing_container;
-    private UserModel userModel;
+    private String userModelData = "";
+    public FragementData fragementData;
 
     @Override
     public int getActivityLayout() {
@@ -54,6 +51,7 @@ public class ProfileDetailActivity extends BaseActivity implements GetWebService
         if (getIntent().getExtras() != null) {
             String userid = getIntent().getExtras().getString("profile_id");
             getUserFullDetail(userid);
+
         }
     }
 
@@ -63,9 +61,15 @@ public class ProfileDetailActivity extends BaseActivity implements GetWebService
     }
 
     private void setupViewPager(ViewPager viewPager) {
+        Bundle args = new Bundle();
+        args.putString("data", userModelData);
+        AboutFragment aboutFragment = new AboutFragment();
+        UserFamilyFragment userFamilyFragment = new UserFamilyFragment();
+        aboutFragment.setArguments(args);
+        userFamilyFragment.setArguments(args);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new AboutFragment(), "ABOUT");
-        adapter.addFragment(new UserFamilyFragment(), "FAMILY");
+        adapter.addFragment(aboutFragment, "ABOUT");
+        adapter.addFragment(userFamilyFragment, "FAMILY");
         adapter.addFragment(new OneFragment(), "LOOKING FOR");
         viewPager.setAdapter(adapter);
     }
@@ -89,46 +93,50 @@ public class ProfileDetailActivity extends BaseActivity implements GetWebService
             String response_code = jsonObject.getString("response_code");
             if (response_code.equalsIgnoreCase("200")) {
                 JSONObject resultObject = jsonObject.getJSONObject("results");
-                Map<String, Object> userMapObject = new Gson().fromJson(resultObject.toString(), Map.class);
-                userModel = new UserModel();
-                if (userMapObject.containsKey("user_id")) {
-                    userModel.setUserId(resultObject.getInt("user_id") + "");
-                }
-                if (userMapObject.containsKey("dob")) {
-                    String[] date = userMapObject.get("dob").toString().split("-");
-                    int age = Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(date[date.length - 1]);
-                    userModel.setAge(age + " Years");
-                }
-                if (userMapObject.containsKey("height")) {
-                    userModel.setHeight(userMapObject.get("height").toString());
-                }
-                if (userMapObject.containsKey("state")) {
-                    userModel.setState(userMapObject.get("state").toString());
-                }
-                if (userMapObject.containsKey("city")) {
-                    userModel.setCity(userMapObject.get("city").toString());
-                }
-                if (userMapObject.containsKey("mother_tongue")) {
-                    userModel.setMotherTongue(userMapObject.get("mother_tongue").toString());
-                }
-                if (userMapObject.containsKey("religion")) {
-                    userModel.setReligion(userMapObject.get("religion").toString());
-                }
-                if (userMapObject.containsKey("highest_education")) {
-                    userModel.setHighestEducation(userMapObject.get("highest_education").toString());
-                }
-                if (userMapObject.containsKey("caste")) {
-                    userModel.setCaste(userMapObject.get("caste").toString());
-                }
-                if (userMapObject.containsKey("occupation")) {
-                    userModel.setOccupation(userMapObject.get("occupation").toString());
-                }
-                if (userMapObject.containsKey("income")) {
-                    userModel.setIncome(userMapObject.get("income").toString());
-                }
-                if (userMapObject.containsKey("time")) {
-                    userModel.setTime(userMapObject.get("time").toString());
-                }
+                userModelData = resultObject.toString();
+                fragementData.dataGet(userModelData);
+
+//                Map<String, Object> userMapObject = new Gson().fromJson(resultObject.toString(), Map.class);
+//                userModel = new UserModel();
+//
+//                if (userMapObject.containsKey("user_id")) {
+//                    userModel.setUserId(resultObject.getInt("user_id") + "");
+//                }
+//                if (userMapObject.containsKey("dob")) {
+//                    String[] date = userMapObject.get("dob").toString().split("-");
+//                    int age = Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(date[date.length - 1]);
+//                    userModel.setAge(age + " Years");
+//                }
+//                if (userMapObject.containsKey("height")) {
+//                    userModel.setHeight(userMapObject.get("height").toString());
+//                }
+//                if (userMapObject.containsKey("state")) {
+//                    userModel.setState(userMapObject.get("state").toString());
+//                }
+//                if (userMapObject.containsKey("city")) {
+//                    userModel.setCity(userMapObject.get("city").toString());
+//                }
+//                if (userMapObject.containsKey("mother_tongue")) {
+//                    userModel.setMotherTongue(userMapObject.get("mother_tongue").toString());
+//                }
+//                if (userMapObject.containsKey("religion")) {
+//                    userModel.setReligion(userMapObject.get("religion").toString());
+//                }
+//                if (userMapObject.containsKey("highest_education")) {
+//                    userModel.setHighestEducation(userMapObject.get("highest_education").toString());
+//                }
+//                if (userMapObject.containsKey("caste")) {
+//                    userModel.setCaste(userMapObject.get("caste").toString());
+//                }
+//                if (userMapObject.containsKey("occupation")) {
+//                    userModel.setOccupation(userMapObject.get("occupation").toString());
+//                }
+//                if (userMapObject.containsKey("income")) {
+//                    userModel.setIncome(userMapObject.get("income").toString());
+//                }
+//                if (userMapObject.containsKey("time")) {
+//                    userModel.setTime(userMapObject.get("time").toString());
+//                }
             }
 
         } catch (Exception e) {
@@ -138,10 +146,6 @@ public class ProfileDetailActivity extends BaseActivity implements GetWebService
 
     }
 
-
-    private void setData(UserModel userModel) {
-
-    }
 
     @Override
     public void onBackPressed() {
