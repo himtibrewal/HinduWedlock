@@ -7,7 +7,9 @@ import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.adapter.MyCustomPagerAdapter;
+import com.colaborotech.thehinduwedlock.models.ImageModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
+import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -28,7 +30,7 @@ public class ImageSlidingActivity extends BaseActivity implements View.OnClickLi
     int images[] = {R.drawable.profilepic, R.drawable.profilepic, R.drawable.profilepic, R.drawable.profilepic};
     MyCustomPagerAdapter myCustomPagerAdapter;
     private int callingFrom = -1;
-    List<String> imageList = new ArrayList<String>();
+    List<ImageModel> imageList = new ArrayList<ImageModel>();
 
 
     @Override
@@ -57,7 +59,7 @@ public class ImageSlidingActivity extends BaseActivity implements View.OnClickLi
             }
         }
         Gson gson = new Gson();
-        imageList = gson.fromJson(AppPref.getInstance().getImageUrls(), new TypeToken<List<String>>() {
+        imageList = gson.fromJson(AppPref.getInstance().getImageUrls(), new TypeToken<List<ImageModel>>() {
         }.getType());
         tvSave.setText("Save");
         tvHeader.setText("My Photos \n 1 of 2");
@@ -92,4 +94,6 @@ public class ImageSlidingActivity extends BaseActivity implements View.OnClickLi
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+
 }

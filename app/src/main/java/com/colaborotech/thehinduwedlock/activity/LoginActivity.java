@@ -18,13 +18,16 @@ import android.widget.EditText;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
+import com.colaborotech.thehinduwedlock.models.ImageModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 import com.colaborotech.thehinduwedlock.webservice.Other;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -128,6 +131,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             String message = jsonObject.getString("message");
             if (response_code.equalsIgnoreCase("200")) {
                 Map<String, Object> loginMapObject = new Gson().fromJson(jsonObject.getJSONObject("data").toString(), Map.class);
+                JSONArray jsonArray = jsonObject.getJSONObject("data").getJSONArray("image");
+                AppPref.getInstance().setNoOfImage(jsonArray.length());
+                List<ImageModel> imageList = new ArrayList<ImageModel>();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    int image_id = jsonObject1.getInt("image_id");
+                    String imageurl = "https://firebasestorage.googleapis.com/v0/b/thehindu-24e87.appspot.com/o/" + jsonObject1.getString("image") + "?alt=media";
+                    String profile = jsonObject1.getString("profile");
+                    imageList.add(new ImageModel(image_id, imageurl, profile));
+                }
+                Gson gson = new Gson();
+                String imageUrls = gson.toJson(imageList);
+                AppPref.getInstance().setImageUrls(imageUrls);
                 if (loginMapObject.containsKey("user_id")) {
                     AppPref.getInstance().setuserId(jsonObject.getJSONObject("data").get("user_id").toString());
                 }
@@ -228,6 +244,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 AppPref.getInstance().setsetIsLogin("islogin");
                 sendToThisActivity(DrawerActivity.class);
                 finish();
+            } else if (response_code.equalsIgnoreCase("202")) {
+                toastMessage(message);
             }
         } catch (Exception e) {
             Log.e("exception", e.toString());

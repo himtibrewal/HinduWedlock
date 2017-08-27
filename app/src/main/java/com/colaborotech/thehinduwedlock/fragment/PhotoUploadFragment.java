@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.activity.ImageSlidingActivity;
 import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
+import com.colaborotech.thehinduwedlock.models.ImageModel;
 import com.colaborotech.thehinduwedlock.models.MenuModel;
 import com.colaborotech.thehinduwedlock.service.MyUploadService;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
@@ -36,6 +37,7 @@ import com.colaborotech.thehinduwedlock.utility.AppUrls;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -69,6 +71,7 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
 
     private Uri mDownloadUrl = null;
     private Uri mFileUri = null;
+    private List<ImageModel> imageList = new ArrayList<ImageModel>();
 
     @Nullable
     @Override
@@ -145,11 +148,13 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
                         int imageCount = jsonArray.length();
                         AppPref.getInstance().setNoOfImage(imageCount);
-                        List<String> imageList = new ArrayList<String>();
+                        List<ImageModel> imageList = new ArrayList<ImageModel>();
                         for (int i = 0; i < imageCount; i++) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                            int image_id = jsonObject1.getInt("image_id");
                             String imageurl = "https://firebasestorage.googleapis.com/v0/b/thehindu-24e87.appspot.com/o/" + jsonObject1.getString("image") + "?alt=media";
-                            imageList.add(imageurl);
+                            String profile = jsonObject1.getString("profile");
+                            imageList.add(new ImageModel(image_id, imageurl, profile));
                         }
                         Gson gson = new Gson();
                         String imageUrls = gson.toJson(imageList);
@@ -182,6 +187,13 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
         tvProfileChange.setOnClickListener(this);
         tvPhotoPrivacy.setOnClickListener(this);
         tvPhotoCount.setText(AppPref.getInstance().getNoOfImage() + " Photo");
+        Gson gson = new Gson();
+        imageList = gson.fromJson(AppPref.getInstance().getImageUrls(), new TypeToken<List<ImageModel>>() {
+        }.getType());
+        if (imageList.size() > 0) {
+            Picasso.with(getActivity()).load(imageList.get(0).getImageURL()).into(ivMainImage);
+        }
+
     }
 
 
