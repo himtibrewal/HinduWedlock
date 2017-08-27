@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.colaborotech.thehinduwedlock.R;
@@ -13,8 +12,11 @@ import com.colaborotech.thehinduwedlock.fragment.AboutFragment;
 import com.colaborotech.thehinduwedlock.fragment.OneFragment;
 import com.colaborotech.thehinduwedlock.fragment.UserFamilyFragment;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
+import com.colaborotech.thehinduwedlock.utility.FragementData;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
+
+import org.json.JSONObject;
 
 
 /**
@@ -23,10 +25,11 @@ import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 
 public class ProfileDetailActivity extends BaseActivity implements GetWebServiceData {
 
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    CollapsingToolbarLayout collapsing_container;
-    Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private CollapsingToolbarLayout collapsing_container;
+    private String userModelData = "";
+    public FragementData fragementData;
 
     @Override
     public int getActivityLayout() {
@@ -38,7 +41,7 @@ public class ProfileDetailActivity extends BaseActivity implements GetWebService
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         collapsing_container = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
-        collapsing_container.setTitle("ppppppp");
+        collapsing_container.setTitle("");
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
     }
@@ -48,6 +51,7 @@ public class ProfileDetailActivity extends BaseActivity implements GetWebService
         if (getIntent().getExtras() != null) {
             String userid = getIntent().getExtras().getString("profile_id");
             getUserFullDetail(userid);
+
         }
     }
 
@@ -57,9 +61,15 @@ public class ProfileDetailActivity extends BaseActivity implements GetWebService
     }
 
     private void setupViewPager(ViewPager viewPager) {
+        Bundle args = new Bundle();
+        args.putString("data", userModelData);
+        AboutFragment aboutFragment = new AboutFragment();
+        UserFamilyFragment userFamilyFragment = new UserFamilyFragment();
+        aboutFragment.setArguments(args);
+        userFamilyFragment.setArguments(args);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new AboutFragment(), "ABOUT");
-        adapter.addFragment(new UserFamilyFragment(), "FAMILY");
+        adapter.addFragment(aboutFragment, "ABOUT");
+        adapter.addFragment(userFamilyFragment, "FAMILY");
         adapter.addFragment(new OneFragment(), "LOOKING FOR");
         viewPager.setAdapter(adapter);
     }
@@ -77,9 +87,65 @@ public class ProfileDetailActivity extends BaseActivity implements GetWebService
     @Override
     public void getWebServiceResponse(String responseData, int serviceCounter) {
         Log.e("response", "is" + responseData);
+        try {
+
+            JSONObject jsonObject = new JSONObject(responseData);
+            String response_code = jsonObject.getString("response_code");
+            if (response_code.equalsIgnoreCase("200")) {
+                JSONObject resultObject = jsonObject.getJSONObject("results");
+                userModelData = resultObject.toString();
+                fragementData.dataGet(userModelData);
+
+//                Map<String, Object> userMapObject = new Gson().fromJson(resultObject.toString(), Map.class);
+//                userModel = new UserModel();
+//
+//                if (userMapObject.containsKey("user_id")) {
+//                    userModel.setUserId(resultObject.getInt("user_id") + "");
+//                }
+//                if (userMapObject.containsKey("dob")) {
+//                    String[] date = userMapObject.get("dob").toString().split("-");
+//                    int age = Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(date[date.length - 1]);
+//                    userModel.setAge(age + " Years");
+//                }
+//                if (userMapObject.containsKey("height")) {
+//                    userModel.setHeight(userMapObject.get("height").toString());
+//                }
+//                if (userMapObject.containsKey("state")) {
+//                    userModel.setState(userMapObject.get("state").toString());
+//                }
+//                if (userMapObject.containsKey("city")) {
+//                    userModel.setCity(userMapObject.get("city").toString());
+//                }
+//                if (userMapObject.containsKey("mother_tongue")) {
+//                    userModel.setMotherTongue(userMapObject.get("mother_tongue").toString());
+//                }
+//                if (userMapObject.containsKey("religion")) {
+//                    userModel.setReligion(userMapObject.get("religion").toString());
+//                }
+//                if (userMapObject.containsKey("highest_education")) {
+//                    userModel.setHighestEducation(userMapObject.get("highest_education").toString());
+//                }
+//                if (userMapObject.containsKey("caste")) {
+//                    userModel.setCaste(userMapObject.get("caste").toString());
+//                }
+//                if (userMapObject.containsKey("occupation")) {
+//                    userModel.setOccupation(userMapObject.get("occupation").toString());
+//                }
+//                if (userMapObject.containsKey("income")) {
+//                    userModel.setIncome(userMapObject.get("income").toString());
+//                }
+//                if (userMapObject.containsKey("time")) {
+//                    userModel.setTime(userMapObject.get("time").toString());
+//                }
+            }
+
+        } catch (Exception e) {
+            Log.e("error_wev", "is: " + e.toString());
+        }
         toastMessage(responseData);
 
     }
+
 
     @Override
     public void onBackPressed() {

@@ -46,6 +46,7 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
         tvTab1.setText("ONLINE MATCHES");
         tvTab2.setText("ACCEPTANCE");
         tvNoData.setText("coming soon");
+        tvNoData.setVisibility(View.VISIBLE);
     }
 
     @Override
