@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "595186909741-rue2ene8uet0tvt5a7293nfgoab3rjpl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.colaborotech.thehinduwedlock",
+            "certificate_hash": "14afa04f9572ca83499d6fe393a2914f6fe14998"
+          }
+        },
+        {
           "client_id": "595186909741-ba7r0rrf0ifg8aq5kk32hgfa8hit3rq6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
