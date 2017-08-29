@@ -92,6 +92,13 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
         if (AppPref.getInstance().getCreateFor().equalsIgnoreCase("SISTER") || AppPref.getInstance().getCreateFor().equalsIgnoreCase("Daughter") || AppPref.getInstance().getCreateFor().equalsIgnoreCase("BROTHER") || AppPref.getInstance().getCreateFor().equalsIgnoreCase("SON")) {
             llGender.setVisibility(View.GONE);
             gender = AppPref.getInstance().getGender();
+            if (gender.equalsIgnoreCase("male")) {
+                gender = "1";
+            } else if (gender.equalsIgnoreCase("female")) {
+                gender = "0";
+            } else {
+                gender = "";
+            }
         }
 
 
@@ -126,12 +133,12 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
             case R.id.rl_female_personal_detail:
                 rlFemale.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 rlMale.setBackground(getResources().getDrawable(R.drawable.drawable_ractagle_hollow_pinkline));
-                gender = "FEMALE";
+                gender = "0";
                 break;
             case R.id.rl_male_personal_detail:
                 rlMale.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 rlFemale.setBackground(getResources().getDrawable(R.drawable.drawable_ractagle_hollow_pinkline));
-                gender = "MALE";
+                gender = "1";
                 break;
             case R.id.layout_date_of_birth_personal_detail:
                 openDatePicker();
@@ -182,15 +189,19 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
                     case R.id.layout_height_personal_detail:
                         ctvHeight.setValue(((DataModel) Objects.get(position)).get_dataName());
                         drawerLayout.closeDrawer(Gravity.RIGHT);
+                        AppPref.getInstance().setHeightId(((DataModel) Objects.get(position)).get_id());
                         break;
                     case R.id.layout_country_personal_detail:
                         ctvCountry.setValue(((DataModel) Objects.get(position)).get_dataName());
+
                         if (((DataModel) Objects.get(position)).get_id() == 1) {
                             secondDialog("Country", TheHinduWedLockApp.countryModelList, "", R.id.layout_country_personal_detail);
                             //  AppPref.getInstance().setCountry();
                         } else {
                             secondDialog("City", TheHinduWedLockApp.cityModelList, "India - " + ((DataModel) Objects.get(position)).get_dataName(), R.id.layout_country_personal_detail);
                             AppPref.getInstance().setCountry("India");
+                            AppPref.getInstance().setCounrtyId(1);
+                            AppPref.getInstance().setStateId(((DataModel) Objects.get(position)).get_id());
                             AppPref.getInstance().setState(((DataModel) Objects.get(position)).get_dataName());
                         }
                         break;
@@ -241,8 +252,6 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
 
 
     private void openDatePicker() {
-        String gendertemp = gender;
-        Calendar cal = Calendar.getInstance();
         Calendar cal1 = Calendar.getInstance();
         try {
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
@@ -265,7 +274,6 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
         } catch (Exception e) {
 
         }
-
     }
 
 
@@ -300,9 +308,11 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
                         if (data.equalsIgnoreCase("")) {
                             ctvCountry.setValue(((DataModel) objects.get(position)).get_dataName());
                             AppPref.getInstance().setCountry(((DataModel) objects.get(position)).get_dataName());
+                            AppPref.getInstance().setCounrtyId(((DataModel) objects.get(position)).get_id());
                         } else {
                             ctvCountry.setValue(data + "-" + ((DataModel) objects.get(position)).get_dataName());
                             AppPref.getInstance().setCity(((DataModel) objects.get(position)).get_dataName());
+                            AppPref.getInstance().setCityId(((DataModel) objects.get(position)).get_id());
                         }
                         dateOfBirthDialog.dismiss();
                         drawerLayout.closeDrawer(Gravity.RIGHT);

@@ -39,5 +39,6 @@ public class AppUrls {
     public static final String BLOCKED_USER_LIST = BASE_URL + "block_user_list";
     public static final String MAKE_PROFILE_PIC = BASE_URL + "make_profile";
     public static final String DELETE_IMAGE = BASE_URL + "delete_image";
+    public static final String UPDATE_TOKEN = BASE_URL + "update_token";
 
 }

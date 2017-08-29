@@ -100,6 +100,21 @@ public class AppPref {
     private final String PREF_No_Of_IMAGE = "image_count";
     private final String PREF_IMAGE_URL = "image_urls";
     private final String PREF_SAVED_SEARCH = "saved_search";
+    private final String PREF_REG_TOKEN = "reg_token";
+    private final String PREF_HEIGHT_ID = "height_id";
+    private final String PREF_COUNTRY_ID = "county_id";
+    private final String PREF_STATE_ID = "state_id";
+    private final String PREF_CITY_ID = "city_id";
+    private final String PREF_HIGHEST_EDUCATION_ID = "highest_edu_id";
+    private final String PREF_OCCUPATION_ID = "occupation_id";
+    private final String PREF_INCOME_ID = "income_id";
+    private final String PREF_MARITAL_STATUS_ID = "marital_status_id";
+    private final String PREF_MOTHER_T0NGUE_ID = "mother_tongue_id";
+    private final String PREF_RELIGIIN_ID = "religion_id";
+    private final String PREF_CASTE_ID = "caste_id";
+    private final String PREF_SUB_CASTE_ID = "sub_caste_id";
+    private final String PREF_MANGLIK_ID = "manglik_id";
+    private final String PREF_DEVICE_ID = "device_id";
 
 
     private AppPref(Context context) {
@@ -879,6 +894,142 @@ public class AppPref {
 
     public void setSavedSearch(String data) {
         sEditor.putString(PREF_SAVED_SEARCH, data);
+        sEditor.commit();
+    }
+
+    public String getRegToken() {
+        return sharedPreferences.getString(PREF_REG_TOKEN, "");
+    }
+
+    public void setRegToken(String token_data) {
+        sEditor.putString(PREF_REG_TOKEN, token_data);
+        sEditor.commit();
+    }
+
+
+    public int getHeightId() {
+        return sharedPreferences.getInt(PREF_HEIGHT_ID, -99);
+    }
+
+    public void setHeightId(int height_id) {
+        sEditor.putInt(PREF_HEIGHT_ID, height_id);
+        sEditor.commit();
+    }
+
+    public int getCounrtyId() {
+        return sharedPreferences.getInt(PREF_COUNTRY_ID, -99);
+    }
+
+    public void setCounrtyId(int country_id) {
+        sEditor.putInt(PREF_COUNTRY_ID, country_id);
+        sEditor.commit();
+    }
+
+    public int getStateId() {
+        return sharedPreferences.getInt(PREF_STATE_ID, -99);
+    }
+
+    public void setStateId(int stateId) {
+        sEditor.putInt(PREF_STATE_ID, stateId);
+        sEditor.commit();
+    }
+
+    public int getCityId() {
+        return sharedPreferences.getInt(PREF_CITY_ID, -99);
+    }
+
+    public void setCityId(int cityId) {
+        sEditor.putInt(PREF_CITY_ID, cityId);
+        sEditor.commit();
+    }
+
+    public int getHighestEduId() {
+        return sharedPreferences.getInt(PREF_HIGHEST_EDUCATION_ID, -99);
+    }
+
+    public void setHighestEduId(int highestEduId) {
+        sEditor.putInt(PREF_HIGHEST_EDUCATION_ID, highestEduId);
+        sEditor.commit();
+    }
+
+    public int getOccupdationId() {
+        return sharedPreferences.getInt(PREF_OCCUPATION_ID, -99);
+    }
+
+    public void setOccupdationId(int occupdationId) {
+        sEditor.putInt(PREF_OCCUPATION_ID, occupdationId);
+        sEditor.commit();
+    }
+
+    public int getIncomeId() {
+        return sharedPreferences.getInt(PREF_INCOME_ID, -99);
+    }
+
+    public void setIncomeId(int incomeId) {
+        sEditor.putInt(PREF_INCOME_ID, incomeId);
+        sEditor.commit();
+    }
+
+    public int getMaritalStatusId() {
+        return sharedPreferences.getInt(PREF_MARITAL_STATUS_ID, -99);
+    }
+
+    public void setMaritalStatusId(int maritalStatusId) {
+        sEditor.putInt(PREF_MARITAL_STATUS_ID, maritalStatusId);
+        sEditor.commit();
+    }
+
+    public int getMotherTongueId() {
+        return sharedPreferences.getInt(PREF_MOTHER_T0NGUE_ID, -99);
+    }
+
+    public void setMotherTongueId(int motherTongueId) {
+        sEditor.putInt(PREF_MOTHER_T0NGUE_ID, motherTongueId);
+        sEditor.commit();
+    }
+
+    public int getReligionId() {
+        return sharedPreferences.getInt(PREF_RELIGIIN_ID, -99);
+    }
+
+    public void setReligionId(int religionId) {
+        sEditor.putInt(PREF_RELIGIIN_ID, religionId);
+        sEditor.commit();
+    }
+
+    public int getCasteId() {
+        return sharedPreferences.getInt(PREF_CASTE_ID, -99);
+    }
+
+    public void setCasteId(int casteId) {
+        sEditor.putInt(PREF_CASTE_ID, casteId);
+        sEditor.commit();
+    }
+
+    public int getSubCasteId() {
+        return sharedPreferences.getInt(PREF_SUB_CASTE_ID, -99);
+    }
+
+    public void setSubCasteId(int subCasteId) {
+        sEditor.putInt(PREF_SUB_CASTE_ID, subCasteId);
+        sEditor.commit();
+    }
+
+    public int getManglikId() {
+        return sharedPreferences.getInt(PREF_MANGLIK_ID, -99);
+    }
+
+    public void setManglikId(int manglikId) {
+        sEditor.putInt(PREF_MANGLIK_ID, manglikId);
+        sEditor.commit();
+    }
+
+    public String getDeviceId() {
+        return sharedPreferences.getString(PREF_DEVICE_ID, "");
+    }
+
+    public void setDeviceId(String deviceId) {
+        sEditor.putString(PREF_DEVICE_ID, deviceId);
         sEditor.commit();
     }
 
