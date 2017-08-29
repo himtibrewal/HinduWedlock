@@ -29,6 +29,7 @@ public class SplashActivty extends AppCompatActivity implements GetWebServiceDat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         getAlldata();
+        getDeviceId();
     }
 
     private void getAlldata() {
@@ -36,6 +37,10 @@ public class SplashActivty extends AppCompatActivity implements GetWebServiceDat
         getDataUsingWService.execute();
     }
 
+
+    private void getDeviceId() {
+        AppPref.getInstance().setDeviceId("himanshu");
+    }
 
     @Override
     public void getWebServiceResponse(String responseData, int serviceCounter) {

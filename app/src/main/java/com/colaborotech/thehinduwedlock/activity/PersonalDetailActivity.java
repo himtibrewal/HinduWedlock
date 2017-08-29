@@ -92,13 +92,6 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
         if (AppPref.getInstance().getCreateFor().equalsIgnoreCase("SISTER") || AppPref.getInstance().getCreateFor().equalsIgnoreCase("Daughter") || AppPref.getInstance().getCreateFor().equalsIgnoreCase("BROTHER") || AppPref.getInstance().getCreateFor().equalsIgnoreCase("SON")) {
             llGender.setVisibility(View.GONE);
             gender = AppPref.getInstance().getGender();
-            if (gender.equalsIgnoreCase("male")) {
-                gender = "1";
-            } else if (gender.equalsIgnoreCase("female")) {
-                gender = "0";
-            } else {
-                gender = "";
-            }
         }
 
 
@@ -262,7 +255,7 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
                 }
 
             }, 1998, 10, 01);
-            if (gender.trim().equalsIgnoreCase("male")) {
+            if (gender.trim().equalsIgnoreCase("1")) {
                 cal1.add(Calendar.YEAR, -21);
             } else {
                 cal1.add(Calendar.YEAR, -18);

@@ -138,50 +138,47 @@ public class LoginDetailActivity extends BaseActivity implements View.OnClickLis
 
     private void sendDataToServer() {
 
-//        m_id=11111&createfor=friend&photo=[jdfdjfnjgbkjgfnkjb,jsddfbhjhbvkjdfbkvd,jhdbvjhfdbvjhfd,vjhfbvjhfdb,]
-//        &photo_count=4&from_image=gallery&manage_by=friend&name=Himanshu kumar&name_show=true&gender=Male
-//                &dob=12-10-2019&height=4'11"&country=india&state=Bihar&city=narkatiaganj
-//                &mother_tongue=Hindi&religion=Hindu&religion_show=false&caste=marwari
-//                &sub_caste=bania&family_based_on=jhunjhunu&gotra=aryan&complexion=Fair
-//                &body_type=slim&weight=75&challenged=No&thalassemia=No&hiv=No
-//                &about_your_self=I am  a good  boy.&marital_status=naver Married&have_child=0&openforAllcaste=yes
-//                &Horoscope_check=no&rashi=mesh&nakshatra=no&manglik=Yes&about_education=very  good  education
-//        &highest_education=P.hd&pg_degree=ms in  physics&pg_college=IIT delhi&ug_degree=B.tech
-//                &ug_college=Gurukula kangri&other_pg_degree=no&other_ug_degree=no
-//                &school_name=High  school&occupation=Job(IT)&income=3&about_career=good  career
-//                &organization_name=esecfote&setting_abord=yes&work_after_marriage=yes&family_status=good
-//                &family_type=High&family_values=high&family_income=1 corer&father_occupation=business
-//                &mother_occupation=homee&brother=1&married_brother=0&sister=0&sister_married=0
-//                &about_family=good  family&living_with_parents=yes&diet=yes&smoke=no&drink=no
-//                &pets=no&own_house=yes&own_car=yes&language_speak=[Hindi,English]&food_cook_detail=Very good  cook
-//        &hobbies=[hobbe ,kjbvkjdf]&interest=[criiii,jbsdjvbfd]&favourite_musics=[jvjdfbkjgd,vnjkfvkjfdbkjgdd]
-//        &favourite_books=vnfkjbgjdnblgk&favourite_dress_style=kjrbgkjbgbkjndkjgvnkj&favourite_sports=favourite_sports
-//                &favourite_cuisines=favourite_cuisines&favourite_movies=favourite_movies&favourite_read=favourite_read&favourite_tv_shows=favourite_tv_shows&favourite_vaction_distination=favourite_vaction_distination&email=himanshu@gmail.com&password=12345678&phone=8882254010&alternate_email_id=alternate_email_id&alternate_mobile_no=alternate_mobile_no&email_veriy=no&email_visible=no&mobile_visible=no&alt_mobile_visible=no&landline_visible=no&alt_email_verify=no&mobile_verify=no&landline_no=no&suitable_time_to_call_start_time=10&suitable_time_to_call_end_time=23&partner_from_age=1&partner_to_age=70&partner_from_height=5"10"&partner_to_height=7'10"&partner_counrtys=[vjkfvndkjb,vkjbfvkjd]&partner_marital_status=partner_marital_status&partner_religion=partner_religion&partner_caste=partner_caste&partner_tongue=partner_tongue&partner_manglik=partner_manglik&partner_diet=partner_diet&partner_smoke=partner_smoke&partner_drink=partner_drink&partner_complexion=partner_complexion&partner_bodytype=partner_bodytype&partner_challenge=partner_challenge&manage_strict_partner=manage_strict_partner&partner_give_outside=partner_give_outside
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("createfor=").append(AppPref.getInstance().getCreateFor());
         stringBuilder.append("&dob=").append(AppPref.getInstance().getDob());
         stringBuilder.append("&height=").append(AppPref.getInstance().getHeight());
+        stringBuilder.append("&height_id=").append(AppPref.getInstance().getHeightId());
         stringBuilder.append("&country=").append(AppPref.getInstance().getCountry());
+        stringBuilder.append("&country_id=").append(AppPref.getInstance().getCounrtyId());
         stringBuilder.append("&state=").append(AppPref.getInstance().getState());
         stringBuilder.append("&city=").append(AppPref.getInstance().getCity());
+        stringBuilder.append("&state_id=").append(AppPref.getInstance().getStateId());
+        stringBuilder.append("&city_id=").append(AppPref.getInstance().getCityId());
         stringBuilder.append("&highest_education=").append(AppPref.getInstance().getHighestEducation());
+        stringBuilder.append("&highest_edu_id=").append(AppPref.getInstance().getHighestEduId());
         stringBuilder.append("&pg_college=").append(AppPref.getInstance().getPgCollge());
         stringBuilder.append("&pg_degree=").append(AppPref.getInstance().getPgDegree());
         stringBuilder.append("&ug_college=").append(AppPref.getInstance().getUgCollege());
         stringBuilder.append("&ug_degree=").append(AppPref.getInstance().getUgDegree());
         stringBuilder.append("&occupation=").append(AppPref.getInstance().getWorkArea());
+        stringBuilder.append("&occupation_id=").append(AppPref.getInstance().getOccupdationId());
         stringBuilder.append("&income=").append(AppPref.getInstance().getIncome());
+        stringBuilder.append("&income_id=").append(AppPref.getInstance().getIncomeId());
         stringBuilder.append("&marital_status=").append(AppPref.getInstance().getMaritalStatus());
+        stringBuilder.append("&marital_status_id=").append(AppPref.getInstance().getMaritalStatusId());
         stringBuilder.append("&have_child=").append(AppPref.getInstance().getHaveChild());
         stringBuilder.append("&mother_tongue=").append(AppPref.getInstance().getMotherTongue());
+        stringBuilder.append("&mother_tongue_id=").append(AppPref.getInstance().getMotherTongueId());
         stringBuilder.append("&religion=").append(AppPref.getInstance().getReligion());
         stringBuilder.append("&caste=").append(AppPref.getInstance().getCaste());
         stringBuilder.append("&manglik=").append(AppPref.getInstance().getManglik());
+        stringBuilder.append("&religion_id=").append(AppPref.getInstance().getReligionId());
+        stringBuilder.append("&caste_id=").append(AppPref.getInstance().getCasteId());
+        stringBuilder.append("&manglik_id=").append(AppPref.getInstance().getManglikId());
         stringBuilder.append("&Horoscope_check=").append(AppPref.getInstance().getHoroscopeMatch());
         stringBuilder.append("&name=").append(AppPref.getInstance().getName());
         stringBuilder.append("&email=").append(AppPref.getInstance().getEmailId());
         stringBuilder.append("&password=").append(AppPref.getInstance().getPassword());
         stringBuilder.append("&phone=").append(AppPref.getInstance().getMobile());
+        stringBuilder.append("&device_type=").append("ANDROID");
+        stringBuilder.append("&reg_key=").append(AppPref.getInstance().getRegToken());
+        stringBuilder.append("&device_id=").append(AppPref.getInstance().getDeviceId());
+
         String content = stringBuilder.toString();
         Log.e("register_c", "is" + content);
         Log.e("url", "is" + AppUrls.REGISTER_URL);

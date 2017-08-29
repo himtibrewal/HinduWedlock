@@ -152,25 +152,25 @@ public class CreateForRegister extends BaseActivity implements View.OnClickListe
             case R.id.rl_son:
                 rlSon.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("SON");
-                AppPref.getInstance().setGender("MALE");
+                AppPref.getInstance().setGender("1");
                 ivSon.setImageDrawable(getResources().getDrawable(R.drawable.son_white));
                 break;
             case R.id.rl_daughter:
                 rlDaughter.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("DAUGHTER");
-                AppPref.getInstance().setGender("FEMALE");
+                AppPref.getInstance().setGender("0");
                 ivDaughter.setImageDrawable(getResources().getDrawable(R.drawable.daughter_white));
                 break;
             case R.id.rl_brother:
                 rlBrother.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("BROTHER");
-                AppPref.getInstance().setGender("MALE");
+                AppPref.getInstance().setGender("1");
                 ivBrother.setImageDrawable(getResources().getDrawable(R.drawable.brother_white));
                 break;
             case R.id.rl_sister:
                 rlSister.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("SISTER");
-                AppPref.getInstance().setGender("FEMALE");
+                AppPref.getInstance().setGender("0");
                 ivSister.setImageDrawable(getResources().getDrawable(R.drawable.sister_white));
                 break;
             case R.id.rl_client:
