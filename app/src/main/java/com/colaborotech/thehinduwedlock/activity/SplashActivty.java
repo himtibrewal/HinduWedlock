@@ -2,6 +2,7 @@ package com.colaborotech.thehinduwedlock.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,6 +18,8 @@ import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import static java.security.AccessController.getContext;
 
 /**
  * Created by him on 27-May-17.
@@ -39,7 +42,8 @@ public class SplashActivty extends AppCompatActivity implements GetWebServiceDat
 
 
     private void getDeviceId() {
-        AppPref.getInstance().setDeviceId("himanshu");
+        String android_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+        AppPref.getInstance().setDeviceId(android_id);
     }
 
     @Override
@@ -210,7 +214,7 @@ public class SplashActivty extends AppCompatActivity implements GetWebServiceDat
                     TheHinduWedLockApp.cityModelList.add(new DataModel(city_id, city_name, state_id));
                 }
 
-                if (!AppPref.getInstance().getisLogin().equalsIgnoreCase("islogin")) {
+                if (!AppPref.getInstance().getisLogin()) {
                     Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                     finish();

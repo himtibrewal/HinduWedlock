@@ -191,6 +191,7 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
                 switch (from) {
                     case R.id.ctv_highest_education_career_detail:
                         ctvHighestEducation.setValue(((DataModel) Objects.get(position)).get_dataName());
+                        AppPref.getInstance().setHighestEduId(((DataModel) Objects.get(position)).get_id());
                         if (position < 5) {
                             ctvUgCollege.setVisibility(View.VISIBLE);
                             ctvUgDegree.setVisibility(View.VISIBLE);
@@ -226,9 +227,11 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
                         break;
                     case R.id.ctv_work_area_career_detail:
                         ctvWorkArea.setValue(((DataModel) Objects.get(position)).get_dataName());
+                        AppPref.getInstance().setOccupdationId(((DataModel) Objects.get(position)).get_id());
                         break;
                     case R.id.ctv_income_career_detail:
                         ctvIncome.setValue(((DataModel) Objects.get(position)).get_dataName());
+                        AppPref.getInstance().setIncomeId(((DataModel) Objects.get(position)).get_id());
                         break;
 
                 }

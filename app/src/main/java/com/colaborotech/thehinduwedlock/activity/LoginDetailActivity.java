@@ -197,7 +197,7 @@ public class LoginDetailActivity extends BaseActivity implements View.OnClickLis
                 JSONObject jsonObject1 = jsonObject.getJSONObject("userDetail");
                 int userid = jsonObject1.getInt("user_id");
                 AppPref.getInstance().setuserId(userid + "");
-                AppPref.getInstance().setsetIsLogin("isLogin");
+                AppPref.getInstance().setIsLogin(true);
                 AppPref.getInstance().setNoOfImage(0);
                 Intent intent = new Intent(getApplicationContext(), WriteAboutActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

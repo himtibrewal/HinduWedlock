@@ -143,12 +143,12 @@ public class AppPref {
     }
 
 
-    public String getisLogin() {
-        return sharedPreferences.getString(PREF_IS_LOGIN, "");
+    public boolean getisLogin() {
+        return sharedPreferences.getBoolean(PREF_IS_LOGIN, false);
     }
 
-    public void setsetIsLogin(String cindition) {
-        sEditor.putString(PREF_IS_LOGIN, cindition);
+    public void setIsLogin(boolean cindition) {
+        sEditor.putBoolean(PREF_IS_LOGIN, cindition);
         sEditor.commit();
     }
 

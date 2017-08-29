@@ -188,19 +188,25 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
                             secondDialog("Having child", TheHinduWedLockApp.haveClildModelList, ((DataModel) Objects.get(position)).get_dataName(), ctvMaritalStatus, R.id.ctv_marital_stats_social_detail);
                         }
                         AppPref.getInstance().setMaritalStatus(((DataModel) Objects.get(position)).get_dataName());
+                        AppPref.getInstance().setMaritalStatusId(((DataModel) Objects.get(position)).get_id());
+
                         break;
                     case R.id.ctv_mother_tongue_social_detail:
                         ctvMotherTongue.setValue(((DataModel) Objects.get(position)).get_dataName());
+                        AppPref.getInstance().setMotherTongueId(((DataModel) Objects.get(position)).get_id());
                         drawerLayout.closeDrawer(Gravity.RIGHT);
                         break;
                     case R.id.ctv_Religion_social_detail:
                         ctvReligion.setValue(((DataModel) Objects.get(position)).get_dataName());
                         secondDialog(TheHinduWedLockApp.casteModelList, ctvReligion, ((DataModel) Objects.get(position)).get_id());
                         AppPref.getInstance().setReligion(((DataModel) Objects.get(position)).get_dataName());
+                        AppPref.getInstance().setReligionId(((DataModel) Objects.get(position)).get_id());
+
                         break;
                     case R.id.ctv_manglik_social_detail:
                         ctvManglik.setValue(((DataModel) Objects.get(position)).get_dataName());
                         drawerLayout.closeDrawer(Gravity.RIGHT);
+                        AppPref.getInstance().setManglikId(((DataModel) Objects.get(position)).get_id());
                         break;
                     case R.id.ctv_horoscope_social_detail:
                         ctvHoroScope.setValue(((DataModel) Objects.get(position)).get_dataName());
@@ -323,6 +329,7 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
                         llmanglik.setVisibility(View.VISIBLE);
                         llhoro.setVisibility(View.VISIBLE);
                         AppPref.getInstance().setCaste(((DataModel) objects.get(position)).get_dataName());
+                        AppPref.getInstance().setCasteId(((DataModel) objects.get(position)).get_id());
                     }
                 });
             }

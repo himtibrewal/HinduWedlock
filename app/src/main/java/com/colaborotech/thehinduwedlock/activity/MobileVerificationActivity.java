@@ -57,7 +57,7 @@ public class MobileVerificationActivity extends BaseActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.toolbar_last:
-                AppPref.getInstance().setsetIsLogin("");
+                AppPref.getInstance().setIsLogin(false);
                 AppPref.getInstance().setuserId("");
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
