@@ -29,7 +29,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
         AppPref.getInstance().setRegToken(refreshedToken);
-        sendRegistrationToServer(refreshedToken);
+        //  sendRegistrationToServer(refreshedToken);
     }
 
     private void sendRegistrationToServer(String tokenValue) {
