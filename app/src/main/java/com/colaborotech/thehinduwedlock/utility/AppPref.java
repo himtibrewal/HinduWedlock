@@ -20,6 +20,7 @@ public class AppPref {
     private final String PREF_USER_ID = "user_id";
     private final String PREF_IS_LOGIN = "islogin";
     private final String PREF_CREATE_FOR = "create_for";
+    private final String PREF_MANAGE_BY = "manage_by";
     private final String PREF_GENDER = "gender";
     private final String PREF_DOB = "dob";
     private final String PREF_HEIGHT = "height";
@@ -168,6 +169,15 @@ public class AppPref {
 
     public void setCreateFor(String createFor) {
         sEditor.putString(PREF_CREATE_FOR, createFor);
+        sEditor.commit();
+    }
+
+    public String getManageBy() {
+        return sharedPreferences.getString(PREF_MANAGE_BY, "");
+    }
+
+    public void setManageBy(String manageBy) {
+        sEditor.putString(PREF_MANAGE_BY, manageBy);
         sEditor.commit();
     }
 

@@ -30,7 +30,6 @@ import com.colaborotech.thehinduwedlock.models.DataModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -50,7 +49,7 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
     private CustomLayoutTitleValue ctvCountry;
     private TextView tvNext;
     private String gender = "";
-    // int day, month, year, DATE_PICKER_ID;
+    private Dialog seconDialog;
 
     @Override
     public int getActivityLayout() {
@@ -138,14 +137,6 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
                 SliderFragment.getInstance().setLists(TheHinduWedLockApp.stateModelList, R.id.layout_country_personal_detail, "Country");
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
-//            case R.id.layout_state_personal_detail:
-//                SliderFragment.getInstance().setLists(TheHinduWedLockApp.stateModelList, R.id.layout_state_personal_detail, "State");
-//                drawerLayout.openDrawer(Gravity.RIGHT);
-//                break;
-//            case R.id.layout_city_personal_detail:
-//                SliderFragment.getInstance().setLists(TheHinduWedLockApp.cityModelList, R.id.layout_city_personal_detail, "City");
-//                drawerLayout.openDrawer(Gravity.RIGHT);
-//                break;
             case R.id.tv_next_personal_detail:
                 validation();
                 break;
@@ -162,12 +153,6 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
             case R.id.layout_country_personal_detail:
                 textView.setText(((DataModel) Objects.get(position)).get_dataName());
                 break;
-//            case R.id.layout_state_personal_detail:
-//                textView.setText(((DataModel) Objects.get(position)).get_dataName());
-//                break;
-//            case R.id.layout_city_personal_detail:
-//                textView.setText(((DataModel) Objects.get(position)).get_dataName());
-//                break;
         }
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,7 +165,6 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
                         break;
                     case R.id.layout_country_personal_detail:
                         ctvCountry.setValue(((DataModel) Objects.get(position)).get_dataName());
-
                         if (((DataModel) Objects.get(position)).get_id() == 1) {
                             secondDialog("Country", TheHinduWedLockApp.countryModelList, "", R.id.layout_country_personal_detail);
                             //  AppPref.getInstance().setCountry();
@@ -265,20 +249,20 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
 
 
     private void secondDialog(String header, List<DataModel> list, final String data, int id) {
-        dateOfBirthDialog = new Dialog(this, R.style.DialogSlideAnim);
-        dateOfBirthDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dateOfBirthDialog.setContentView(R.layout.dialog_second_drawer);
-        dateOfBirthDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        seconDialog = new Dialog(this, R.style.DialogSlideAnim);
+        seconDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        seconDialog.setContentView(R.layout.dialog_second_drawer);
+        seconDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        Window window = dateOfBirthDialog.getWindow();
+        Window window = seconDialog.getWindow();
         window.setGravity(Gravity.RIGHT);
-        dateOfBirthDialog.setCanceledOnTouchOutside(true);
+        seconDialog.setCanceledOnTouchOutside(true);
         lp.copyFrom(window.getAttributes());
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(lp);
-        RecyclerView recyclerView = (RecyclerView) dateOfBirthDialog.findViewById(R.id.dialog_recyclerView);
-        TextView textView = (TextView) dateOfBirthDialog.findViewById(R.id.tv_top_text_second_dilaog);
+        RecyclerView recyclerView = (RecyclerView) seconDialog.findViewById(R.id.dialog_recyclerView);
+        TextView textView = (TextView) seconDialog.findViewById(R.id.tv_top_text_second_dilaog);
         textView.setText(header);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -301,108 +285,107 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
                             AppPref.getInstance().setCity(((DataModel) objects.get(position)).get_dataName());
                             AppPref.getInstance().setCityId(((DataModel) objects.get(position)).get_id());
                         }
-                        dateOfBirthDialog.dismiss();
+                        seconDialog.dismiss();
                         drawerLayout.closeDrawer(Gravity.RIGHT);
                     }
                 });
             }
         }, 0);
         recyclerView.setAdapter(recyclerAdapter);
-        dateOfBirthDialog.show();
+        seconDialog.show();
     }
 
-    Dialog dateOfBirthDialog;
 
-    private void dateOfBirthDialog() {
-        dateOfBirthDialog = new Dialog(this, R.style.DialogSlideAnim);
-        dateOfBirthDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dateOfBirthDialog.setContentView(R.layout.dialog_date_of_birth);
-        dateOfBirthDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        Window window = dateOfBirthDialog.getWindow();
-        window.setGravity(Gravity.RIGHT);
-        dateOfBirthDialog.setCanceledOnTouchOutside(true);
-        lp.copyFrom(window.getAttributes());
-        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        window.setAttributes(lp);
-        TextView tvDone = (TextView) dateOfBirthDialog.findViewById(R.id.tv_done_dob_dialog);
-        RecyclerView recyclerViewDate = (RecyclerView) dateOfBirthDialog.findViewById(R.id.rv_day_dob_dialog);
-        RecyclerView recyclerViewMonth = (RecyclerView) dateOfBirthDialog.findViewById(R.id.rv_month_dob_dialog);
-        RecyclerView recyclerViewYear = (RecyclerView) dateOfBirthDialog.findViewById(R.id.rv_year_dob_dialog);
-        LinearLayoutManager llmday = new LinearLayoutManager(this);
-        llmday.setOrientation(LinearLayoutManager.VERTICAL);
-        LinearLayoutManager llmmonth = new LinearLayoutManager(this);
-        llmmonth.setOrientation(LinearLayoutManager.VERTICAL);
-        LinearLayoutManager llmYear = new LinearLayoutManager(this);
-        llmYear.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerViewDate.setLayoutManager(llmday);
-        recyclerViewMonth.setLayoutManager(llmmonth);
-        recyclerViewYear.setLayoutManager(llmYear);
-        List<String> list = new ArrayList<String>();
-        list.add("Jan");
-        list.add("Feb");
-        list.add("Mar");
-        list.add("Apr");
-        list.add("May");
-        list.add("Jun");
-        list.add("Jul");
-        list.add("Aug");
-        list.add("Sep");
-        list.add("Oct");
-        list.add("Nov");
-        list.add("Dec");
-
-        List<String> listday = new ArrayList<String>();
-        for (int i = 1; i < 31; i++) {
-            listday.add("" + i);
-        }
-        List<String> listyear = new ArrayList<String>();
-        for (int i = 1947; i < 2018; i++) {
-            listyear.add("" + i);
-        }
-
-
-        RecyclerAdapter recyclerAdapterDate = new RecyclerAdapter(listday, this, R.layout.layout_slider_item, new RecyclerAdapter.ReturnView() {
-            @Override
-            public void getAdapterView(View view, final List objects, final int position, int from) {
-                TextView tvDay = (TextView) view.findViewById(R.id.spinner_item);
-                tvDay.setText(objects.get(position).toString());
-            }
-        }, 0);
-        recyclerViewDate.setAdapter(recyclerAdapterDate);
-        RecyclerAdapter recyclerAdapterMonth = new RecyclerAdapter(list, this, R.layout.layout_slider_item, new RecyclerAdapter.ReturnView() {
-            @Override
-            public void getAdapterView(View view, List objects, int position, int from) {
-                TextView tvDay = (TextView) view.findViewById(R.id.spinner_item);
-                tvDay.setText(objects.get(position).toString());
-            }
-        }, 0);
-        recyclerViewMonth.setAdapter(recyclerAdapterMonth);
-        RecyclerAdapter recyclerAdapterYear = new RecyclerAdapter(listyear, this, R.layout.layout_slider_item, new RecyclerAdapter.ReturnView() {
-            @Override
-            public void getAdapterView(View view, List objects, int position, int from) {
-                final TextView tvDay = (TextView) view.findViewById(R.id.spinner_item);
-                tvDay.setText(objects.get(position).toString());
-                tvDay.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        tvDay.setBackgroundColor(getResources().getColor(R.color.light_pink));
-                    }
-                });
-
-            }
-        }, 0);
-        recyclerViewYear.setAdapter(recyclerAdapterYear);
-        tvDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ctvDateOfBirth.setValue("10-12-1987");
-                dateOfBirthDialog.dismiss();
-            }
-        });
-        dateOfBirthDialog.show();
-    }
+//    private void seconDialog() {
+//        seconDialog = new Dialog(this, R.style.DialogSlideAnim);
+//        seconDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        seconDialog.setContentView(R.layout.dialog_date_of_birth);
+//        seconDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+//        Window window = seconDialog.getWindow();
+//        window.setGravity(Gravity.RIGHT);
+//        seconDialog.setCanceledOnTouchOutside(true);
+//        lp.copyFrom(window.getAttributes());
+//        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+//        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+//        window.setAttributes(lp);
+//        TextView tvDone = (TextView) seconDialog.findViewById(R.id.tv_done_dob_dialog);
+//        RecyclerView recyclerViewDate = (RecyclerView) seconDialog.findViewById(R.id.rv_day_dob_dialog);
+//        RecyclerView recyclerViewMonth = (RecyclerView) seconDialog.findViewById(R.id.rv_month_dob_dialog);
+//        RecyclerView recyclerViewYear = (RecyclerView) seconDialog.findViewById(R.id.rv_year_dob_dialog);
+//        LinearLayoutManager llmday = new LinearLayoutManager(this);
+//        llmday.setOrientation(LinearLayoutManager.VERTICAL);
+//        LinearLayoutManager llmmonth = new LinearLayoutManager(this);
+//        llmmonth.setOrientation(LinearLayoutManager.VERTICAL);
+//        LinearLayoutManager llmYear = new LinearLayoutManager(this);
+//        llmYear.setOrientation(LinearLayoutManager.VERTICAL);
+//        recyclerViewDate.setLayoutManager(llmday);
+//        recyclerViewMonth.setLayoutManager(llmmonth);
+//        recyclerViewYear.setLayoutManager(llmYear);
+//        List<String> list = new ArrayList<String>();
+//        list.add("Jan");
+//        list.add("Feb");
+//        list.add("Mar");
+//        list.add("Apr");
+//        list.add("May");
+//        list.add("Jun");
+//        list.add("Jul");
+//        list.add("Aug");
+//        list.add("Sep");
+//        list.add("Oct");
+//        list.add("Nov");
+//        list.add("Dec");
+//
+//        List<String> listday = new ArrayList<String>();
+//        for (int i = 1; i < 31; i++) {
+//            listday.add("" + i);
+//        }
+//        List<String> listyear = new ArrayList<String>();
+//        for (int i = 1947; i < 2018; i++) {
+//            listyear.add("" + i);
+//        }
+//
+//
+//        RecyclerAdapter recyclerAdapterDate = new RecyclerAdapter(listday, this, R.layout.layout_slider_item, new RecyclerAdapter.ReturnView() {
+//            @Override
+//            public void getAdapterView(View view, final List objects, final int position, int from) {
+//                TextView tvDay = (TextView) view.findViewById(R.id.spinner_item);
+//                tvDay.setText(objects.get(position).toString());
+//            }
+//        }, 0);
+//        recyclerViewDate.setAdapter(recyclerAdapterDate);
+//        RecyclerAdapter recyclerAdapterMonth = new RecyclerAdapter(list, this, R.layout.layout_slider_item, new RecyclerAdapter.ReturnView() {
+//            @Override
+//            public void getAdapterView(View view, List objects, int position, int from) {
+//                TextView tvDay = (TextView) view.findViewById(R.id.spinner_item);
+//                tvDay.setText(objects.get(position).toString());
+//            }
+//        }, 0);
+//        recyclerViewMonth.setAdapter(recyclerAdapterMonth);
+//        RecyclerAdapter recyclerAdapterYear = new RecyclerAdapter(listyear, this, R.layout.layout_slider_item, new RecyclerAdapter.ReturnView() {
+//            @Override
+//            public void getAdapterView(View view, List objects, int position, int from) {
+//                final TextView tvDay = (TextView) view.findViewById(R.id.spinner_item);
+//                tvDay.setText(objects.get(position).toString());
+//                tvDay.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        tvDay.setBackgroundColor(getResources().getColor(R.color.light_pink));
+//                    }
+//                });
+//
+//            }
+//        }, 0);
+//        recyclerViewYear.setAdapter(recyclerAdapterYear);
+//        tvDone.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ctvDateOfBirth.setValue("10-12-1987");
+//                seconDialog.dismiss();
+//            }
+//        });
+//        seconDialog.show();
+//    }
 
 
 }

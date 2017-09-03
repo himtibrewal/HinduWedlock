@@ -199,7 +199,8 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
                         break;
                     case R.id.ctv_Religion_social_detail:
                         ctvReligion.setValue(((DataModel) Objects.get(position)).get_dataName());
-                        secondDialog(TheHinduWedLockApp.casteModelList, ctvReligion, ((DataModel) Objects.get(position)).get_id());
+                        //   secondDialog("Caste", TheHinduWedLockApp.casteModelList, ((DataModel) Objects.get(position)).get_dataName(), ctvReligion, R.id.ctv_Religion_social_detail);
+                        secondDialog("Caste", TheHinduWedLockApp.casteModelList, ctvReligion, ((DataModel) Objects.get(position)).get_id());
                         AppPref.getInstance().setReligion(((DataModel) Objects.get(position)).get_dataName());
                         AppPref.getInstance().setReligionId(((DataModel) Objects.get(position)).get_id());
 
@@ -291,7 +292,7 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
     }
 
 
-    private void secondDialog(List<DataModel> list, final CustomLayoutTitleValue ctv, int religionid) {
+    private void secondDialog(String header, List<DataModel> list, final CustomLayoutTitleValue ctv, int religionid) {
         secondDialog = new Dialog(this, R.style.DialogSlideAnim);
         secondDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         secondDialog.setContentView(R.layout.dialog_second_drawer);
@@ -305,6 +306,8 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         window.setAttributes(lp);
         RecyclerView recyclerView = (RecyclerView) secondDialog.findViewById(R.id.dialog_recyclerView);
+        TextView tvHeader = (TextView) secondDialog.findViewById(R.id.tv_top_text_second_dilaog);
+        tvHeader.setText(header);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);

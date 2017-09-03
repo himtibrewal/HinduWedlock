@@ -141,49 +141,57 @@ public class CreateForRegister extends BaseActivity implements View.OnClickListe
             case R.id.rl_self:
                 rlSelf.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("SELF");
+                AppPref.getInstance().setManageBy("SELF");
                 ivSelf.setImageDrawable(getResources().getDrawable(R.drawable.self_white));
                 break;
             case R.id.rl_relative:
                 rlRelative.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("RELATIVE");
+                AppPref.getInstance().setManageBy("RELATIVE");
                 ivRelative.setImageDrawable(getResources().getDrawable(R.drawable.relative_white));
                 break;
             case R.id.rl_son:
                 rlSon.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("SON");
+                AppPref.getInstance().setManageBy("PARENTS");
                 AppPref.getInstance().setGender("1");
                 ivSon.setImageDrawable(getResources().getDrawable(R.drawable.son_white));
                 break;
             case R.id.rl_daughter:
                 rlDaughter.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("DAUGHTER");
+                AppPref.getInstance().setManageBy("PARENTS");
                 AppPref.getInstance().setGender("0");
                 ivDaughter.setImageDrawable(getResources().getDrawable(R.drawable.daughter_white));
                 break;
             case R.id.rl_brother:
                 rlBrother.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("BROTHER");
+                AppPref.getInstance().setManageBy("BROTHERS/SISTER");
                 AppPref.getInstance().setGender("1");
                 ivBrother.setImageDrawable(getResources().getDrawable(R.drawable.brother_white));
                 break;
             case R.id.rl_sister:
                 rlSister.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("SISTER");
+                AppPref.getInstance().setManageBy("BROTHERS/SISTER");
                 AppPref.getInstance().setGender("0");
                 ivSister.setImageDrawable(getResources().getDrawable(R.drawable.sister_white));
                 break;
             case R.id.rl_client:
                 rlClient.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("CLIENT");
+                AppPref.getInstance().setManageBy("THIRD PARTY");
                 ivClient.setImageDrawable(getResources().getDrawable(R.drawable.client_white));
                 break;
             case R.id.rl_friend:
                 rlFriend.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
                 AppPref.getInstance().setCreateFor("FRIEND");
+                AppPref.getInstance().setManageBy("FRIEND");
                 ivFriend.setImageDrawable(getResources().getDrawable(R.drawable.friend_white));
                 break;
         }
-        //Seend to next  activity
+        //Send to next  activity
         if (v.getId() != R.id.iv_back) {
             sendToThisActivity(PersonalDetailActivity.class);
         }

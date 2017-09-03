@@ -140,6 +140,7 @@ public class LoginDetailActivity extends BaseActivity implements View.OnClickLis
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("createfor=").append(AppPref.getInstance().getCreateFor());
+        stringBuilder.append("&manage_by=").append(AppPref.getInstance().getManageBy());
         stringBuilder.append("&dob=").append(AppPref.getInstance().getDob());
         stringBuilder.append("&height=").append(AppPref.getInstance().getHeight());
         stringBuilder.append("&gender=").append(AppPref.getInstance().getGender());
