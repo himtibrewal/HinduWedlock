@@ -94,6 +94,31 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void init(Bundle save) {
         tvHeader.setText("Career Detail");
+        if (!AppPref.getInstance().getHighestEducation().equalsIgnoreCase("")) {
+            ctvHighestEducation.setValue(AppPref.getInstance().getHighestEducation());
+        }
+        if (!AppPref.getInstance().getUgCollege().equalsIgnoreCase("")) {
+            ctvUgCollege.setValue(AppPref.getInstance().getUgCollege());
+        }
+        if (!AppPref.getInstance().getUgDegree().equalsIgnoreCase("")) {
+            ctvUgDegree.setValue(AppPref.getInstance().getUgDegree());
+        }
+        if (!AppPref.getInstance().getPgCollge().equalsIgnoreCase("")) {
+            ctvPgColleg.setValue(AppPref.getInstance().getPgCollge());
+            ctvPgColleg.setVisibility(View.VISIBLE);
+        }
+        if (!AppPref.getInstance().getPgDegree().equalsIgnoreCase("")) {
+            ctvPgDegree.setValue(AppPref.getInstance().getPgDegree());
+            ctvPgDegree.setVisibility(View.VISIBLE);
+        }
+        if (!AppPref.getInstance().getWorkArea().equalsIgnoreCase("")) {
+            ctvWorkArea.setValue(AppPref.getInstance().getWorkArea());
+        }
+        if (!AppPref.getInstance().getIncome().equalsIgnoreCase("")) {
+            ctvIncome.setValue(AppPref.getInstance().getIncome());
+        }
+
+
     }
 
     @Override

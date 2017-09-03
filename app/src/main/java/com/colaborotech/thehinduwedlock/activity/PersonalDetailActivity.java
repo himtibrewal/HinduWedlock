@@ -86,7 +86,15 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
             llGender.setVisibility(View.GONE);
             gender = AppPref.getInstance().getGender();
         }
-
+        if (!AppPref.getInstance().getDob().equalsIgnoreCase("")) {
+            ctvDateOfBirth.setValue(AppPref.getInstance().getDob());
+        }
+        if (!AppPref.getInstance().getHeight().equalsIgnoreCase("")) {
+            ctvHeight.setValue(AppPref.getInstance().getHeight());
+        }
+        if (!AppPref.getInstance().getCountry().equalsIgnoreCase("")) {
+            ctvCountry.setValue(AppPref.getInstance().getCountry() + " - " + AppPref.getInstance().getState() + " - " + AppPref.getInstance().getCity());
+        }
 
     }
 
