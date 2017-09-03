@@ -137,7 +137,8 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.ll_open_for_all_caste_social_detail:
-                toastMessage("coming Soon");
+                AppPref.getInstance().setOpenForAll(true);
+                // toastMessage("coming Soon");
                 break;
             case R.id.ctv_manglik_social_detail:
                 SliderFragment.getInstance().setLists(TheHinduWedLockApp.manglikModelList, R.id.ctv_manglik_social_detail, "Manglik");
@@ -223,7 +224,6 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
 
     private void validation() {
         String marital_status = ctvMaritalStatus.getValue().toString();
-        String haveclikd = "";
         String mother_tongue = ctvMotherTongue.getValue().toString();
         String religion = ctvReligion.getValue().toString();
         String manglik = ctvManglik.getValue().toString();
@@ -238,9 +238,7 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
             toastMessage("please select religion");
             return;
         } else {
-            // AppPref.getInstance().setMaritalStatus(marital_status);
             AppPref.getInstance().setMotherTongue(mother_tongue);
-            //  AppPref.getInstance().setReligion(religion);
             AppPref.getInstance().setManglik(manglik);
             sendToThisActivity(LoginDetailActivity.class);
         }

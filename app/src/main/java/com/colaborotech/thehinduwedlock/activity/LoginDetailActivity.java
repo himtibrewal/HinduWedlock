@@ -142,6 +142,7 @@ public class LoginDetailActivity extends BaseActivity implements View.OnClickLis
         stringBuilder.append("createfor=").append(AppPref.getInstance().getCreateFor());
         stringBuilder.append("&dob=").append(AppPref.getInstance().getDob());
         stringBuilder.append("&height=").append(AppPref.getInstance().getHeight());
+        stringBuilder.append("&gender=").append(AppPref.getInstance().getGender());
         stringBuilder.append("&height_id=").append(AppPref.getInstance().getHeightId());
         stringBuilder.append("&country=").append(AppPref.getInstance().getCountry());
         stringBuilder.append("&country_id=").append(AppPref.getInstance().getCounrtyId());
@@ -178,6 +179,12 @@ public class LoginDetailActivity extends BaseActivity implements View.OnClickLis
         stringBuilder.append("&device_type=").append("ANDROID");
         stringBuilder.append("&reg_key=").append(AppPref.getInstance().getRegToken());
         stringBuilder.append("&device_id=").append(AppPref.getInstance().getDeviceId());
+        if (AppPref.getInstance().getOpenForAll()) {
+            stringBuilder.append("&openforAllcaste=").append("1");
+        } else {
+            stringBuilder.append("&openforAllcaste=").append("0");
+        }
+
 
         String content = stringBuilder.toString();
         Log.e("register_c", "is" + content);

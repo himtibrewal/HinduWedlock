@@ -48,11 +48,9 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
     private CustomLayoutTitleValue ctvDateOfBirth;
     private CustomLayoutTitleValue ctvHeight;
     private CustomLayoutTitleValue ctvCountry;
-    private CustomLayoutTitleValue ctvState;
-    private CustomLayoutTitleValue ctvCity;
     private TextView tvNext;
     private String gender = "";
-    int day, month, year, DATE_PICKER_ID;
+    // int day, month, year, DATE_PICKER_ID;
 
     @Override
     public int getActivityLayout() {
@@ -71,8 +69,6 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
         ctvDateOfBirth = (CustomLayoutTitleValue) findViewById(R.id.layout_date_of_birth_personal_detail);
         ctvHeight = (CustomLayoutTitleValue) findViewById(R.id.layout_height_personal_detail);
         ctvCountry = (CustomLayoutTitleValue) findViewById(R.id.layout_country_personal_detail);
-        ctvState = (CustomLayoutTitleValue) findViewById(R.id.layout_state_personal_detail);
-        ctvCity = (CustomLayoutTitleValue) findViewById(R.id.layout_city_personal_detail);
         tvNext = (TextView) findViewById(R.id.tv_next_personal_detail);
         ivBack.setOnClickListener(this);
         rlFemale.setOnClickListener(this);
@@ -80,8 +76,6 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
         ctvDateOfBirth.setOnClickListener(this);
         ctvHeight.setOnClickListener(this);
         ctvCountry.setOnClickListener(this);
-        ctvState.setOnClickListener(this);
-        ctvCity.setOnClickListener(this);
         tvNext.setOnClickListener(this);
     }
 
@@ -144,14 +138,14 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
                 SliderFragment.getInstance().setLists(TheHinduWedLockApp.stateModelList, R.id.layout_country_personal_detail, "Country");
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
-            case R.id.layout_state_personal_detail:
-                SliderFragment.getInstance().setLists(TheHinduWedLockApp.stateModelList, R.id.layout_state_personal_detail, "State");
-                drawerLayout.openDrawer(Gravity.RIGHT);
-                break;
-            case R.id.layout_city_personal_detail:
-                SliderFragment.getInstance().setLists(TheHinduWedLockApp.cityModelList, R.id.layout_city_personal_detail, "City");
-                drawerLayout.openDrawer(Gravity.RIGHT);
-                break;
+//            case R.id.layout_state_personal_detail:
+//                SliderFragment.getInstance().setLists(TheHinduWedLockApp.stateModelList, R.id.layout_state_personal_detail, "State");
+//                drawerLayout.openDrawer(Gravity.RIGHT);
+//                break;
+//            case R.id.layout_city_personal_detail:
+//                SliderFragment.getInstance().setLists(TheHinduWedLockApp.cityModelList, R.id.layout_city_personal_detail, "City");
+//                drawerLayout.openDrawer(Gravity.RIGHT);
+//                break;
             case R.id.tv_next_personal_detail:
                 validation();
                 break;
@@ -168,12 +162,12 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
             case R.id.layout_country_personal_detail:
                 textView.setText(((DataModel) Objects.get(position)).get_dataName());
                 break;
-            case R.id.layout_state_personal_detail:
-                textView.setText(((DataModel) Objects.get(position)).get_dataName());
-                break;
-            case R.id.layout_city_personal_detail:
-                textView.setText(((DataModel) Objects.get(position)).get_dataName());
-                break;
+//            case R.id.layout_state_personal_detail:
+//                textView.setText(((DataModel) Objects.get(position)).get_dataName());
+//                break;
+//            case R.id.layout_city_personal_detail:
+//                textView.setText(((DataModel) Objects.get(position)).get_dataName());
+//                break;
         }
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,12 +192,12 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
                             AppPref.getInstance().setState(((DataModel) Objects.get(position)).get_dataName());
                         }
                         break;
-                    case R.id.layout_state_personal_detail:
-                        ctvState.setValue(((DataModel) Objects.get(position)).get_dataName());
-                        break;
-                    case R.id.layout_city_personal_detail:
-                        ctvCity.setValue(((DataModel) Objects.get(position)).get_dataName());
-                        break;
+//                    case R.id.layout_state_personal_detail:
+//                        ctvState.setValue(((DataModel) Objects.get(position)).get_dataName());
+//                        break;
+//                    case R.id.layout_city_personal_detail:
+//                        ctvCity.setValue(((DataModel) Objects.get(position)).get_dataName());
+//                        break;
                 }
 
 

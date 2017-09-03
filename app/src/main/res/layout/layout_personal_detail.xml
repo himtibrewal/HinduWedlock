@@ -115,25 +115,6 @@
 
             <LinearLayout style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
-                android:id="@+id/layout_state_personal_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                custom:heading="@string/state"
-                custom:value="@string/not_filled" />
-
-            <!--<LinearLayout style="@style/LinearLayout_Spinner" />-->
-
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
-                android:id="@+id/layout_city_personal_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                custom:heading="@string/city"
-                custom:value="@string/not_filled" />
-
-            <!--<LinearLayout style="@style/LinearLayout_Spinner" />-->
         </LinearLayout>
     </ScrollView>
 

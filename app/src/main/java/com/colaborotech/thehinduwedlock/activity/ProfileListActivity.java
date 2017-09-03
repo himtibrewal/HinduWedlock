@@ -19,6 +19,7 @@ import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
 import com.colaborotech.thehinduwedlock.models.UserModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
+import com.colaborotech.thehinduwedlock.utility.PaginationScrollListener;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 import com.google.gson.Gson;
@@ -41,6 +42,12 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
     RecyclerAdapter recyclerAdapter;
     ImageView ivBack;
     TextView tvTitle;
+    private boolean isLoading = false;
+    private boolean isLastPage = false;
+    private int TOTAL_PAGES = 1;
+    private int currentPage = 0;
+    private int activeTab = -1;
+    private int limit = 10;
 
     @Override
     public int getActivityLayout() {
@@ -58,11 +65,30 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
+        recyclerView.addOnScrollListener(new PaginationScrollListener(llm) {
+            @Override
+            protected void loadMoreItems() {
+                currentPage += 1;
+                if (TOTAL_PAGES >= currentPage) {
+                    getdatafromServer(currentPage);
+                }
+            }
+
+            @Override
+            public boolean isLastPage() {
+                return isLastPage;
+            }
+
+            @Override
+            public boolean isLoading() {
+                return isLoading;
+            }
+        });
     }
 
     @Override
     public void init(Bundle save) {
-        getdatafromServer();
+        getdatafromServer(0);
     }
 
     @Override
@@ -171,9 +197,10 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
         getDataUsingWService.execute();
     }
 
-    private void getdatafromServer() {
+    private void getdatafromServer(int page_no) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("page_no=").append(0);
+        stringBuilder.append("page_no=").append(page_no);
+        stringBuilder.append("&gender=").append(AppPref.getInstance().getGender());
         String content = stringBuilder.toString();
         GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.USER_LIST, 0, content, true, "please wait..", this);
         getDataUsingWService.execute();
@@ -200,6 +227,7 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
 
 
     private void parseUserList(String responseData) {
+        int count = 0;
         try {
             Log.e("user_list", "is" + responseData);
             JSONObject jsonObject = new JSONObject(responseData);
@@ -257,11 +285,22 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
 
             }
             recyclerAdapter = new RecyclerAdapter(list, this, R.layout.item_search_result, this, 0);
-            recyclerView.setAdapter(recyclerAdapter);
-            recyclerAdapter.notifyDataSetChanged();
+//            recyclerView.setAdapter(recyclerAdapter);
+//            recyclerAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             Log.e("error", e.toString());
         }
+
+        TOTAL_PAGES = count / limit;
+        if (currentPage < TOTAL_PAGES) {
+            isLoading = false;
+            isLastPage = false;
+        } else {
+            isLoading = false;
+            isLastPage = true;
+        }
+        recyclerView.setAdapter(recyclerAdapter);
+        recyclerAdapter.notifyDataSetChanged();
     }
 
     @Override

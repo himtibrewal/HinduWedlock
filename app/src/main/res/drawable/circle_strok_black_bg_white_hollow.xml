@@ -5,10 +5,7 @@
     <solid android:color="#fff" />
 
     <stroke
-        android:width="@dimen/_1sdp"
-        android:color="@color/light_black" />
+        android:width="@dimen/_2sdp"
+        android:color="#000000" />
 
-    <size
-        android:width="@dimen/_50sdp"
-        android:height="@dimen/_50sdp" />
 </shape>

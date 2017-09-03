@@ -116,11 +116,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("email=").append(email);
         stringBuilder.append("&password=").append(password);
+        stringBuilder.append("&reg_key=").append(AppPref.getInstance().getRegToken());
+        stringBuilder.append("&device_id=").append(AppPref.getInstance().getDeviceId());
         String content = stringBuilder.toString();
         GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.LOGIN, 0, content, true, "login in..", this);
         getDataUsingWService.execute();
     }
-
 
     @Override
     public void getWebServiceResponse(String responseData, int serviceCounter) {

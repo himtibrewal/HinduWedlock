@@ -102,7 +102,6 @@ public class CreateForRegister extends BaseActivity implements View.OnClickListe
         } else if (profileFor.equalsIgnoreCase("CLIENT")) {
             rlClient.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
             ivClient.setImageDrawable(getResources().getDrawable(R.drawable.client_white));
-
         } else if (profileFor.equalsIgnoreCase("FRIEND")) {
             rlFriend.setBackground(getResources().getDrawable(R.drawable.drawable_racangle_solid_pinkfill));
             ivFriend.setImageDrawable(getResources().getDrawable(R.drawable.friend_white));

@@ -102,7 +102,6 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
 
             }
 
-
             @Override
             public boolean isLastPage() {
                 return isLastPage;

@@ -1,15 +1,12 @@
 package com.colaborotech.thehinduwedlock.service;
 
-
 import android.util.Log;
-
 import com.colaborotech.thehinduwedlock.TheHinduWedLockApp;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
-
 import static android.content.ContentValues.TAG;
 import static com.colaborotech.thehinduwedlock.utility.AppUrls.UPDATE_TOKEN;
 
@@ -45,6 +42,5 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
             }
         });
         getDataUsingWService.execute();
-
     }
 }

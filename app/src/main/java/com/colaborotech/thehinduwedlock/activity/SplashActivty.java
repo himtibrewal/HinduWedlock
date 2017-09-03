@@ -229,8 +229,6 @@ public class SplashActivty extends AppCompatActivity implements GetWebServiceDat
             } else {
                 Toast.makeText(this, "Something went Wrong", Toast.LENGTH_LONG).show();
             }
-
-
         } catch (Exception e) {
             Log.e("exception", "in All data service" + e.toString());
         }

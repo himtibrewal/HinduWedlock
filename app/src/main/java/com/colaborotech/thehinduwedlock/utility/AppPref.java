@@ -115,6 +115,7 @@ public class AppPref {
     private final String PREF_SUB_CASTE_ID = "sub_caste_id";
     private final String PREF_MANGLIK_ID = "manglik_id";
     private final String PREF_DEVICE_ID = "device_id";
+    private final String PREF_OPEN_FOR_ALL = "open_for_all";
 
 
     private AppPref(Context context) {
@@ -1030,6 +1031,15 @@ public class AppPref {
 
     public void setDeviceId(String deviceId) {
         sEditor.putString(PREF_DEVICE_ID, deviceId);
+        sEditor.commit();
+    }
+
+    public boolean getOpenForAll() {
+        return sharedPreferences.getBoolean(PREF_OPEN_FOR_ALL, false);
+    }
+
+    public void setOpenForAll(boolean openForAll) {
+        sEditor.putBoolean(PREF_OPEN_FOR_ALL, openForAll);
         sEditor.commit();
     }
 
