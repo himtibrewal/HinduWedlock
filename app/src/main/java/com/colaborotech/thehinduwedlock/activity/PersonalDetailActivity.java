@@ -169,6 +169,7 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
                     case R.id.layout_height_personal_detail:
                         ctvHeight.setValue(((DataModel) Objects.get(position)).get_dataName());
                         drawerLayout.closeDrawer(Gravity.RIGHT);
+                        AppPref.getInstance().setHeight(((DataModel) Objects.get(position)).get_dataName());
                         AppPref.getInstance().setHeightId(((DataModel) Objects.get(position)).get_id());
                         break;
                     case R.id.layout_country_personal_detail:
@@ -184,12 +185,6 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
                             AppPref.getInstance().setState(((DataModel) Objects.get(position)).get_dataName());
                         }
                         break;
-//                    case R.id.layout_state_personal_detail:
-//                        ctvState.setValue(((DataModel) Objects.get(position)).get_dataName());
-//                        break;
-//                    case R.id.layout_city_personal_detail:
-//                        ctvCity.setValue(((DataModel) Objects.get(position)).get_dataName());
-//                        break;
                 }
 
 

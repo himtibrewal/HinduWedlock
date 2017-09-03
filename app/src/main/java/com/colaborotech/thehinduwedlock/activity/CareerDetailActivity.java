@@ -90,6 +90,17 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
         llugdeg.setVisibility(View.GONE);
     }
 
+    private void showall() {
+        ctvUgCollege.setVisibility(View.VISIBLE);
+        ctvUgDegree.setVisibility(View.VISIBLE);
+        ctvPgColleg.setVisibility(View.VISIBLE);
+        ctvPgDegree.setVisibility(View.VISIBLE);
+        llpgclg.setVisibility(View.VISIBLE);
+        llugclg.setVisibility(View.VISIBLE);
+        llpgdeg.setVisibility(View.VISIBLE);
+        llugdeg.setVisibility(View.VISIBLE);
+    }
+
 
     @Override
     public void init(Bundle save) {
@@ -99,17 +110,23 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
         }
         if (!AppPref.getInstance().getUgCollege().equalsIgnoreCase("")) {
             ctvUgCollege.setValue(AppPref.getInstance().getUgCollege());
+            ctvUgCollege.setVisibility(View.VISIBLE);
+            llugclg.setVisibility(View.VISIBLE);
         }
         if (!AppPref.getInstance().getUgDegree().equalsIgnoreCase("")) {
             ctvUgDegree.setValue(AppPref.getInstance().getUgDegree());
+            ctvUgDegree.setVisibility(View.VISIBLE);
+            llugdeg.setVisibility(View.VISIBLE);
         }
         if (!AppPref.getInstance().getPgCollge().equalsIgnoreCase("")) {
             ctvPgColleg.setValue(AppPref.getInstance().getPgCollge());
             ctvPgColleg.setVisibility(View.VISIBLE);
+            llpgclg.setVisibility(View.VISIBLE);
         }
         if (!AppPref.getInstance().getPgDegree().equalsIgnoreCase("")) {
             ctvPgDegree.setValue(AppPref.getInstance().getPgDegree());
             ctvPgDegree.setVisibility(View.VISIBLE);
+            llpgdeg.setVisibility(View.VISIBLE);
         }
         if (!AppPref.getInstance().getWorkArea().equalsIgnoreCase("")) {
             ctvWorkArea.setValue(AppPref.getInstance().getWorkArea());
