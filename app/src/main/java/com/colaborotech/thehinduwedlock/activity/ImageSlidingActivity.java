@@ -9,7 +9,6 @@ import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.adapter.MyCustomPagerAdapter;
 import com.colaborotech.thehinduwedlock.models.ImageModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
-import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,15 +22,14 @@ import java.util.List;
 
 public class ImageSlidingActivity extends BaseActivity implements View.OnClickListener, GetWebServiceData {
 
+    int images[] = {R.drawable.profilepic, R.drawable.profilepic, R.drawable.profilepic, R.drawable.profilepic};
+    MyCustomPagerAdapter myCustomPagerAdapter;
+    List<ImageModel> imageList = new ArrayList<ImageModel>();
     private TextView tvBack;
     private TextView tvHeader;
     private TextView tvSave;
     private ViewPager viewPager;
-    int images[] = {R.drawable.profilepic, R.drawable.profilepic, R.drawable.profilepic, R.drawable.profilepic};
-    MyCustomPagerAdapter myCustomPagerAdapter;
     private int callingFrom = -1;
-    List<ImageModel> imageList = new ArrayList<ImageModel>();
-
 
     @Override
     public int getActivityLayout() {
@@ -66,8 +64,11 @@ public class ImageSlidingActivity extends BaseActivity implements View.OnClickLi
         tvBack.setText("Back");
         tvBack.setOnClickListener(this);
         tvSave.setOnClickListener(this);
-        myCustomPagerAdapter = new MyCustomPagerAdapter(ImageSlidingActivity.this, imageList, callingFrom);
-        viewPager.setAdapter(myCustomPagerAdapter);
+        if (imageList != null && imageList.size() > 0) {
+            myCustomPagerAdapter = new MyCustomPagerAdapter(ImageSlidingActivity.this, imageList, callingFrom);
+            viewPager.setAdapter(myCustomPagerAdapter);
+        }
+
     }
 
     @Override

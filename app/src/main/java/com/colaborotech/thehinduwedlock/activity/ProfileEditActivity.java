@@ -25,7 +25,7 @@ import android.widget.TextView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.TheHinduWedLockApp;
-import com.colaborotech.thehinduwedlock.adapter.Adapter;
+import com.colaborotech.thehinduwedlock.adapter.PagerAdapter;
 import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
 import com.colaborotech.thehinduwedlock.fragment.BasicinfoFragment;
 import com.colaborotech.thehinduwedlock.fragment.CareerFragment;
@@ -69,11 +69,11 @@ public class ProfileEditActivity extends BaseActivity implements
     PagerSlidingTabStrip tabLayout;
     DrawerLayout drawerLayout;
     CustomLayoutTitleValue customLayoutTitleValue;
-    private int OpenFragmentIndex = 0;
     ImageView ivBack;
     TextView tvHeader;
     TextView tvPreview;
-
+    Dialog dateOfBirthDialog;
+    private int OpenFragmentIndex = 0;
 
     @Override
     public int getActivityLayout() {
@@ -114,14 +114,12 @@ public class ProfileEditActivity extends BaseActivity implements
 
     }
 
-
     public void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
     }
-
 
     @Override
     public void init(Bundle save) {
@@ -148,7 +146,7 @@ public class ProfileEditActivity extends BaseActivity implements
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getSupportFragmentManager());
+        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PhotoUploadFragment(), "Photo");
         adapter.addFragment(new BasicinfoFragment(), "Basic Info");
         adapter.addFragment(new KundliFragment(), "Kundli");
@@ -396,7 +394,6 @@ public class ProfileEditActivity extends BaseActivity implements
         super.onNewIntent(intent);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -484,8 +481,6 @@ public class ProfileEditActivity extends BaseActivity implements
         recyclerView.setAdapter(recyclerAdapter);
         dateOfBirthDialog.show();
     }
-
-    Dialog dateOfBirthDialog;
 
     @Override
     public void onBackPressed() {

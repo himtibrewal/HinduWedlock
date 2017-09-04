@@ -281,8 +281,6 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
                     }
                     list.add(userModel);
                 }
-
-
             }
             recyclerAdapter = new RecyclerAdapter(list, this, R.layout.item_search_result, this, 0);
 //            recyclerView.setAdapter(recyclerAdapter);

@@ -55,6 +55,11 @@ import static android.content.ContentValues.TAG;
 
 public class PhotoUploadFragment extends Fragment implements View.OnClickListener, RecyclerAdapter.ReturnView {
 
+    private static final int RC_TAKE_PICTURE = 101;
+    private static final String KEY_FILE_URI = "key_file_uri";
+    private static final String KEY_DOWNLOAD_URL = "key_download_url";
+    RecyclerAdapter recyclerAdapter;
+    List<MenuModel> list;
     private RelativeLayout rlGallery;
     private RelativeLayout rlCamera;
     private RelativeLayout rlFacebook;
@@ -62,13 +67,8 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
     private TextView tvProfileChange;
     private TextView tvPhotoPrivacy;
     private TextView tvPhotoCount;
-    private static final int RC_TAKE_PICTURE = 101;
-    private static final String KEY_FILE_URI = "key_file_uri";
-    private static final String KEY_DOWNLOAD_URL = "key_download_url";
-
     private BroadcastReceiver mBroadcastReceiver;
     private ProgressDialog mProgressDialog;
-
     private Uri mDownloadUrl = null;
     private Uri mFileUri = null;
     private List<ImageModel> imageList = new ArrayList<ImageModel>();
@@ -102,7 +102,6 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
         return photoView;
     }
 
-
     @Override
     public void onStart() {
         super.onStart();
@@ -130,8 +129,9 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
 
     }
 
-
     private void uploadimageurl() {
+        ivMainImage.setOnClickListener(this);
+        tvProfileChange.setOnClickListener(this);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("user_id=").append(AppPref.getInstance().getuserId());
         stringBuilder.append("&image=").append("Image_" + AppPref.getInstance().getuserId() + "%2FImage" + AppPref.getInstance().getNoOfImage());
@@ -160,6 +160,7 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
                         String imageUrls = gson.toJson(imageList);
                         AppPref.getInstance().setImageUrls(imageUrls);
                         tvPhotoCount.setText(imageCount + " Photo");
+
                     }
 
                 } catch (Exception e) {
@@ -183,26 +184,26 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
         rlGallery.setOnClickListener(this);
         rlCamera.setOnClickListener(this);
         rlFacebook.setOnClickListener(this);
-        ivMainImage.setOnClickListener(this);
-        tvProfileChange.setOnClickListener(this);
+
+
         tvPhotoPrivacy.setOnClickListener(this);
         tvPhotoCount.setText(AppPref.getInstance().getNoOfImage() + " Photo");
         Gson gson = new Gson();
         imageList = gson.fromJson(AppPref.getInstance().getImageUrls(), new TypeToken<List<ImageModel>>() {
         }.getType());
-        if (imageList.size() > 0) {
+        if (imageList != null && imageList.size() > 0) {
+            ivMainImage.setOnClickListener(this);
+            tvProfileChange.setOnClickListener(this);
             Picasso.with(getActivity()).load(imageList.get(0).getImageURL()).into(ivMainImage);
         }
 
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle out) {
         out.putParcelable(KEY_FILE_URI, mFileUri);
         out.putParcelable(KEY_DOWNLOAD_URL, mDownloadUrl);
     }
-
 
     @Override
     public void onClick(View v) {
@@ -232,7 +233,6 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
         }
     }
 
-
     private void showProgressDialog(String caption) {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(getActivity());
@@ -248,7 +248,6 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
             mProgressDialog.dismiss();
         }
     }
-
 
     private void launchCamera() {
         Log.d(TAG, "launchCamera");
@@ -290,9 +289,6 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
         // Show loading spinner
         showProgressDialog("uploading..");
     }
-
-    RecyclerAdapter recyclerAdapter;
-    List<MenuModel> list;
 
     private void dialogPrivacy() {
         final Dialog privacyDialog = new Dialog(getActivity());

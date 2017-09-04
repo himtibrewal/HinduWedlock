@@ -21,8 +21,6 @@ import io.fabric.sdk.android.Fabric;
 
 public class TheHinduWedLockApp extends Application {
 
-    private static TheHinduWedLockApp theHinduWedLockApp;
-
     public static List<DataModel> complexionModelList = new ArrayList<DataModel>();
     public static List<DataModel> countryModelList = new ArrayList<DataModel>();
     public static List<DataModel> ageModelList = new ArrayList<DataModel>();
@@ -58,11 +56,13 @@ public class TheHinduWedLockApp extends Application {
     public static List<DataModel> hivModelList = new ArrayList<DataModel>();
     public static List<DataModel> livingwithParents = new ArrayList<DataModel>();
     public static List<DataModel> assetsModelList = new ArrayList<DataModel>();
-
     public static List<DataModel> familyTempModelList = new ArrayList<DataModel>(); //delete when  complete  family  detail
-
-
+    private static TheHinduWedLockApp theHinduWedLockApp;
     private StorageReference mStorageRef;
+
+    public static synchronized TheHinduWedLockApp getInstance() {
+        return theHinduWedLockApp;
+    }
 
     @Override
     public void onCreate() {
@@ -92,11 +92,6 @@ public class TheHinduWedLockApp extends Application {
 
 
     }
-
-    public static synchronized TheHinduWedLockApp getInstance() {
-        return theHinduWedLockApp;
-    }
-
 
     public StorageReference getmStorageRef() {
         return mStorageRef;
