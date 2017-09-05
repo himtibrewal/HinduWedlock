@@ -198,9 +198,15 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
     }
 
     private void getdatafromServer(int page_no) {
+        String gender = "";
+        if (AppPref.getInstance().getGender().equalsIgnoreCase("1")) {
+            gender = "0";
+        } else {
+            gender = "1";
+        }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("page_no=").append(page_no);
-        stringBuilder.append("&gender=").append(AppPref.getInstance().getGender());
+        stringBuilder.append("&gender=").append(gender);
         String content = stringBuilder.toString();
         GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.USER_LIST, 0, content, true, "please wait..", this);
         getDataUsingWService.execute();

@@ -25,7 +25,6 @@ import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 import com.colaborotech.thehinduwedlock.webservice.Other;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -175,7 +174,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 if (loginMapObject.containsKey("caste")) {
                     AppPref.getInstance().setCaste(loginMapObject.get("caste").toString());
                 }
-
                 if (loginMapObject.containsKey("marital_status")) {
                     AppPref.getInstance().setMaritalStatus(loginMapObject.get("marital_status").toString());
                 }
@@ -228,7 +226,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     AppPref.getInstance().setFamilyBased(loginMapObject.get("family_based_on").toString());
                 }
                 if (loginMapObject.containsKey("gender")) {
-                    AppPref.getInstance().setGender(loginMapObject.get("gender").toString());
+                    AppPref.getInstance().setGender(loginMapObject.get("gender").toString().substring(0,1));
                 }
                 if (loginMapObject.containsKey("country")) {
                     AppPref.getInstance().setCountry(loginMapObject.get("country").toString());
