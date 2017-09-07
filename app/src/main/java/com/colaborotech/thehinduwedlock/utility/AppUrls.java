@@ -40,5 +40,7 @@ public class AppUrls {
     public static final String MAKE_PROFILE_PIC = BASE_URL + "make_profile";
     public static final String DELETE_IMAGE = BASE_URL + "delete_image";
     public static final String UPDATE_TOKEN = BASE_URL + "update_token";
+    public static final String SEND_REMINDER = BASE_URL + "send_reminder";
+
 
 }

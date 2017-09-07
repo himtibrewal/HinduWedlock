@@ -270,7 +270,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_item1"
                 android:layout_centerHorizontal="true"
-                android:text="Message"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_8sdp" />
 

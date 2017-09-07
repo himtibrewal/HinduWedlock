@@ -89,8 +89,6 @@ public class TheHinduWedLockApp extends Application {
             familyTempModelList.add(new DataModel(i, "TempData" + i));
 
         }
-
-
     }
 
     public StorageReference getmStorageRef() {

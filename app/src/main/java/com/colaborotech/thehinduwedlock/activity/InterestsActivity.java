@@ -268,6 +268,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 }
                 if (count == 0) {
                     tvNodata.setVisibility(View.VISIBLE);
+                    tvNodata.setText("No Interest Available");
                 } else {
                     tvNodata.setVisibility(View.GONE);
                 }
@@ -330,6 +331,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                             if (userMapObject.containsKey("income")) {
                                 userModel.setIncome(userMapObject.get("income").toString());
                             }
+                            userModel.setInterest_status(0);
                             sendList.add(userModel);
                         }
                     }
@@ -339,6 +341,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 TOTAL_PAGES = count / limit;
                 if (count == 0) {
                     tvNodata.setVisibility(View.VISIBLE);
+                    tvNodata.setText("No Interest Available");
                 } else {
                     tvNodata.setVisibility(View.GONE);
                 }
@@ -376,8 +379,22 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                         tvSent.setText("Sent(" + sendList.size() + ")");
                         if (sendList.size() == 0) {
                             tvNodata.setVisibility(View.VISIBLE);
+                            tvNodata.setText("No Interest Available");
                         }
                         recyclerAdapterSend.notifyDataSetChanged();
+                    }
+                } catch (Exception e) {
+
+                }
+                break;
+            case 40:
+                try {
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    String response_code = jsonObject.getString("response_code");
+                    if (response_code.equalsIgnoreCase("200")) {
+                        toastMessage(jsonObject.getString("message"));
+                    } else {
+
                     }
                 } catch (Exception e) {
 
@@ -442,15 +459,27 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
         TextView tvItem3 = (TextView) view.findViewById(R.id.tv_item3);
         TextView tvItem4 = (TextView) view.findViewById(R.id.tv_item4);
         // ImageView ivItem4 = (ImageView) view.findViewById(R.id.iv_item4);
-        RelativeLayout rlItem1 = (RelativeLayout) view.findViewById(R.id.rl_item1);
-        RelativeLayout rlItem2 = (RelativeLayout) view.findViewById(R.id.rl_item2);
-        RelativeLayout rlItem3 = (RelativeLayout) view.findViewById(R.id.rl_item3);
+        final RelativeLayout rlItem1 = (RelativeLayout) view.findViewById(R.id.rl_item1);
+        final RelativeLayout rlItem2 = (RelativeLayout) view.findViewById(R.id.rl_item2);
+        final RelativeLayout rlItem3 = (RelativeLayout) view.findViewById(R.id.rl_item3);
         switch (from) {
             case 0:
                 tvInterestTiming.setText("He sent an request on " + ((UserModel) objects.get(position)).getTime());
-                llBottom.setWeightSum(2);
-                tvItem1.setText("Accept");
-                tvItem2.setText("Reject");
+                //llBottom.setWeightSum(2);
+                if (((UserModel) objects.get(position)).getInterest_status() == 0) {
+                    llBottom.setWeightSum(2);
+                    tvItem1.setText("Accept");
+                    tvItem2.setText("Reject");
+                } else if (((UserModel) objects.get(position)).getInterest_status() == 1) {
+                    llBottom.setWeightSum(1);
+                    rlItem1.setVisibility(View.GONE);
+                    tvItem2.setText("Reject");
+                } else if (((UserModel) objects.get(position)).getInterest_status() == 2) {
+                    llBottom.setWeightSum(1);
+                    tvItem1.setText("Accept");
+                    rlItem2.setVisibility(View.GONE);
+                }
+
                 //rlMessage.setVisibility(View.GONE);
                 tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
                 tvLastOnline.setText("Today");
@@ -472,13 +501,18 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onClick(View v) {
                         acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
+                        // rlItem1.setVisibility(View.GONE);
+                        ((UserModel) objects.get(position)).setInterest_status(1);
+                        recyclerAdapterReceived.notifyItemChanged(position);
                     }
                 });
                 rlItem2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
-
+                        //rlItem2.setVisibility(View.GONE);
+                        ((UserModel) objects.get(position)).setInterest_status(2);
+                        recyclerAdapterReceived.notifyItemChanged(position);
                     }
                 });
                 break;
@@ -507,7 +541,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 rlItem1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        toastMessage("coming soon Reminder");
+                        sendReminder(((UserModel) objects.get(position)).getUserId());
                     }
                 });
                 rlItem2.setOnClickListener(new View.OnClickListener() {
@@ -549,6 +583,14 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
         stringBuilder.append("user_id=").append(id);
         String contant = stringBuilder.toString();
         GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.CONTACT_DETAIL, 30, contant, true, "Please wait..", this);
+        getDataUsingWService.execute();
+    }
+
+    private void sendReminder(String id) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("user_id=").append(id);
+        String contant = stringBuilder.toString();
+        GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.SEND_REMINDER, 40, contant, true, "Please wait..", this);
         getDataUsingWService.execute();
     }
 

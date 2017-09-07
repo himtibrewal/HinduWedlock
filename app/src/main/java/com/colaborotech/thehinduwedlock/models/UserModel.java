@@ -28,7 +28,15 @@ public class UserModel {
     private String phone;
     private String time;
     private String interestResponseTime;
+    private int interest_status;
 
+    public int getInterest_status() {
+        return interest_status;
+    }
+
+    public void setInterest_status(int interest_status) {
+        this.interest_status = interest_status;
+    }
 
     public String getInterestResponseTime() {
         return interestResponseTime;
