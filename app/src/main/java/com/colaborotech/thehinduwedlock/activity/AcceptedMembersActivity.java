@@ -77,9 +77,9 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
             @Override
             public void onRefresh() {
                 currentPage = 0;
-                if (activeTab == 0) {
+                if (activeTab == 1) {
                     getDataFromServer(currentPage, AppUrls.ACCEPTED_ME, 0, true);
-                } else if (activeTab == 1) {
+                } else if (activeTab == 2) {
                     getDataFromServer(currentPage, AppUrls.ACCEPTED_BY_ME, 1, true);
                 }
             }
@@ -90,12 +90,12 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 currentPage += 1;
                 if (activeTab == 0) {
                     if (TOTAL_PAGES >= currentPage) {
-                        getDataFromServer(currentPage, AppUrls.GET_INTEREST_RECEIVED, 0, false);
+                        getDataFromServer(currentPage, AppUrls.ACCEPTED_ME, 0, true);
                     }
 
                 } else if (activeTab == 1) {
                     if (TOTAL_PAGES >= currentPage) {
-                        getDataFromServer(currentPage, AppUrls.GET_INTEREST_SENT, 1, false);
+                        getDataFromServer(currentPage, AppUrls.ACCEPTED_BY_ME, 1, true);
                     }
 
                 }
@@ -115,7 +115,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
 
         if (getIntent().getExtras() != null) {
             if (getIntent().getExtras().getString("select").equalsIgnoreCase("tab2")) {
-                activeTab = 1;
+                activeTab = 2;
                 getDataFromServer(currentPage, AppUrls.ACCEPTED_BY_ME, 1, true);
                 recyclerAdapteAccepedByMe = new RecyclerAdapter(acceptedByMe, this, R.layout.item_4_bottom_icon, this, 1);
                 tvAcceptedByMe.setBackgroundColor(getResources().getColor(R.color.red_dark));
@@ -124,7 +124,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 tvAcceptedMe.setTextColor(getResources().getColor(R.color.light_black));
             }
         } else {
-            activeTab = 0;
+            activeTab = 1;
             getDataFromServer(0, AppUrls.ACCEPTED_ME, 0, true);
             recyclerAdapterWhoAcceptMe = new RecyclerAdapter(whoacceptedme, this, R.layout.item_4_bottom_icon, this, 0);
             tvAcceptedMe.setBackgroundColor(getResources().getColor(R.color.red_dark));
@@ -166,7 +166,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 recyclerAdapterWhoAcceptMe = new RecyclerAdapter(whoacceptedme, this, R.layout.item_4_bottom_icon, this, 0);
                 break;
             case R.id.tv_tab2:
-                activeTab = 0;
+                activeTab = 2;
                 currentPage = 0;
                 tvAcceptedByMe.setBackgroundColor(getResources().getColor(R.color.red_dark));
                 tvAcceptedByMe.setTextColor(getResources().getColor(R.color.white));
@@ -192,8 +192,28 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
         getDataUsingWService.execute();
     }
 
+
+    private void acceptRejectInterest(String data, int id) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("interest_id=").append(id);
+        stringBuilder.append("&status=").append(data);
+        String contant = stringBuilder.toString();
+        GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.INTEREST_ACCEPT_REJECT, 10, contant, true, "Please wait..", this);
+        getDataUsingWService.execute();
+    }
+
+
+    private void getContactDetail(String id) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("user_id=").append(id);
+        String contant = stringBuilder.toString();
+        GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.CONTACT_DETAIL, 30, contant, true, "Please wait..", this);
+        getDataUsingWService.execute();
+    }
+
+
     @Override
-    public void getAdapterView(View view, List objects, int position, int from) {
+    public void getAdapterView(View view, final List objects, final int position, int from) {
         LinearLayout lltime = (LinearLayout) view.findViewById(R.id.ll_timing_interest);
         TextView tvInterestTiming = (TextView) view.findViewById(R.id.tv_timing_interest);
         ImageView ivNoOgimage = (ImageView) view.findViewById(R.id.iv_no_Of_image);
@@ -229,10 +249,14 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
         switch (from) {
             case 0:
                 tvInterestTiming.setText("He sent an request on " + ((UserModel) objects.get(position)).getTime());
-                llBottom.setWeightSum(2);
-                tvItem1.setText("Accept");
-                tvItem2.setText("Reject");
-                //rlMessage.setVisibility(View.GONE);
+                llBottom.setWeightSum(3);
+                tvItem1.setText("Message");
+                tvItem2.setText("Contact");
+                tvItem3.setText("Decline");
+                if (((UserModel) objects.get(position)).getInterest_status() == 2) {
+                    llBottom.setWeightSum(1);
+                    tvItem1.setText("Accept Again");
+                }
                 tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
                 tvLastOnline.setText("Today");
                 tvAge.setText(((UserModel) objects.get(position)).getAge() + " " + ((UserModel) objects.get(position)).getHeight());
@@ -252,24 +276,41 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 rlItem1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
+                        if (((UserModel) objects.get(position)).getInterest_status() == 2) {
+                            acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
+                            ((UserModel) objects.get(position)).setInterest_status(0);
+                            recyclerAdapterWhoAcceptMe.notifyItemChanged(position);
+                        } else {
+                            sendToThisActivity(MessageActivity.class);
+                        }
+
                     }
                 });
                 rlItem2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //  acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
-
+                        getContactDetail(((UserModel) objects.get(position)).getUserId());
+                    }
+                });
+                rlItem3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
+                        ((UserModel) objects.get(position)).setInterest_status(2);
+                        recyclerAdapterWhoAcceptMe.notifyItemChanged(position);
                     }
                 });
                 break;
             case 1:
                 tvInterestTiming.setText("He sent an request on " + ((UserModel) objects.get(position)).getTime());
                 llBottom.setWeightSum(3);
-                tvItem1.setText("Accept");
-                tvItem2.setText("Reject");
-                tvItem3.setText("Reject");
-                //rlMessage.setVisibility(View.GONE);
+                tvItem1.setText("Message");
+                tvItem2.setText("Contact");
+                tvItem3.setText("Decline");
+                if (((UserModel) objects.get(position)).getInterest_status() == 2) {
+                    llBottom.setWeightSum(1);
+                    tvItem1.setText("Accept Again");
+                }
                 tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
                 tvLastOnline.setText("Today");
                 tvAge.setText(((UserModel) objects.get(position)).getAge() + " " + ((UserModel) objects.get(position)).getHeight());
@@ -289,14 +330,28 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 rlItem1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
+                        if (((UserModel) objects.get(position)).getInterest_status() == 2) {
+                            acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
+                            ((UserModel) objects.get(position)).setInterest_status(0);
+                            recyclerAdapteAccepedByMe.notifyItemChanged(position);
+                        } else {
+                            sendToThisActivity(MessageActivity.class);
+                        }
+
                     }
                 });
                 rlItem2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //  acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
-
+                        getContactDetail(((UserModel) objects.get(position)).getUserId());
+                    }
+                });
+                rlItem3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
+                        ((UserModel) objects.get(position)).setInterest_status(2);
+                        recyclerAdapteAccepedByMe.notifyItemChanged(position);
                     }
                 });
                 break;
@@ -366,6 +421,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                             if (userMapObject.containsKey("income")) {
                                 userModel.setIncome(userMapObject.get("income").toString());
                             }
+                            userModel.setInterest_status(0);
                             whoacceptedme.add(userModel);
                         }
                     }
@@ -382,6 +438,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 }
                 if (count == 0) {
                     tvNodata.setVisibility(View.VISIBLE);
+                    tvNodata.setText("No One has Accepted your interest");
                 } else {
                     tvNodata.setVisibility(View.GONE);
                 }
@@ -447,6 +504,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                             if (userMapObject.containsKey("income")) {
                                 userModel.setIncome(userMapObject.get("income").toString());
                             }
+                            userModel.setInterest_status(0);
                             acceptedByMe.add(userModel);
                         }
                     }
@@ -456,6 +514,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 TOTAL_PAGES = count / limit;
                 if (count == 0) {
                     tvNodata.setVisibility(View.VISIBLE);
+                    tvNodata.setText("No One has Accepted your interest");
                 } else {
                     tvNodata.setVisibility(View.GONE);
                 }
@@ -499,7 +558,7 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                         if (userMapObject.containsKey("phone")) {
                             userModel.setPhone(userMapObject.get("phone").toString());
                         }
-                        // showConactDialog(userModel);
+                        showConactDialog(userModel);
                     }
                 } catch (Exception e) {
 
@@ -508,6 +567,11 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
         }
 
 
+    }
+
+
+    private void showConactDialog(UserModel userModel) {
+        toastMessage(userModel.getPhone());
     }
 
     @Override

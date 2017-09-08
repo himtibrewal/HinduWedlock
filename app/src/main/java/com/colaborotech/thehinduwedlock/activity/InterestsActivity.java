@@ -252,6 +252,7 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                             if (userMapObject.containsKey("income")) {
                                 userModel.setIncome(userMapObject.get("income").toString());
                             }
+                            userModel.setInterest_status(0);
                             recieveList.add(userModel);
                         }
                     }
@@ -478,7 +479,6 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 } else if (((UserModel) objects.get(position)).getInterest_status() == 2) {
                     llBottom.setWeightSum(1);
                     tvItem1.setText("Accept Again");
-                    rlItem2.setVisibility(View.GONE);
                 }
                 tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
                 tvLastOnline.setText("Today");
