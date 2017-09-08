@@ -480,7 +480,6 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                     tvItem1.setText("Accept Again");
                     rlItem2.setVisibility(View.GONE);
                 }
-                //rlMessage.setVisibility(View.GONE);
                 tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
                 tvLastOnline.setText("Today");
                 tvAge.setText(((UserModel) objects.get(position)).getAge() + " " + ((UserModel) objects.get(position)).getHeight());
@@ -501,17 +500,14 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onClick(View v) {
                         if (((UserModel) objects.get(position)).getInterest_status() == 1) {
-                            toastMessage("Coming Soon");
+                            sendToThisActivity(MessageActivity.class);
                         } else {
                             acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
                             // rlItem1.setVisibility(View.GONE);
                             ((UserModel) objects.get(position)).setInterest_status(1);
                             recyclerAdapterReceived.notifyItemChanged(position);
                         }
-//                        acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
-//                        // rlItem1.setVisibility(View.GONE);
-//                        ((UserModel) objects.get(position)).setInterest_status(1);
-//                        recyclerAdapterReceived.notifyItemChanged(position);
+//
                     }
                 });
                 rlItem2.setOnClickListener(new View.OnClickListener() {
@@ -521,7 +517,6 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                             getContactDetail(((UserModel) objects.get(position)).getUserId());
                         } else {
                             acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
-                            //rlItem2.setVisibility(View.GONE);
                             ((UserModel) objects.get(position)).setInterest_status(2);
                             recyclerAdapterReceived.notifyItemChanged(position);
                         }
@@ -532,7 +527,6 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onClick(View v) {
                         acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
-                        //rlItem2.setVisibility(View.GONE);
                         ((UserModel) objects.get(position)).setInterest_status(2);
                         recyclerAdapterReceived.notifyItemChanged(position);
                     }
