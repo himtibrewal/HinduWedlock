@@ -48,6 +48,7 @@ public class BasicDetailActivity extends BaseActivity implements View.OnClickLis
     CustomLayoutTitleValue ctvMaritalStatus;
 
     TextView tvCancel, tvSave, tvHeader;
+    Dialog dateOfBirthDialog;
 
     @Override
     public int getActivityLayout() {
@@ -100,7 +101,6 @@ public class BasicDetailActivity extends BaseActivity implements View.OnClickLis
         setFragment(new SliderFragment());
     }
 
-
     public void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -122,7 +122,6 @@ public class BasicDetailActivity extends BaseActivity implements View.OnClickLis
 
         }
     }
-
 
     @Override
     public void onClick(View v) {
@@ -192,7 +191,6 @@ public class BasicDetailActivity extends BaseActivity implements View.OnClickLis
         super.onBackPressed();
     }
 
-
     private void openDatePicker() {
         String gender = "";
         Calendar cal = Calendar.getInstance();
@@ -220,7 +218,6 @@ public class BasicDetailActivity extends BaseActivity implements View.OnClickLis
         }
 
     }
-
 
     private void secondDialog() {
         dateOfBirthDialog = new Dialog(this, R.style.DialogSlideAnim);
@@ -258,7 +255,5 @@ public class BasicDetailActivity extends BaseActivity implements View.OnClickLis
         recyclerView.setAdapter(recyclerAdapter);
         dateOfBirthDialog.show();
     }
-
-    Dialog dateOfBirthDialog;
 
 }

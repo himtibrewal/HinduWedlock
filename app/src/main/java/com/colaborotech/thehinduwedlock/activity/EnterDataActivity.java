@@ -15,12 +15,12 @@ import com.colaborotech.thehinduwedlock.R;
 
 public class EnterDataActivity extends BaseActivity implements View.OnClickListener {
 
+    private String data = "";
+    private String header = "";
     private EditText etEditText;
     private TextView tvCancel;
     private TextView tvSave;
     private TextView tvHeader;
-    String data = "";
-    String header = "";
 
     @Override
     public int getActivityLayout() {
@@ -76,7 +76,6 @@ public class EnterDataActivity extends BaseActivity implements View.OnClickListe
     public void onBackPressed() {
         super.onBackPressed();
     }
-
 
 
 }

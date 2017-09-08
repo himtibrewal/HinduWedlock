@@ -55,13 +55,37 @@ public class BasicinfoFragment extends Fragment implements View.OnClickListener 
         ctvEthnicity.setOnClickListener(this);
         ctvAppearance.setOnClickListener(this);
         ctvSpclCases.setOnClickListener(this);
-
-        //setadtda;
-        ctvAboutMe.setValue(AppPref.getInstance().getAboutYourSelf());
-        ctvBasicDetail.setValue(basicDetails);
+        ctvAboutMe.setValue(AppPref.getInstance().getAboutYourSelf(), 2, true);
+        ctvBasicDetail.setValue(setBasicDetail(basicDetails));
         ctvEthnicity.setValue(ethnicity);
         ctvAppearance.setValue(appearance);
         ctvSpclCases.setValue(spclCase);
+
+    }
+
+
+    private String setBasicDetail(String basicDetails) {
+        String[] data = basicDetails.split("|");
+        StringBuilder stringBuilder = new StringBuilder();
+        if (!AppPref.getInstance().getName().equalsIgnoreCase("")) {
+            stringBuilder.append("<font color=#FFAE0707>" + data[0] + "</font>");
+        }
+        if (!AppPref.getInstance().getHeight().equalsIgnoreCase("")) {
+            stringBuilder.append("<font color=#FFAE0707>" + data[1] + "</font>");
+        }
+        if (!AppPref.getInstance().getCountry().equalsIgnoreCase("")) {
+            stringBuilder.append("<font color=#FFAE0707>" + data[2] + "</font>");
+        }
+        if (!AppPref.getInstance().getGender().equalsIgnoreCase("")) {
+            stringBuilder.append("<font color=#FFAE0707>" + data[3] + "</font>");
+        }
+        if (!AppPref.getInstance().getDob().equalsIgnoreCase("")) {
+            stringBuilder.append("<font color=#FFAE0707>" + data[4] + "</font>");
+        }
+        if (!AppPref.getInstance().getMaritalStatus().equalsIgnoreCase("")) {
+            stringBuilder.append("<font color=#FFAE0707>" + data[5] + "</font>");
+        }
+        return stringBuilder.toString();
 
     }
 
