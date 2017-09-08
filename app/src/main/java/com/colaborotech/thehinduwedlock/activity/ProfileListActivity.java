@@ -42,6 +42,8 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
     RecyclerAdapter recyclerAdapter;
     ImageView ivBack;
     TextView tvTitle;
+    StringBuilder stringBuilderData = new StringBuilder();
+    Map<String, String> seacrhdata;
     private boolean isLoading = false;
     private boolean isLastPage = false;
     private int TOTAL_PAGES = 1;
@@ -58,6 +60,45 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
     public void initialize() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if (getIntent().getExtras() != null) {
+            Log.e("data", "is: " + getIntent().getExtras().getString("data"));
+            seacrhdata = new Gson().fromJson(getIntent().getExtras().getString("data"), Map.class);
+            if (seacrhdata.containsKey("gender")) {
+                stringBuilderData.append("gender=").append(seacrhdata.get("gender"));
+            }
+            if (seacrhdata.containsKey("age_from")) {
+                stringBuilderData.append("&age_from=").append(seacrhdata.get("age_from"));
+            }
+            if (seacrhdata.containsKey("age_to")) {
+                stringBuilderData.append("&age_to=").append(seacrhdata.get("age_to"));
+            }
+            if (seacrhdata.containsKey("height_from")) {
+                stringBuilderData.append("&from_height=").append(seacrhdata.get("height_from"));
+            }
+            if (seacrhdata.containsKey("height_to")) {
+                stringBuilderData.append("&to_height=").append(seacrhdata.get("height_to"));
+            }
+            if (seacrhdata.containsKey("religion")) {
+                stringBuilderData.append("&religion=").append(seacrhdata.get("religion"));
+            }
+            if (seacrhdata.containsKey("mother_tongue")) {
+                stringBuilderData.append("&mother_tongue=").append(seacrhdata.get("mother_tongue"));
+            }
+            if (seacrhdata.containsKey("income_from")) {
+                stringBuilderData.append("&income_from=").append(seacrhdata.get("income_from"));
+            }
+            if (seacrhdata.containsKey("income_to")) {
+                stringBuilderData.append("&income_to=").append(seacrhdata.get("income_to"));
+            }
+            if (seacrhdata.containsKey("country")) {
+                stringBuilderData.append("&country=").append(seacrhdata.get("country"));
+            }
+            if (seacrhdata.containsKey("state")) {
+                stringBuilderData.append("&state=").append(seacrhdata.get("state"));
+            }
+        }
+
+
         ivBack = (ImageView) findViewById(R.id.iv_back);
         ivBack.setOnClickListener(this);
         tvTitle = (TextView) findViewById(R.id.toolbar_title);
@@ -191,23 +232,16 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
     private void sendBlockToServer(String reciverid) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("user_id=").append(AppPref.getInstance().getuserId());
-        stringBuilder.append("&block_id=").append(reciverid);
+        stringBuilder.append("&blockeduser_id=").append(reciverid);
         String content = stringBuilder.toString();
         GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.SEND_BLOCK, 3, content, true, "please wait..", this);
         getDataUsingWService.execute();
     }
 
     private void getdatafromServer(int page_no) {
-        String gender = "";
-        if (AppPref.getInstance().getGender().equalsIgnoreCase("1")) {
-            gender = "0";
-        } else {
-            gender = "1";
-        }
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("page_no=").append(page_no);
-        stringBuilder.append("&gender=").append(gender);
-        String content = stringBuilder.toString();
+        stringBuilderData.append("&page_no=").append(page_no);
+        String content = stringBuilderData.toString();
+        Log.e("content", "is :" + content);
         GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.USER_LIST, 0, content, true, "please wait..", this);
         getDataUsingWService.execute();
     }
@@ -289,8 +323,8 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
                 }
             }
             recyclerAdapter = new RecyclerAdapter(list, this, R.layout.item_search_result, this, 0);
-//            recyclerView.setAdapter(recyclerAdapter);
-//            recyclerAdapter.notifyDataSetChanged();
+            recyclerView.setAdapter(recyclerAdapter);
+            recyclerAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             Log.e("error", e.toString());
         }
@@ -303,8 +337,7 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
             isLoading = false;
             isLastPage = true;
         }
-        recyclerView.setAdapter(recyclerAdapter);
-        recyclerAdapter.notifyDataSetChanged();
+
     }
 
     @Override

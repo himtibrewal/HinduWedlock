@@ -566,7 +566,6 @@ public class AcceptedMembersActivity extends BaseActivity implements View.OnClic
                 break;
         }
 
-
     }
 
 

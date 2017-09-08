@@ -1,5 +1,6 @@
 package com.colaborotech.thehinduwedlock.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,9 +19,13 @@ import com.colaborotech.thehinduwedlock.fragment.DrawerFragment;
 import com.colaborotech.thehinduwedlock.fragment.SliderFragment;
 import com.colaborotech.thehinduwedlock.models.DataModel;
 import com.colaborotech.thehinduwedlock.models.MultipleModel;
+import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.CustomTextView;
+import com.google.gson.Gson;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.colaborotech.thehinduwedlock.utility.OtherFunction.returnMultipleModelArrayList;
 
@@ -28,23 +33,22 @@ import static com.colaborotech.thehinduwedlock.utility.OtherFunction.returnMulti
 public class SearchActivity extends BaseActivity implements View.OnClickListener, SliderFragment.ReturnView, SliderFragment.ReturnMultipleView, SliderFragment.ReturnDone {
 
     DrawerLayout drawerLayout;
-
-    CustomTextView tvAgeLower;
-    CustomTextView tvAgeUpper;
-    CustomTextView tvHeightLower;
-    CustomTextView tvHeightUpper;
-    CustomTextView tvReligion;
-    CustomTextView tvMotherTounge;
-    CustomTextView tvIncomeLower;
-    CustomTextView tvIncomeUpper;
-    CustomTextView tvCountry;
-    CustomTextView tvState;
-    TextView tvProfileWithPhoto;
-    TextView tvAllProfile;
-    TextView tvSubmit;
-    TextView tvTitle;
-    ImageView ivDrawer;
-
+    private Map<String, String> searchData = new HashMap<String, String>();
+    private CustomTextView tvAgeLower;
+    private CustomTextView tvAgeUpper;
+    private CustomTextView tvHeightLower;
+    private CustomTextView tvHeightUpper;
+    private CustomTextView tvReligion;
+    private CustomTextView tvMotherTounge;
+    private CustomTextView tvIncomeLower;
+    private CustomTextView tvIncomeUpper;
+    private CustomTextView tvCountry;
+    private CustomTextView tvState;
+    private TextView tvProfileWithPhoto;
+    private TextView tvAllProfile;
+    private TextView tvSubmit;
+    private TextView tvTitle;
+    private ImageView ivDrawer;
 
     @Override
     public int getActivityLayout() {
@@ -78,10 +82,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         tvAllProfile = (TextView) findViewById(R.id.all_profile_searchActivity);
         tvSubmit = (TextView) findViewById(R.id.submit_searchActivity);
         ivDrawer.setOnClickListener(this);
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(this);
-
-        //click listener
         tvAgeLower.setOnClickListener(this);
         tvAgeUpper.setOnClickListener(this);
         tvHeightLower.setOnClickListener(this);
@@ -157,10 +157,10 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         SliderFragment.getInstance().setReturnDone(this);
         switch (v.getId()) {
             case R.id.iv_back:
-                if (drawerLayout.isDrawerOpen(Gravity.START)) {
-                    drawerLayout.closeDrawer(Gravity.START);
+                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    drawerLayout.closeDrawer(Gravity.LEFT);
                 } else {
-                    drawerLayout.openDrawer(Gravity.START);
+                    drawerLayout.openDrawer(Gravity.LEFT);
                 }
                 break;
             case R.id.lower_age_limit_searchActivity:
@@ -220,7 +220,20 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 tvProfileWithPhoto.setPadding(0, 20, 0, 20);
                 break;
             case R.id.submit_searchActivity:
-                sendToThisActivity(ProfileListActivity.class);
+                //  sendToThisActivity(ProfileListActivity.class);
+                Intent intent = new Intent(this, ProfileListActivity.class);
+                String gender = "";
+                if (AppPref.getInstance().getGender().equalsIgnoreCase("1")) {
+                    gender = "0";
+                } else {
+                    gender = "1";
+                }
+                searchData.put("gender", gender);
+                Gson gson = new Gson();
+                String searchDataJson = gson.toJson(searchData);
+                intent.putExtra("data", searchDataJson);
+                intent.putExtra("from", "SearchActivity");
+                startActivity(intent);
                 break;
 
 
@@ -233,12 +246,15 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         switch (from) {
             case R.id.lower_age_limit_searchActivity:
                 listTextView.setText(((DataModel) Objects.get(position)).get_dataName());
+
                 break;
             case R.id.upper_age_limit_searchActivity:
                 listTextView.setText(((DataModel) Objects.get(position)).get_dataName());
+
                 break;
             case R.id.lower_height_limit_searchActivity:
                 listTextView.setText(((DataModel) Objects.get(position)).get_dataName());
+
                 break;
             case R.id.upper_height_limit_searchActivity:
                 listTextView.setText(((DataModel) Objects.get(position)).get_dataName());
@@ -262,28 +278,28 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 switch (from) {
                     case R.id.lower_age_limit_searchActivity:
                         tvAgeLower.setValue(((DataModel) Objects.get(position)).get_dataName());
+                        searchData.put("age_from", ((DataModel) Objects.get(position)).get_id() + "");
                         break;
                     case R.id.upper_age_limit_searchActivity:
                         tvAgeUpper.setValue(((DataModel) Objects.get(position)).get_dataName());
+                        searchData.put("age_to", ((DataModel) Objects.get(position)).get_id() + "");
                         break;
                     case R.id.lower_height_limit_searchActivity:
                         tvHeightLower.setValue(((DataModel) Objects.get(position)).get_dataName());
+                        searchData.put("height_from", ((DataModel) Objects.get(position)).get_id() + "");
                         break;
                     case R.id.upper_height_limit_searchActivity:
                         tvHeightUpper.setValue(((DataModel) Objects.get(position)).get_dataName());
+                        searchData.put("height_to", ((DataModel) Objects.get(position)).get_id() + "");
                         break;
                     case R.id.lower_income_limit_searchActivity:
                         tvIncomeLower.setValue(((DataModel) Objects.get(position)).get_dataName());
+                        searchData.put("income_from", ((DataModel) Objects.get(position)).get_id() + "");
                         break;
                     case R.id.upper_income_limit_searchActivity:
                         tvIncomeUpper.setValue(((DataModel) Objects.get(position)).get_dataName());
+                        searchData.put("income_to", ((DataModel) Objects.get(position)).get_id() + "");
                         break;
-//                    case R.id.country_searchActivity:
-//                        tvCountry.setValue(((DataModel) Objects.get(position)).get_dataName());
-//                        break;
-//                    case R.id.state_searchActivity:
-//                        tvState.setValue(((DataModel) Objects.get(position)).get_dataName());
-//                        break;
 
                 }
                 drawerLayout.closeDrawer(Gravity.RIGHT);
@@ -317,25 +333,70 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void selectedMultipleModelList(List<MultipleModel> multipleModelList, int selection) {
-
+        String selected_value = "";
+        String selected_ids = "";
         switch (selection) {
-            case R.id.mother_tongue_searchActivity:
-                String selected_value = "";
-                String selected_stateid1 = "";
+            case R.id.religion_searchActivity:
                 for (int i = 0; i < multipleModelList.size(); i++) {
                     DataModel dataModel = (DataModel) multipleModelList.get(i).getObject();
                     if (i == (multipleModelList.size() - 1)) {
                         selected_value += dataModel.get_dataName();
+                        selected_ids += dataModel.get_id();
                         continue;
                     }
                     selected_value += dataModel.get_dataName() + ",";
+                    selected_ids += dataModel.get_id() + ",";
+                }
+                tvReligion.setValue(selected_value);
+                searchData.put("religion", selected_ids);
+                break;
+            case R.id.mother_tongue_searchActivity:
+                for (int i = 0; i < multipleModelList.size(); i++) {
+                    DataModel dataModel = (DataModel) multipleModelList.get(i).getObject();
+                    if (i == (multipleModelList.size() - 1)) {
+                        selected_value += dataModel.get_dataName();
+                        selected_ids += dataModel.get_id();
+                        continue;
+                    }
+                    selected_value += dataModel.get_dataName() + ",";
+                    selected_ids += dataModel.get_id() + ",";
                 }
                 tvMotherTounge.setValue(selected_value);
+                searchData.put("mother_tongue", selected_ids);
                 break;
+            case R.id.country_searchActivity:
+
+                for (int i = 0; i < multipleModelList.size(); i++) {
+                    DataModel dataModel = (DataModel) multipleModelList.get(i).getObject();
+                    if (i == (multipleModelList.size() - 1)) {
+                        selected_value += dataModel.get_dataName();
+                        selected_ids += dataModel.get_id();
+                        continue;
+                    }
+                    selected_value += dataModel.get_dataName() + ",";
+                    selected_ids += dataModel.get_id() + ",";
+                }
+                tvCountry.setValue(selected_value);
+                searchData.put("country", selected_ids);
+                break;
+            case R.id.state_searchActivity:
+
+                for (int i = 0; i < multipleModelList.size(); i++) {
+                    DataModel dataModel = (DataModel) multipleModelList.get(i).getObject();
+                    if (i == (multipleModelList.size() - 1)) {
+                        selected_value += dataModel.get_dataName();
+                        selected_ids += dataModel.get_id();
+                        continue;
+                    }
+                    selected_value += dataModel.get_dataName() + ",";
+                    selected_ids += dataModel.get_id() + ",";
+                }
+                tvState.setValue(selected_value);
+                searchData.put("state", selected_ids);
+                break;
+
         }
         drawerLayout.closeDrawer(Gravity.RIGHT);
-
-
     }
 }
 
