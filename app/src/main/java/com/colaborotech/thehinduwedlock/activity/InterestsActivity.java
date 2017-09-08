@@ -471,15 +471,15 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                     tvItem1.setText("Accept");
                     tvItem2.setText("Reject");
                 } else if (((UserModel) objects.get(position)).getInterest_status() == 1) {
-                    llBottom.setWeightSum(1);
-                    rlItem1.setVisibility(View.GONE);
-                    tvItem2.setText("Reject");
+                    llBottom.setWeightSum(3);
+                    tvItem1.setText("Message");
+                    tvItem2.setText("Contact");
+                    tvItem3.setText("Decline");
                 } else if (((UserModel) objects.get(position)).getInterest_status() == 2) {
                     llBottom.setWeightSum(1);
-                    tvItem1.setText("Accept");
+                    tvItem1.setText("Accept Again");
                     rlItem2.setVisibility(View.GONE);
                 }
-
                 //rlMessage.setVisibility(View.GONE);
                 tvUserId.setText("THW" + ((UserModel) objects.get(position)).getUserId());
                 tvLastOnline.setText("Today");
@@ -500,13 +500,35 @@ public class InterestsActivity extends BaseActivity implements View.OnClickListe
                 rlItem1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
-                        // rlItem1.setVisibility(View.GONE);
-                        ((UserModel) objects.get(position)).setInterest_status(1);
-                        recyclerAdapterReceived.notifyItemChanged(position);
+                        if (((UserModel) objects.get(position)).getInterest_status() == 1) {
+                            toastMessage("Coming Soon");
+                        } else {
+                            acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
+                            // rlItem1.setVisibility(View.GONE);
+                            ((UserModel) objects.get(position)).setInterest_status(1);
+                            recyclerAdapterReceived.notifyItemChanged(position);
+                        }
+//                        acceptRejectInterest("Y", ((UserModel) objects.get(position)).getInterest_id());
+//                        // rlItem1.setVisibility(View.GONE);
+//                        ((UserModel) objects.get(position)).setInterest_status(1);
+//                        recyclerAdapterReceived.notifyItemChanged(position);
                     }
                 });
                 rlItem2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (((UserModel) objects.get(position)).getInterest_status() == 1) {
+                            getContactDetail(((UserModel) objects.get(position)).getUserId());
+                        } else {
+                            acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
+                            //rlItem2.setVisibility(View.GONE);
+                            ((UserModel) objects.get(position)).setInterest_status(2);
+                            recyclerAdapterReceived.notifyItemChanged(position);
+                        }
+
+                    }
+                });
+                rlItem3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         acceptRejectInterest("N", ((UserModel) objects.get(position)).getInterest_id());
