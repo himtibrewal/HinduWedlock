@@ -56,14 +56,8 @@ public class CustomLayoutTitleValue extends LinearLayout {
         value.setMaxLines(maxline);
     }
 
-    public void setValue(String va, boolean htmlText) {
-        if (htmlText) {
-            value.setText(Html.fromHtml(va));
-        } else {
-            value.setText(va);
-        }
-        value.setEllipsize(TextUtils.TruncateAt.END);
-
+    public void setValue(String text, boolean htmlText) {
+        value.setText(Html.fromHtml(text), TextView.BufferType.SPANNABLE);
     }
 
 
@@ -73,6 +67,5 @@ public class CustomLayoutTitleValue extends LinearLayout {
 
     public void setValue(String va) {
         value.setText(va);
-
     }
 } 
