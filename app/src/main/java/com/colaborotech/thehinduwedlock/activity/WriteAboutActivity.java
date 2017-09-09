@@ -1,8 +1,8 @@
 package com.colaborotech.thehinduwedlock.activity;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -23,14 +23,14 @@ import org.json.JSONObject;
  */
 
 public class WriteAboutActivity extends BaseActivity implements View.OnClickListener, GetWebServiceData {
-    ImageView ivBack;
-    TextView tvHeader;
-    TextView tvNext;
-    TextView tvDetailText;
-    TextView tvCondition;
-    //  String value;
-    String fromString = "";
-    EditText etAboutdetail;
+    private ImageView ivBack;
+    private TextView tvHeader;
+    private TextView tvNext;
+    private TextView tvDetailText;
+    private TextView tvCondition;
+    private TextView tvCount;
+    private String fromString = "";
+    private EditText etAboutdetail;
 
     @Override
     public int getActivityLayout() {
@@ -46,8 +46,9 @@ public class WriteAboutActivity extends BaseActivity implements View.OnClickList
         tvNext = (TextView) findViewById(R.id.tv_next_about_your_self);
         tvCondition = (TextView) findViewById(R.id.min_100_char_static);
         etAboutdetail = (EditText) findViewById(R.id.et_about_about_detail);
-        tvNext.setOnClickListener(this);
+        tvCount = (TextView) findViewById(R.id.tv_count_about_detail);
         ivBack.setOnClickListener(this);
+        tvNext.setOnClickListener(this);
     }
 
     @Override
@@ -60,15 +61,39 @@ public class WriteAboutActivity extends BaseActivity implements View.OnClickList
                 tvDetailText.setText(getString(R.string.write_about_family));
                 tvCondition.setVisibility(View.INVISIBLE);
                 tvNext.setText("Done");
-                //   value = "fromFamilyDetail";
-            } else if (fromString.equalsIgnoreCase("BasicDetailFragment")) {
+            }else{
                 tvHeader.setText("Write About Yourself");
             }
 
         } else {
             tvHeader.setText("Write About Yourself");
-            // value = "from";
         }
+
+
+        etAboutdetail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().length() < 100) {
+                    tvCount.setText(100 - s.toString().length() + "/100");
+                    tvCount.setTextColor(getResources().getColor(R.color.red_light));
+                } else {
+                    tvCount.setText("count - " + s.toString().length());
+                    tvCount.setTextColor(getResources().getColor(R.color.green));
+
+                }
+            }
+        });
+
 
     }
 
@@ -83,16 +108,14 @@ public class WriteAboutActivity extends BaseActivity implements View.OnClickList
             case R.id.tv_next_about_your_self:
                 if (fromString.equalsIgnoreCase("FamilyDetailActivity")) {
                     sendToDrawerActivity(etAboutdetail.getText().toString());
-                } else if (fromString.equalsIgnoreCase("BasicDetailFragment")) {
-                    AppPref.getInstance().setAboutYourSelf(etAboutdetail.getText().toString());
-                    Intent intent = getIntent();
-                    intent.putExtra("value", etAboutdetail.getText().toString());
-                    setResult(Activity.RESULT_OK, intent);
-                    finish();
                 } else {
-                    sendToFamilyDetailActivity(etAboutdetail.getText().toString());
+                    if (etAboutdetail.getText().toString().length() > 100) {
+                        sendToFamilyDetailActivity(etAboutdetail.getText().toString());
+                    } else {
+                        toastMessage("Please Write minimum 100 latters");
+                    }
+
                 }
-                //   finish();
                 break;
             case R.id.iv_back:
                 onBackPressed();
