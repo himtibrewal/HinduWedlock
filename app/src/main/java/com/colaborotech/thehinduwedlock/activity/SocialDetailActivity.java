@@ -99,6 +99,35 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void init(Bundle save) {
         tvHeader.setText("Social Details");
+        if (!AppPref.getInstance().getMaritalStatus().equalsIgnoreCase("")) {
+            ctvMaritalStatus.setValue(AppPref.getInstance().getMaritalStatus());
+        }
+        if (!AppPref.getInstance().getHaveChild().equalsIgnoreCase("")) {
+            ctvMaritalStatus.setValue(AppPref.getInstance().getMaritalStatus() + " - " + AppPref.getInstance().getHaveChild());
+        }
+        if (!AppPref.getInstance().getMotherTongue().equalsIgnoreCase("")) {
+            ctvMotherTongue.setValue(AppPref.getInstance().getMotherTongue());
+        }
+        if (!AppPref.getInstance().getReligion().equalsIgnoreCase("")) {
+            ctvReligion.setValue(AppPref.getInstance().getReligion());
+            ctvManglik.setVisibility(View.VISIBLE);
+            ctvHoroScope.setVisibility(View.VISIBLE);
+            llOpenForAllCaste.setVisibility(View.VISIBLE);
+            llopen.setVisibility(View.VISIBLE);
+            llmanglik.setVisibility(View.VISIBLE);
+            llhoro.setVisibility(View.VISIBLE);
+        }
+        if (!AppPref.getInstance().getCaste().equalsIgnoreCase("")) {
+            ctvReligion.setValue(AppPref.getInstance().getReligion() + " - " + AppPref.getInstance().getCaste());
+        }
+        if (!AppPref.getInstance().getManglik().equalsIgnoreCase("")) {
+            ctvManglik.setValue(AppPref.getInstance().getManglik());
+        }
+        if (!AppPref.getInstance().getHoroscopeMatch().equalsIgnoreCase("")) {
+            ctvHoroScope.setValue(AppPref.getInstance().getHoroscopeMatch());
+        }
+
+
         ivOpenForAllSelection.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -174,6 +203,7 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.ctv_Religion_social_detail:
                 textView.setText(((DataModel) Objects.get(position)).get_dataName());
+
                 break;
             case R.id.ctv_manglik_social_detail:
                 textView.setText(((DataModel) Objects.get(position)).get_dataName());
