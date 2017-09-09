@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 /**
@@ -71,6 +72,11 @@ public class TheHinduWedLockApp extends Application {
         theHinduWedLockApp = this;
         // super.onCreate();
         MultiDex.install(this);
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Nunito-Light.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
         mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://thehindu-24e87.appspot.com");
         for (int i = 18; i < 70; i++) {
             ageModelList.add(new DataModel(i - 18, i + " Years"));

@@ -1,23 +1,14 @@
 package com.colaborotech.thehinduwedlock.activity;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.colaborotech.thehinduwedlock.R;
-import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
 import com.colaborotech.thehinduwedlock.models.ImageModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
@@ -226,7 +217,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     AppPref.getInstance().setFamilyBased(loginMapObject.get("family_based_on").toString());
                 }
                 if (loginMapObject.containsKey("gender")) {
-                    AppPref.getInstance().setGender(loginMapObject.get("gender").toString().substring(0,1));
+                    AppPref.getInstance().setGender(loginMapObject.get("gender").toString().substring(0, 1));
                 }
                 if (loginMapObject.containsKey("country")) {
                     AppPref.getInstance().setCountry(loginMapObject.get("country").toString());
@@ -250,52 +241,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             Log.e("exception", e.toString());
         }
 
-    }
-
-
-    private void newDialog() {
-        Dialog riderRequestDialog = new Dialog(this, R.style.DialogSlideAnim);
-        riderRequestDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        riderRequestDialog.setContentView(R.layout.dialog_second_drawer);
-        riderRequestDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        Window window = riderRequestDialog.getWindow();
-        window.setGravity(Gravity.RIGHT);
-        riderRequestDialog.setCanceledOnTouchOutside(true);
-        lp.copyFrom(window.getAttributes());
-        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        window.setAttributes(lp);
-        RecyclerView recyclerView = (RecyclerView) riderRequestDialog.findViewById(R.id.dialog_recyclerView);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(llm);
-        List<String> list = new ArrayList<String>();
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-        list.add("jchsjsfj");
-
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, this, R.layout.layout_slider_item, new RecyclerAdapter.ReturnView() {
-            @Override
-            public void getAdapterView(View view, List objects, int position, int from) {
-
-            }
-        }, 0);
-        recyclerView.setAdapter(recyclerAdapter);
-        riderRequestDialog.show();
     }
 
 }

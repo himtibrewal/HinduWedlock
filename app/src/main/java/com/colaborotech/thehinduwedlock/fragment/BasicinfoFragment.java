@@ -63,6 +63,27 @@ public class BasicinfoFragment extends Fragment implements View.OnClickListener 
 
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ctv_aboutme_basic_info_fragment:
+                fragmentButton.buttonClicked(ctvAboutMe);
+                break;
+            case R.id.ctv_basic_detail_info_fragment:
+                fragmentButton.buttonClicked(ctvBasicDetail);
+                break;
+            case R.id.ctv_ethnicity_basic_info_fragment:
+                fragmentButton.buttonClicked(ctvEthnicity);
+                break;
+            case R.id.ctv_appearance_basic_info_fragment:
+                fragmentButton.buttonClicked(ctvAppearance);
+                break;
+            case R.id.ctv_special_cases_basic_info_fragment:
+                fragmentButton.buttonClicked(ctvSpclCases);
+                break;
+        }
+    }
+
 
     private String setBasicDetail(String basicDetails) {
         String[] data = basicDetails.split("-");
@@ -181,28 +202,6 @@ public class BasicinfoFragment extends Fragment implements View.OnClickListener 
             stringBuilder.append(data[2] + " | ");
         }
         return stringBuilder.toString();
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ctv_aboutme_basic_info_fragment:
-                fragmentButton.buttonClicked(ctvAboutMe);
-                break;
-            case R.id.ctv_basic_detail_info_fragment:
-                fragmentButton.buttonClicked(ctvBasicDetail);
-                break;
-            case R.id.ctv_ethnicity_basic_info_fragment:
-                fragmentButton.buttonClicked(ctvEthnicity);
-                break;
-            case R.id.ctv_appearance_basic_info_fragment:
-                fragmentButton.buttonClicked(ctvAppearance);
-                break;
-            case R.id.ctv_special_cases_basic_info_fragment:
-                fragmentButton.buttonClicked(ctvSpclCases);
-                break;
-        }
     }
 
 

@@ -38,9 +38,9 @@ import java.util.List;
  */
 
 public class PersonalDetailActivity extends BaseActivity implements View.OnClickListener, SliderFragment.ReturnView {
-    DrawerLayout drawerLayout;
-    ImageView ivBack;
-    TextView tvHeader;
+    private DrawerLayout drawerLayout;
+    private ImageView ivBack;
+    private TextView tvHeader;
     private LinearLayout llGender;
     private RelativeLayout rlFemale;
     private RelativeLayout rlMale;

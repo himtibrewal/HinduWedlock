@@ -137,4 +137,32 @@
         <item name="colorAccent">@color/red_dark</item>
     </style>
 
+    <style name="NunitoRegular">
+        <item name="fontPath">fonts/Nunito-Regular.ttf</item>
+    </style>
+
+    <style name="NunitoExtraBold">
+        <item name="fontPath">fonts/Nunito-ExtraBold.ttf</item>
+    </style>
+
+    <style name="NunitoExtraLight">
+        <item name="fontPath">fonts/Nunito-ExtraLight.ttf</item>
+    </style>
+
+    <style name="NunitoLight">
+        <item name="fontPath">fonts/Nunito-Light.ttf</item>
+    </style>
+
+    <style name="NunitoMedium">
+        <item name="fontPath">fonts/Nunito-Medium.ttf</item>
+    </style>
+
+    <style name="NunitoSemiBold">
+        <item name="fontPath">fonts/Nunito-SemiBold.ttf</item>
+    </style>
+
+    <style name="NunitoBlack">
+        <item name="fontPath">fonts/Nunito-Black.ttf</item>
+    </style>
+
 </resources>

@@ -19,8 +19,6 @@ import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import static java.security.AccessController.getContext;
-
 /**
  * Created by him on 27-May-17.
  */

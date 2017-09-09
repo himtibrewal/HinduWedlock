@@ -10,10 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:contentInsetEnd="0dp"
-        android:contentInsetLeft="0dp"
-        android:contentInsetRight="0dp"
-        android:contentInsetStart="0dp"
         app:contentInsetEnd="0dp"
         app:contentInsetLeft="0dp"
         app:contentInsetRight="0dp"
@@ -38,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="Demo Text"
-                android:textColor="@color/light_black" />
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/_16sdp" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 </android.support.design.widget.AppBarLayout>
