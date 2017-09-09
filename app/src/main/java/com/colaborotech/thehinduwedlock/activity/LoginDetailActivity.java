@@ -123,7 +123,7 @@ public class LoginDetailActivity extends BaseActivity implements View.OnClickLis
         if (fullName.equalsIgnoreCase("")) {
             toastMessage("please enter Full name");
             return;
-        } else if (Other.isValidEmail(email)) {
+        } else if (!Other.isValidEmail(email)) {
             toastMessage("please enter valid email id");
             return;
         } else if (password.equalsIgnoreCase("")) {
