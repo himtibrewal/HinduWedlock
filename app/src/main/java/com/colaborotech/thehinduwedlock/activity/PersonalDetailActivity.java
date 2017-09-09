@@ -231,6 +231,7 @@ public class PersonalDetailActivity extends BaseActivity implements View.OnClick
                 @Override
                 public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                     ctvDateOfBirth.setValue(i2 + "-" + i1 + "-" + i);
+                    AppPref.getInstance().setDob(i2 + "-" + i1 + "-" + i);
                 }
 
             }, 1998, 10, 01);

@@ -19,10 +19,10 @@ import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.TheHinduWedLockApp;
+import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.fragment.SliderFragment;
 import com.colaborotech.thehinduwedlock.models.DataModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
-import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 
 import java.util.List;
 
@@ -31,18 +31,19 @@ import java.util.List;
  */
 
 public class CareerDetailActivity extends BaseActivity implements View.OnClickListener, SliderFragment.ReturnView {
-    DrawerLayout drawerLayout;
-    ImageView ivBack;
-    TextView tvHeader;
-    CustomLayoutTitleValue ctvHighestEducation;
-    CustomLayoutTitleValue ctvPgColleg;
-    CustomLayoutTitleValue ctvPgDegree;
-    CustomLayoutTitleValue ctvUgCollege;
-    CustomLayoutTitleValue ctvUgDegree;
-    CustomLayoutTitleValue ctvWorkArea;
-    CustomLayoutTitleValue ctvIncome;
-    LinearLayout llpgclg, llugclg, llpgdeg, llugdeg;
-    TextView tvNext;
+    private Dialog inputDialog;
+    private DrawerLayout drawerLayout;
+    private ImageView ivBack;
+    private TextView tvHeader;
+    private CustomLayoutTitleValue ctvHighestEducation;
+    private CustomLayoutTitleValue ctvPgCollege;
+    private CustomLayoutTitleValue ctvPgDegree;
+    private CustomLayoutTitleValue ctvUgCollege;
+    private CustomLayoutTitleValue ctvUgDegree;
+    private CustomLayoutTitleValue ctvWorkArea;
+    private CustomLayoutTitleValue ctvIncome;
+    private LinearLayout llpgclg, llugclg, llpgdeg, llugdeg;
+    private TextView tvNext;
 
     @Override
     public int getActivityLayout() {
@@ -57,7 +58,7 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.RIGHT);
         ctvHighestEducation = (CustomLayoutTitleValue) findViewById(R.id.ctv_highest_education_career_detail);
-        ctvPgColleg = (CustomLayoutTitleValue) findViewById(R.id.ctv_pg_college_career_detail);
+        ctvPgCollege = (CustomLayoutTitleValue) findViewById(R.id.ctv_pg_college_career_detail);
         ctvPgDegree = (CustomLayoutTitleValue) findViewById(R.id.ctv_pg_degree_career_detail);
         ctvUgCollege = (CustomLayoutTitleValue) findViewById(R.id.ctv_ug_college_career_detail);
         ctvUgDegree = (CustomLayoutTitleValue) findViewById(R.id.ctv_ug_degree_career_detail);
@@ -68,7 +69,7 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
         llpgdeg = (LinearLayout) findViewById(R.id.ll_pg_degree);
         llugdeg = (LinearLayout) findViewById(R.id.ll_ug_degree);
         ctvHighestEducation.setOnClickListener(this);
-        ctvPgColleg.setOnClickListener(this);
+        ctvPgCollege.setOnClickListener(this);
         ctvPgDegree.setOnClickListener(this);
         ctvUgCollege.setOnClickListener(this);
         ctvUgDegree.setOnClickListener(this);
@@ -82,7 +83,7 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
     private void hideall() {
         ctvUgCollege.setVisibility(View.GONE);
         ctvUgDegree.setVisibility(View.GONE);
-        ctvPgColleg.setVisibility(View.GONE);
+        ctvPgCollege.setVisibility(View.GONE);
         ctvPgDegree.setVisibility(View.GONE);
         llpgclg.setVisibility(View.GONE);
         llugclg.setVisibility(View.GONE);
@@ -93,7 +94,7 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
     private void showall() {
         ctvUgCollege.setVisibility(View.VISIBLE);
         ctvUgDegree.setVisibility(View.VISIBLE);
-        ctvPgColleg.setVisibility(View.VISIBLE);
+        ctvPgCollege.setVisibility(View.VISIBLE);
         ctvPgDegree.setVisibility(View.VISIBLE);
         llpgclg.setVisibility(View.VISIBLE);
         llugclg.setVisibility(View.VISIBLE);
@@ -101,32 +102,41 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
         llugdeg.setVisibility(View.VISIBLE);
     }
 
+    private void showonlyUg() {
+        ctvUgCollege.setVisibility(View.VISIBLE);
+        ctvUgDegree.setVisibility(View.VISIBLE);
+        ctvPgCollege.setVisibility(View.GONE);
+        ctvPgDegree.setVisibility(View.GONE);
+        llpgclg.setVisibility(View.GONE);
+        llugclg.setVisibility(View.VISIBLE);
+        llpgdeg.setVisibility(View.GONE);
+        llugdeg.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public void init(Bundle save) {
         tvHeader.setText("Career Detail");
         if (!AppPref.getInstance().getHighestEducation().equalsIgnoreCase("")) {
             ctvHighestEducation.setValue(AppPref.getInstance().getHighestEducation());
+            if (AppPref.getInstance().getHighestEduId() > 5) {
+                showall();
+            } else {
+                showonlyUg();
+            }
         }
         if (!AppPref.getInstance().getUgCollege().equalsIgnoreCase("")) {
             ctvUgCollege.setValue(AppPref.getInstance().getUgCollege());
-            ctvUgCollege.setVisibility(View.VISIBLE);
-            llugclg.setVisibility(View.VISIBLE);
+
         }
         if (!AppPref.getInstance().getUgDegree().equalsIgnoreCase("")) {
             ctvUgDegree.setValue(AppPref.getInstance().getUgDegree());
-            ctvUgDegree.setVisibility(View.VISIBLE);
-            llugdeg.setVisibility(View.VISIBLE);
         }
         if (!AppPref.getInstance().getPgCollge().equalsIgnoreCase("")) {
-            ctvPgColleg.setValue(AppPref.getInstance().getPgCollge());
-            ctvPgColleg.setVisibility(View.VISIBLE);
-            llpgclg.setVisibility(View.VISIBLE);
+            ctvPgCollege.setValue(AppPref.getInstance().getPgCollge());
+
         }
         if (!AppPref.getInstance().getPgDegree().equalsIgnoreCase("")) {
             ctvPgDegree.setValue(AppPref.getInstance().getPgDegree());
-            ctvPgDegree.setVisibility(View.VISIBLE);
-            llpgdeg.setVisibility(View.VISIBLE);
         }
         if (!AppPref.getInstance().getWorkArea().equalsIgnoreCase("")) {
             ctvWorkArea.setValue(AppPref.getInstance().getWorkArea());
@@ -149,7 +159,6 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
         setFragment(new SliderFragment());
     }
 
-
     public void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -169,9 +178,7 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.ctv_pg_college_career_detail:
-                secondDialog("Enter Pg college", "enter pg college", "", ctvPgColleg);
-//                SliderFragment.getInstance().setLists(TheHinduWedLockApp.educationModelList, R.id.ctv_pg_college_career_detail, "Highest Education");
-//                drawerLayout.openDrawer(Gravity.RIGHT);
+                secondDialog("Enter Pg college", "enter pg college", "", ctvPgCollege);
                 break;
             case R.id.ctv_pg_degree_career_detail:
                 SliderFragment.getInstance().setLists(TheHinduWedLockApp.educationModelList, R.id.ctv_pg_degree_career_detail, "PG Degree");
@@ -179,8 +186,6 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.ctv_ug_college_career_detail:
                 secondDialog("Enter Ug college", "enter Ug college", "", ctvUgCollege);
-//                SliderFragment.getInstance().setLists(TheHinduWedLockApp.educationModelList, R.id.ctv_ug_college_career_detail, "Highest Education");
-//                drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.ctv_ug_degree_career_detail:
                 SliderFragment.getInstance().setLists(TheHinduWedLockApp.educationModelList, R.id.ctv_ug_degree_career_detail, "UG Degree");
@@ -235,27 +240,13 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
                         ctvHighestEducation.setValue(((DataModel) Objects.get(position)).get_dataName());
                         AppPref.getInstance().setHighestEduId(((DataModel) Objects.get(position)).get_id());
                         if (position < 5) {
-                            ctvUgCollege.setVisibility(View.VISIBLE);
-                            ctvUgDegree.setVisibility(View.VISIBLE);
-                            ctvPgColleg.setVisibility(View.GONE);
-                            ctvPgDegree.setVisibility(View.GONE);
-                            llugclg.setVisibility(View.VISIBLE);
-                            llugdeg.setVisibility(View.VISIBLE);
-                            llpgclg.setVisibility(View.GONE);
-                            llpgdeg.setVisibility(View.GONE);
+                            showonlyUg();
                         } else {
-                            ctvPgColleg.setVisibility(View.VISIBLE);
-                            ctvPgDegree.setVisibility(View.VISIBLE);
-                            ctvUgCollege.setVisibility(View.VISIBLE);
-                            ctvUgDegree.setVisibility(View.VISIBLE);
-                            llpgclg.setVisibility(View.VISIBLE);
-                            llugclg.setVisibility(View.VISIBLE);
-                            llpgdeg.setVisibility(View.VISIBLE);
-                            llugdeg.setVisibility(View.VISIBLE);
+                            showall();
                         }
                         break;
                     case R.id.ctv_pg_college_career_detail:
-                        ctvPgColleg.setValue(((DataModel) Objects.get(position)).get_dataName());
+                        ctvPgCollege.setValue(((DataModel) Objects.get(position)).get_dataName());
 
                         break;
                     case R.id.ctv_pg_degree_career_detail:
@@ -283,10 +274,9 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
         });
     }
 
-
     private void validation() {
         String highestEducation = ctvHighestEducation.getValue().toString();
-        String pgCollege = ctvPgColleg.getValue().toString();
+        String pgCollege = ctvPgCollege.getValue().toString();
         String pgDegree = ctvPgDegree.getValue().toString();
         String ugCollge = ctvUgCollege.getValue().toString();
         String ugDegree = ctvUgDegree.getValue().toString();
@@ -315,13 +305,10 @@ public class CareerDetailActivity extends BaseActivity implements View.OnClickLi
 
     }
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
-
-    Dialog inputDialog;
 
     private void secondDialog(String title, String hint, String data, final CustomLayoutTitleValue ctv) {
         inputDialog = new Dialog(this, R.style.DialogSlideAnim2);

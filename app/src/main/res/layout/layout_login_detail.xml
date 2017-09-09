@@ -26,7 +26,8 @@
                 <TextView
                     android:id="@+id/title_full_name"
                     style="@style/TextView_up_style"
-                    android:text="Full Name" />
+                    android:text="Full Name"
+                    android:textSize="@dimen/_14sdp" />
 
                 <EditText
                     android:id="@+id/et_full_name_value_login_detail"
@@ -34,7 +35,8 @@
                     android:background="@color/white"
                     android:imeOptions="actionNext"
                     android:inputType="text"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="@dimen/_10sdp" />
             </LinearLayout>
 
             <TextView
@@ -70,7 +72,8 @@
                 <TextView
                     android:id="@+id/title_email_id_login_detail"
                     style="@style/TextView_up_style"
-                    android:text="Email ID" />
+                    android:text="Email ID"
+                    android:textSize="@dimen/_14sdp" />
 
                 <EditText
                     android:id="@+id/et_value_email_id_login_detail"
@@ -78,15 +81,10 @@
                     android:background="@color/white"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="@dimen/_10sdp" />
             </LinearLayout>
 
-            <!--<ImageView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:padding="@dimen/_10sdp"-->
-            <!--android:src="@drawable/ic_menu_camera" />-->
         </LinearLayout>
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
@@ -108,7 +106,8 @@
                 <TextView
                     android:id="@+id/title_password_login_detail"
                     style="@style/TextView_up_style"
-                    android:text="Password(Min 8 char)" />
+                    android:text="Password(Min 8 char)"
+                    android:textSize="@dimen/_14sdp" />
 
                 <EditText
                     android:id="@+id/et_value_password_login_detail"
@@ -116,7 +115,8 @@
                     android:background="@color/white"
                     android:imeOptions="actionNext"
                     android:inputType="textPassword"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="@dimen/_10sdp" />
             </LinearLayout>
 
             <TextView
@@ -146,7 +146,8 @@
                 <TextView
                     android:id="@+id/title_phone_no_login_detail"
                     style="@style/TextView_up_style"
-                    android:text="Phone Number" />
+                    android:text="Phone Number"
+                    android:textSize="@dimen/_14sdp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -159,11 +160,12 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="10"
                         android:background="@color/white"
+                        android:maxLength="4"
                         android:paddingLeft="@dimen/_2sdp"
                         android:singleLine="true"
                         android:text="+91"
                         android:textColor="@color/light_black"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="normal" />
 
                     <EditText
@@ -177,7 +179,7 @@
                         android:maxLength="15"
                         android:text=""
                         android:textColor="@color/light_black"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="normal" />
                 </LinearLayout>
 

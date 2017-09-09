@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
+import com.colaborotech.thehinduwedlock.webservice.Other;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,23 +32,23 @@ import org.json.JSONObject;
  */
 
 public class LoginDetailActivity extends BaseActivity implements View.OnClickListener, GetWebServiceData {
-    ImageView ivBack;
-    TextView tvHeader;
-    LinearLayout llFullName;
-    EditText etFullName;
-    TextView tvShowDialog;
-    ImageView ivShowIcon;
-    LinearLayout llEmail;
-    EditText etEmail;
-    LinearLayout llPassword;
-    EditText etPassword;
-    TextView tvShowPassword;
-    LinearLayout llPhoneNumber;
-    EditText etPhoneNumber;
-    EditText etCountryCode;
-    TextView tvTermsAndCondition;
-    TextView tvNext;
-    Dialog privacyDialog;
+    private ImageView ivBack;
+    private TextView tvHeader;
+    private LinearLayout llFullName;
+    private EditText etFullName;
+    private TextView tvShowDialog;
+    private ImageView ivShowIcon;
+    private LinearLayout llEmail;
+    private EditText etEmail;
+    private LinearLayout llPassword;
+    private EditText etPassword;
+    private TextView tvShowPassword;
+    private LinearLayout llPhoneNumber;
+    private EditText etPhoneNumber;
+    private EditText etCountryCode;
+    private TextView tvTermsAndCondition;
+    private TextView tvNext;
+    private Dialog privacyDialog;
 
     @Override
     public int getActivityLayout() {
@@ -73,6 +75,7 @@ public class LoginDetailActivity extends BaseActivity implements View.OnClickLis
         ivBack.setOnClickListener(this);
         llFullName.setOnClickListener(this);
         tvShowDialog.setOnClickListener(this);
+        tvShowPassword.setOnClickListener(this);
         tvNext.setOnClickListener(this);
     }
 
@@ -95,11 +98,17 @@ public class LoginDetailActivity extends BaseActivity implements View.OnClickLis
             case R.id.tv_Show_to_all_login_detail:
                 privacyDialog();
                 break;
+            case R.id.show_password_login_detail:
+                if (tvShowPassword.getText().toString().equalsIgnoreCase("show")) {
+                    tvShowPassword.setText("hide");
+                    etPassword.setTransformationMethod(null);
+                } else {
+                    etPassword.setTransformationMethod(new PasswordTransformationMethod());
+                    tvShowPassword.setText("Show");
+                }
+                break;
             case R.id.tv_next_login_detail:
                 validation();
-//                Intent intent = new Intent(getApplicationContext(), WriteAboutActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                startActivity(intent);
                 break;
         }
 
@@ -114,8 +123,8 @@ public class LoginDetailActivity extends BaseActivity implements View.OnClickLis
         if (fullName.equalsIgnoreCase("")) {
             toastMessage("please enter Full name");
             return;
-        } else if (email.equalsIgnoreCase("")) {
-            toastMessage("please enter email id");
+        } else if (Other.isValidEmail(email)) {
+            toastMessage("please enter valid email id");
             return;
         } else if (password.equalsIgnoreCase("")) {
             toastMessage("please enter password");

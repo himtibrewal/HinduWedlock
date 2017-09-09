@@ -5,9 +5,9 @@ package com.colaborotech.thehinduwedlock.models;
  */
 
 public class DataModel {
-    int _id;
-    String _dataName;
-    String _parents;
+    private int _id;
+    private String _dataName;
+    private String _parents;
 
     public DataModel(int _id, String _dataName) {
         this._id = _id;
@@ -19,6 +19,7 @@ public class DataModel {
         this._dataName = _dataName;
         this._parents = _parents;
     }
+
 
     public int get_id() {
         return _id;
@@ -44,3 +45,4 @@ public class DataModel {
         this._parents = _parents;
     }
 }
+

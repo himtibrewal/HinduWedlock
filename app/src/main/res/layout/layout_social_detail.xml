@@ -71,15 +71,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize">
 
-                <ImageView
+                <CheckBox
                     android:id="@+id/iv_open_for_all_caste_social_detail"
-                    android:layout_width="@dimen/_24sdp"
-                    android:layout_height="@dimen/_24sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/_5sdp"
-                    android:background="@drawable/circle_strok_black_bg_white_hollow"
-                    android:padding="@dimen/_9sdp"
-                    android:src="@drawable/tick_white" />
+                    android:gravity="center" />
 
                 <TextView
                     android:layout_width="match_parent"

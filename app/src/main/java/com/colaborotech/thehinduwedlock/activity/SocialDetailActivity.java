@@ -7,13 +7,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,10 +25,10 @@ import android.widget.TextView;
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.TheHinduWedLockApp;
 import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
+import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.fragment.SliderFragment;
 import com.colaborotech.thehinduwedlock.models.DataModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
-import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 
 import java.util.List;
 
@@ -34,18 +38,19 @@ import java.util.List;
 
 public class SocialDetailActivity extends BaseActivity implements View.OnClickListener, SliderFragment.ReturnView {
 
-    ImageView ivBack;
-    TextView tvHeader;
-    DrawerLayout drawerLayout;
-    CustomLayoutTitleValue ctvMaritalStatus;
-    CustomLayoutTitleValue ctvMotherTongue;
-    CustomLayoutTitleValue ctvReligion;
-    CustomLayoutTitleValue ctvManglik;
-    CustomLayoutTitleValue ctvHoroScope;
-    LinearLayout llOpenForAllCaste;
-    ImageView ivOpenForAllSelection;
-    LinearLayout llopen, llmanglik, llhoro;
-    TextView tvNext;
+    private ImageView ivBack;
+    private TextView tvHeader;
+    private DrawerLayout drawerLayout;
+    private CustomLayoutTitleValue ctvMaritalStatus;
+    private CustomLayoutTitleValue ctvMotherTongue;
+    private CustomLayoutTitleValue ctvReligion;
+    private CustomLayoutTitleValue ctvManglik;
+    private CustomLayoutTitleValue ctvHoroScope;
+    private LinearLayout llOpenForAllCaste;
+    private CheckBox ivOpenForAllSelection;
+    private LinearLayout llopen, llmanglik, llhoro;
+    private TextView tvNext;
+    private Dialog secondDialog;
 
     @Override
     public int getActivityLayout() {
@@ -64,7 +69,7 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
         ctvManglik = (CustomLayoutTitleValue) findViewById(R.id.ctv_manglik_social_detail);
         ctvHoroScope = (CustomLayoutTitleValue) findViewById(R.id.ctv_horoscope_social_detail);
         llOpenForAllCaste = (LinearLayout) findViewById(R.id.ll_open_for_all_caste_social_detail);
-        ivOpenForAllSelection = (ImageView) findViewById(R.id.iv_open_for_all_caste_social_detail);
+        ivOpenForAllSelection = (CheckBox) findViewById(R.id.iv_open_for_all_caste_social_detail);
         llopen = (LinearLayout) findViewById(R.id.ll_caste_no_bar_social);
         llmanglik = (LinearLayout) findViewById(R.id.ll_manglik_social);
         llhoro = (LinearLayout) findViewById(R.id.ll_horo_social);
@@ -77,12 +82,10 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
         ctvReligion.setOnClickListener(this);
         ctvManglik.setOnClickListener(this);
         ctvHoroScope.setOnClickListener(this);
-        llOpenForAllCaste.setOnClickListener(this);
         tvNext.setOnClickListener(this);
         fullhide();
 
     }
-
 
     private void fullhide() {
         ctvManglik.setVisibility(View.GONE);
@@ -96,6 +99,16 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void init(Bundle save) {
         tvHeader.setText("Social Details");
+        ivOpenForAllSelection.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    AppPref.getInstance().setOpenForAll(true);
+                } else {
+                    AppPref.getInstance().setOpenForAll(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -108,7 +121,6 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
         super.onStart();
         setFragment(new SliderFragment());
     }
-
 
     public void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -135,10 +147,6 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
             case R.id.ctv_Religion_social_detail:
                 SliderFragment.getInstance().setLists(TheHinduWedLockApp.religionModelList, R.id.ctv_Religion_social_detail, "Religion");
                 drawerLayout.openDrawer(Gravity.RIGHT);
-                break;
-            case R.id.ll_open_for_all_caste_social_detail:
-                AppPref.getInstance().setOpenForAll(true);
-                // toastMessage("coming Soon");
                 break;
             case R.id.ctv_manglik_social_detail:
                 SliderFragment.getInstance().setLists(TheHinduWedLockApp.manglikModelList, R.id.ctv_manglik_social_detail, "Manglik");
@@ -183,14 +191,11 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
                         if (((DataModel) Objects.get(position)).get_id() == 1) {
                             ctvMaritalStatus.setValue(((DataModel) Objects.get(position)).get_dataName());
                             drawerLayout.closeDrawer(Gravity.RIGHT);
-                            /// AppPref.getInstance().setMaritalStatus(((DataModel) Objects.get(position)).get_dataName());
                         } else {
-                            //  ctvMaritalStatus.setValue(((DataModel) Objects.get(position)).get_dataName());
                             secondDialog("Having child", TheHinduWedLockApp.haveClildModelList, ((DataModel) Objects.get(position)).get_dataName(), ctvMaritalStatus, R.id.ctv_marital_stats_social_detail);
                         }
                         AppPref.getInstance().setMaritalStatus(((DataModel) Objects.get(position)).get_dataName());
                         AppPref.getInstance().setMaritalStatusId(((DataModel) Objects.get(position)).get_id());
-
                         break;
                     case R.id.ctv_mother_tongue_social_detail:
                         ctvMotherTongue.setValue(((DataModel) Objects.get(position)).get_dataName());
@@ -222,7 +227,6 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
 
     }
 
-
     private void validation() {
         String marital_status = ctvMaritalStatus.getValue().toString();
         String mother_tongue = ctvMotherTongue.getValue().toString();
@@ -246,9 +250,6 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
 
     }
 
-
-    Dialog secondDialog;
-
     private void secondDialog(String header, final List<DataModel> list, final String data, final CustomLayoutTitleValue ctv, int id) {
         secondDialog = new Dialog(this, R.style.DialogSlideAnim);
         secondDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -268,6 +269,11 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
+        DividerItemDecoration divider = new
+                DividerItemDecoration(recyclerView.getContext(),
+                DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.line_divider));
+        recyclerView.addItemDecoration(divider);
 
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, this, R.layout.layout_slider_item, new RecyclerAdapter.ReturnView() {
             @Override
@@ -311,6 +317,11 @@ public class SocialDetailActivity extends BaseActivity implements View.OnClickLi
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
+        DividerItemDecoration divider = new
+                DividerItemDecoration(recyclerView.getContext(),
+                DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.line_divider));
+        recyclerView.addItemDecoration(divider);
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, this, R.layout.layout_slider_item, new RecyclerAdapter.ReturnView() {
             @Override
             public void getAdapterView(View view, final List objects, final int position, int from) {
