@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp">
+        android:layout_marginLeft="8dp">
 
-        <LinearLayout xmlns:custom="http://schemas.android.com/apk/res-auto"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:orientation="vertical">
 
             <LinearLayout
@@ -29,15 +28,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/drawable_ractagle_hollow_pinkline">
-
-                    <!--<ImageView-->
-                    <!--android:id="@+id/iv_female_personal_detail"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_centerVertical="true"-->
-                    <!--android:layout_marginLeft="@dimen/_30sdp"-->
-                    <!--android:padding="@dimen/_10sdp"-->
-                    <!--android:src="@drawable/ic_menu_camera" />-->
 
                     <TextView
                         android:id="@+id/tv_female_personal_detail"
@@ -60,14 +50,6 @@
                     android:layout_weight="1"
                     android:background="@drawable/drawable_ractagle_hollow_pinkline">
 
-                    <!--<ImageView-->
-                    <!--android:id="@+id/iv_male_personal_detail"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_centerVertical="true"-->
-                    <!--android:layout_marginLeft="@dimen/_30sdp"-->
-                    <!--android:padding="@dimen/_10sdp"-->
-                    <!--android:src="@drawable/ic_menu_camera" />-->
 
                     <TextView
                         android:id="@+id/tv_male_personal_detail"
@@ -88,7 +70,7 @@
                 android:layout_height="@dimen/_1sdp"
                 android:background="@color/light_black" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/layout_date_of_birth_personal_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,7 +79,7 @@
 
             <LinearLayout style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/layout_height_personal_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,7 +88,7 @@
 
             <LinearLayout style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/layout_country_personal_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

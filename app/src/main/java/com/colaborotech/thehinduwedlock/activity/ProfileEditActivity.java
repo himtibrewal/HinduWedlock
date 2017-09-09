@@ -41,7 +41,7 @@ import com.colaborotech.thehinduwedlock.models.DataModel;
 import com.colaborotech.thehinduwedlock.models.MultipleModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
-import com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue;
+import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.utility.FragmentButton;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;

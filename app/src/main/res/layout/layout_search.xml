@@ -24,14 +24,14 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                <com.colaborotech.thehinduwedlock.custom.CustomTextView
                     android:id="@+id/lower_age_limit_searchActivity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     custom:value="" />
 
-                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                <com.colaborotech.thehinduwedlock.custom.CustomTextView
                     android:id="@+id/upper_age_limit_searchActivity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -45,14 +45,14 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                <com.colaborotech.thehinduwedlock.custom.CustomTextView
                     android:id="@+id/lower_height_limit_searchActivity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     custom:value="" />
 
-                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                <com.colaborotech.thehinduwedlock.custom.CustomTextView
                     android:id="@+id/upper_height_limit_searchActivity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -60,13 +60,13 @@
                     custom:value="" />
             </LinearLayout>
 
-            <com.colaborotech.thehinduwedlock.utility.CustomTextView
+            <com.colaborotech.thehinduwedlock.custom.CustomTextView
                 android:id="@+id/religion_searchActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 custom:value="" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomTextView
+            <com.colaborotech.thehinduwedlock.custom.CustomTextView
                 android:id="@+id/mother_tongue_searchActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,14 +78,14 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                <com.colaborotech.thehinduwedlock.custom.CustomTextView
                     android:id="@+id/lower_income_limit_searchActivity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     custom:value="" />
 
-                <com.colaborotech.thehinduwedlock.utility.CustomTextView
+                <com.colaborotech.thehinduwedlock.custom.CustomTextView
                     android:id="@+id/upper_income_limit_searchActivity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -93,13 +93,13 @@
                     custom:value="" />
             </LinearLayout>
 
-            <com.colaborotech.thehinduwedlock.utility.CustomTextView
+            <com.colaborotech.thehinduwedlock.custom.CustomTextView
                 android:id="@+id/country_searchActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 custom:value="" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomTextView
+            <com.colaborotech.thehinduwedlock.custom.CustomTextView
                 android:id="@+id/state_searchActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

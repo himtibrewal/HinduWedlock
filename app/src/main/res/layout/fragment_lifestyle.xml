@@ -21,7 +21,7 @@
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_habits_lifestyle_info_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_assert_lifestyle_info_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_skills_lifestyle_info_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_hobbies_lifestyle_info_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_interests_lifestyle_info_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_favourite_lifestyle_info_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

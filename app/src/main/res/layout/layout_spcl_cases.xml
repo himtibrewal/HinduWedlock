@@ -12,7 +12,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_challenged_spcl_cses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_thalassemia_spcl_cses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_hiv_spcl_cses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

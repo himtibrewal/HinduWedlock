@@ -67,6 +67,7 @@
         <item name="android:textColor">@color/light_black</item>
         <item name="android:layout_marginTop">@dimen/_5sdp</item>
         <item name="android:textSize">@dimen/_14sdp</item>
+        <item name="android:textAppearance">@style/NunitoRegular</item>
         <item name="android:textStyle">normal</item>
     </style>
 
@@ -82,6 +83,7 @@
     <style name="TextView_up_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/NunitoExtraBold</item>
         <item name="android:textColor">@color/light_black</item>
     </style>
 

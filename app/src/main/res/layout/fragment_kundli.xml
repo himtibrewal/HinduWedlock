@@ -21,7 +21,7 @@
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_horoscope_match_kundli_info_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_rashi_kundli_info_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_nakshtra_kundli_info_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_manglik_kundli_info_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

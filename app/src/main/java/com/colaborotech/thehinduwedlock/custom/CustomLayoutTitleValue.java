@@ -1,4 +1,4 @@
-package com.colaborotech.thehinduwedlock.utility;
+package com.colaborotech.thehinduwedlock.custom;
 
 
 import android.content.Context;
@@ -29,7 +29,6 @@ public class CustomLayoutTitleValue extends LinearLayout {
         TextView title = (TextView) view.findViewById(R.id.title);
         title.setText(s1);
         title.setTextSize(18f);
-        title.setTextColor(getResources().getColor(R.color.red_dark));
         value = (TextView) view.findViewById(R.id.value);
         value.setText(s2);
         value.setTextSize(15f);

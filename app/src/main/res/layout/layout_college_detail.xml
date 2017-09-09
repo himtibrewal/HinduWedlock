@@ -11,7 +11,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_highest_education_college_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
 
         <LinearLayout style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_pg_college_college_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:id="@+id/ll_pg_college"
             style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_pg_degree_college_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:id="@+id/ll_pg_degree"
             style="@style/LinearLayout_Spinner" />
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_ug_college_college_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             style="@style/LinearLayout_Spinner" />
 
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_ug_degree_college_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
             style="@style/LinearLayout_Spinner" />
 
 
-        <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+        <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
             android:id="@+id/ctv_school_name_college_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

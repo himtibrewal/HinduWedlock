@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
-import com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue;
+import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 
 /**
  * Created by him on 24-Jun-17.

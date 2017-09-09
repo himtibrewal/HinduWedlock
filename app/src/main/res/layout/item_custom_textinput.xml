@@ -8,8 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
         android:gravity="center_vertical"
+        android:hint="@string/not_filled"
         android:paddingLeft="@dimen/_10sdp"
-        android:text="10years" />
+        android:text="" />
 
     <ImageView
         android:layout_width="wrap_content"

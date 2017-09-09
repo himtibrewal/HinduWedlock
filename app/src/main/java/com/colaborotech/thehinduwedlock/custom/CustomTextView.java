@@ -1,4 +1,4 @@
-package com.colaborotech.thehinduwedlock.utility;
+package com.colaborotech.thehinduwedlock.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -27,14 +27,14 @@ public class CustomTextView extends LinearLayout {
     public CustomTextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Options, 0, 0);
-       // String s1 = a.getString(R.styleable.Options_heading);
+        // String s1 = a.getString(R.styleable.Options_heading);
         String s2 = a.getString(R.styleable.Options_value);
 
         a.recycle();
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_custom_textinput, this, true);
-      //  TextView title = (TextView) view.findViewById(R.id.titvaluele);
+        //  TextView title = (TextView) view.findViewById(R.id.titvaluele);
         //title.setText(s1);
         value = (TextView) view.findViewById(R.id.value);
         value.setText(s2);
@@ -45,12 +45,12 @@ public class CustomTextView extends LinearLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setValue(String va) {
-        value.setText(va);
-    }
-
     public String getValue() {
         return value.getText().toString();
+    }
+
+    public void setValue(String va) {
+        value.setText(va);
     }
 
 

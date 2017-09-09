@@ -16,7 +16,7 @@
 
             <LinearLayout style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_highest_education_career_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
 
             <LinearLayout style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_pg_college_career_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                 android:id="@+id/ll_pg_college"
                 style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_pg_degree_career_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:id="@+id/ll_pg_degree"
                 style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_ug_college_career_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                 style="@style/LinearLayout_Spinner" />
 
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_ug_degree_career_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                 style="@style/LinearLayout_Spinner" />
 
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_work_area_career_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
 
             <LinearLayout style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_income_career_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

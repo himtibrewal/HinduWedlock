@@ -18,7 +18,7 @@
 
             <LinearLayout style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_marital_stats_social_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
 
             <LinearLayout style="@style/LinearLayout_Spinner" />
 
-            <!--<com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue-->
+            <!--<com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue-->
             <!--android:id="@+id/ctv_have_child_social_detail"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
@@ -36,7 +36,7 @@
 
             <!--<LinearLayout style="@style/LinearLayout_Spinner" />-->
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_mother_tongue_social_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
 
             <LinearLayout style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_Religion_social_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             <LinearLayout style="@style/LinearLayout_Spinner" />
 
 
-            <!--<com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue-->
+            <!--<com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue-->
             <!--android:id="@+id/ctv_caste_social_detail"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
@@ -93,7 +93,7 @@
                 android:id="@+id/ll_caste_no_bar_social"
                 style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_manglik_social_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                 android:id="@+id/ll_manglik_social"
                 style="@style/LinearLayout_Spinner" />
 
-            <com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
                 android:id="@+id/ctv_horoscope_social_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

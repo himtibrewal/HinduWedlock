@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
-import com.colaborotech.thehinduwedlock.utility.CustomLayoutTitleValue;
+import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.utility.FragmentButton;
 
 /**
