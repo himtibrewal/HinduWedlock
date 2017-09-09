@@ -160,6 +160,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="10"
                         android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
                         android:maxLength="4"
                         android:paddingLeft="@dimen/_2sdp"
                         android:singleLine="true"
