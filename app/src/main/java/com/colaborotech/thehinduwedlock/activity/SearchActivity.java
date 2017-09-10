@@ -32,7 +32,7 @@ import static com.colaborotech.thehinduwedlock.utility.OtherFunction.returnMulti
 
 public class SearchActivity extends BaseActivity implements View.OnClickListener, SliderFragment.ReturnView, SliderFragment.ReturnMultipleView, SliderFragment.ReturnDone {
 
-    DrawerLayout drawerLayout;
+    private DrawerLayout drawerLayout;
     private Map<String, String> searchData = new HashMap<String, String>();
     private CustomTextView tvAgeLower;
     private CustomTextView tvAgeUpper;

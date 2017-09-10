@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_search_type"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tv_all_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/light_pink"
+                    android:gravity="center"
+                    android:text="All Profile"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/tv_online"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/colorAccent"
+                    android:gravity="center"
+                    android:text="Online"
+                    android:textColor="@color/light_black" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_notification"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="#000"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:text="Desired partner.. (123456) \nRefine Result by"
+                android:textColor="@color/white" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Viewed"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Photo"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Height"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Income"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Occupation"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Country"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="State"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="City"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Family based out of"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Manglik"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Horoscope"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Diet"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Profile posted by"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Profile Added in"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Activity on Site"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Age"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Marital Staus"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Mother Tongue"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Religion"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Caste"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+
+            <com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                custom:heading="Subcaste"
+                custom:value="All" />
+
+            <LinearLayout style="@style/LinearLayout_Spinner" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_submit_filter"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:elevation="@dimen/_4sdp">
+
+        <TextView
+            android:id="@+id/tv_submit_filter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawable_bottom_selection"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Show Results"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

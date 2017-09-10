@@ -42,7 +42,8 @@ import com.colaborotech.thehinduwedlock.activity.WhoViewMyContactActivity;
 
 public class DrawerFragment extends Fragment implements View.OnClickListener {
     RelativeLayout rlInterest;
-    RelativeLayout rlAcceptance;    RelativeLayout rlJustJoined;
+    RelativeLayout rlAcceptance;
+    RelativeLayout rlJustJoined;
     TextView tvSearch;
     TextView tvHome;
     TextView tvSearchByid;

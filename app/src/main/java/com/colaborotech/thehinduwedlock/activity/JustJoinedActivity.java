@@ -1,9 +1,14 @@
 package com.colaborotech.thehinduwedlock.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -11,6 +16,9 @@ import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
+import com.colaborotech.thehinduwedlock.fragment.DrawerFragment;
+import com.colaborotech.thehinduwedlock.fragment.FilterFragment;
+import com.colaborotech.thehinduwedlock.fragment.SliderFragment;
 import com.colaborotech.thehinduwedlock.models.UserModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
@@ -44,6 +52,7 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
     private int TOTAL_PAGES = 1;
     private int currentPage = 0;
     private int limit = 10;
+    private DrawerLayout drawerLayout;
 
 
     @Override
@@ -53,6 +62,8 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void initialize() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.RIGHT);
         ivBack = (ImageView) findViewById(R.id.iv_back);
         tvHeader = (TextView) findViewById(R.id.toolbar_title);
         ivFilter = (ImageView) findViewById(R.id.toolbar_last);
@@ -60,6 +71,20 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
         tvNoData = (TextView) findViewById(R.id.tv_no_data);
         ivBack.setOnClickListener(this);
         ivFilter.setOnClickListener(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        setFragmentFilter(new FilterFragment());
+    }
+
+
+    public void setFragmentFilter(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame, fragment);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -107,7 +132,7 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
                 onBackPressed();
                 break;
             case R.id.toolbar_last:
-                toastMessage("filter will come here in dilaog");
+                drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
         }
     }
