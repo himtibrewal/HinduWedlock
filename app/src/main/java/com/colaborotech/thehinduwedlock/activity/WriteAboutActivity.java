@@ -61,7 +61,7 @@ public class WriteAboutActivity extends BaseActivity implements View.OnClickList
                 tvDetailText.setText(getString(R.string.write_about_family));
                 tvCondition.setVisibility(View.INVISIBLE);
                 tvNext.setText("Done");
-            }else{
+            } else {
                 tvHeader.setText("Write About Yourself");
             }
 

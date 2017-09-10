@@ -12,10 +12,6 @@ import com.colaborotech.thehinduwedlock.TheHinduWedLockApp;
 
 public class AppPref {
     private static AppPref instance;
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor sEditor;
-    private String SG_SHARED_PREFERENCE = "shared_preference1";
-
     //variable
     private final String PREF_USER_ID = "user_id";
     private final String PREF_IS_LOGIN = "islogin";
@@ -117,6 +113,10 @@ public class AppPref {
     private final String PREF_MANGLIK_ID = "manglik_id";
     private final String PREF_DEVICE_ID = "device_id";
     private final String PREF_OPEN_FOR_ALL = "open_for_all";
+    private final String PREF_FAMILY_DETAIL_FILLED = "faily_detail_filled";
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sEditor;
+    private String SG_SHARED_PREFERENCE = "shared_preference1";
 
 
     private AppPref(Context context) {
@@ -151,6 +151,15 @@ public class AppPref {
 
     public void setIsLogin(boolean cindition) {
         sEditor.putBoolean(PREF_IS_LOGIN, cindition);
+        sEditor.commit();
+    }
+
+    public boolean getIsFamilyFilled() {
+        return sharedPreferences.getBoolean(PREF_FAMILY_DETAIL_FILLED, false);
+    }
+
+    public void setFamilyFilled(boolean value) {
+        sEditor.putBoolean(PREF_FAMILY_DETAIL_FILLED, value);
         sEditor.commit();
     }
 
@@ -591,23 +600,22 @@ public class AppPref {
         sEditor.commit();
     }
 
+    public String getFatherOccupation() {
+        return sharedPreferences.getString(PREF_FATHER_OCCUPATION, "");
+    }
 
     public void setFatherOccupation(String fatherOccupation) {
         sEditor.putString(PREF_FATHER_OCCUPATION, fatherOccupation);
         sEditor.commit();
     }
 
-    public String getFatherOccupation() {
-        return sharedPreferences.getString(PREF_FATHER_OCCUPATION, "");
+    public String getMotherOccupation() {
+        return sharedPreferences.getString(PREF_MOTHER_OCCUPATION, "");
     }
 
     public void setMotherOccupation(String motherOccupation) {
         sEditor.putString(PREF_MOTHER_OCCUPATION, motherOccupation);
         sEditor.commit();
-    }
-
-    public String getMotherOccupation() {
-        return sharedPreferences.getString(PREF_MOTHER_OCCUPATION, "");
     }
 
     public String getFamilyIncome() {

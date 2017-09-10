@@ -22,11 +22,11 @@ import android.widget.TextView;
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.TheHinduWedLockApp;
 import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
+import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.fragment.SliderFragment;
 import com.colaborotech.thehinduwedlock.models.DataModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
-import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 
@@ -54,6 +54,8 @@ public class FamilyDetailActivity extends BaseActivity implements View.OnClickLi
     CustomLayoutTitleValue ctvFamilyBasedOutOf;
     CustomLayoutTitleValue ctvGotra;
     TextView tvNext;
+    Dialog secondDialog;
+    Dialog inputDialog;
 
     @Override
     public int getActivityLayout() {
@@ -108,7 +110,6 @@ public class FamilyDetailActivity extends BaseActivity implements View.OnClickLi
         super.onStart();
         setFragment(new SliderFragment());
     }
-
 
     public void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -188,7 +189,6 @@ public class FamilyDetailActivity extends BaseActivity implements View.OnClickLi
         getDataUsingWService.execute();
     }
 
-
     @Override
     public void getWebServiceResponse(String responseData, int serviceCounter) {
         Log.e("response", "is" + responseData);
@@ -197,6 +197,7 @@ public class FamilyDetailActivity extends BaseActivity implements View.OnClickLi
             JSONObject jsonObject = new JSONObject(responseData);
             String response_code = jsonObject.getString("response_code");
             if (response_code.equalsIgnoreCase("200")) {
+                AppPref.getInstance().setFamilyFilled(true);
                 sendToThisActivity(WriteAboutActivity.class, new String[]{"from;FamilyDetailActivity"});
             }
         } catch (JSONException e) {
@@ -289,8 +290,6 @@ public class FamilyDetailActivity extends BaseActivity implements View.OnClickLi
         });
     }
 
-    Dialog secondDialog;
-
     private void secondDialog(List<DataModel> list, final String data, final CustomLayoutTitleValue ctv, final int id) {
         secondDialog = new Dialog(this, R.style.DialogSlideAnim);
         secondDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -336,9 +335,6 @@ public class FamilyDetailActivity extends BaseActivity implements View.OnClickLi
         recyclerView.setAdapter(recyclerAdapter);
         secondDialog.show();
     }
-
-
-    Dialog inputDialog;
 
     private void secondDialog(String title, String hint, String data, final CustomLayoutTitleValue ctv) {
         inputDialog = new Dialog(this, R.style.DialogSlideAnim2);
