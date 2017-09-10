@@ -231,6 +231,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 if (loginMapObject.containsKey("family_status")) {
                     AppPref.getInstance().setFamilyStatus(loginMapObject.get("family_status").toString());
                 }
+
+                if (loginMapObject.containsKey("mobile_verify")) {
+                    AppPref.getInstance().setMobileVerify(true);
+                }
                 AppPref.getInstance().setIsLogin(true);
                 sendToThisActivity(DrawerActivity.class);
                 finish();

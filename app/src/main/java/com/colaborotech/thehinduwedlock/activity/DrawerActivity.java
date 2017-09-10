@@ -1,6 +1,7 @@
 package com.colaborotech.thehinduwedlock.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.fragment.DrawerFragment;
@@ -24,12 +26,15 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView ivBack;
     private TextView tvHeader;
     private DrawerLayout drawerLayout;
+    private ImageView ivSearch, ivNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
         ivBack = (ImageView) findViewById(R.id.iv_back);
+        ivSearch = (ImageView) findViewById(R.id.iv_search);
+        ivNotification = (ImageView) findViewById(R.id.iv_notification);
         tvHeader = (TextView) findViewById(R.id.toolbar_title);
         tvHeader.setText("Home");
         ivBack.setImageDrawable(getResources().getDrawable(R.drawable.lines_red));
@@ -37,6 +42,8 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
         setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ivBack.setOnClickListener(this);
+        ivSearch.setOnClickListener(this);
+        ivNotification.setOnClickListener(this);
         setFragment(new HomeFragment());
 
     }
@@ -50,6 +57,14 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
                 } else {
                     drawerLayout.openDrawer(Gravity.START);
                 }
+                break;
+
+            case R.id.iv_search:
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.iv_notification:
+                Toast.makeText(this, "notification", Toast.LENGTH_LONG).show();
                 break;
         }
 

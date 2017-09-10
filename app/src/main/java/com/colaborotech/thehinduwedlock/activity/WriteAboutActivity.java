@@ -174,7 +174,11 @@ public class WriteAboutActivity extends BaseActivity implements View.OnClickList
                     JSONObject jsonObject = new JSONObject(responseData);
                     String response_code = jsonObject.getString("response_code");
                     if (response_code.equalsIgnoreCase("200")) {
-                        sendToThisActivity(MobileVerificationActivity.class);
+                        if (AppPref.getInstance().getMobileVerify()) {
+                            sendToThisActivity(DrawerActivity.class);
+                        } else {
+                            sendToThisActivity(MobileVerificationActivity.class);
+                        }
                         finish();
                     }
                 } catch (JSONException e) {
