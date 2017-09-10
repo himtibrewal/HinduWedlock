@@ -26,6 +26,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import org.json.JSONObject;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -254,17 +256,26 @@ public class VerificationScreenActivity extends BaseActivity implements View.OnC
 
     private void senddataToserver(String uid) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("user_id").append(AppPref.getInstance().getuserId());
+        stringBuilder.append("user_id=").append(AppPref.getInstance().getuserId());
         stringBuilder.append("&mobile_verify=").append("YES");
         stringBuilder.append("&user_uid=").append(uid);
         String content = stringBuilder.toString();
         GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.UPDATE_MOBILE_VERIFY, 0, content, true, "Please wait..", new GetWebServiceData() {
             @Override
             public void getWebServiceResponse(String responseData, int serviceCounter) {
-                AppPref.getInstance().setMobileVerify(true);
-                Intent intent = new Intent(getApplicationContext(), DrawerActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                try {
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    String response_code = jsonObject.getString("response_code");
+                    if (response_code.equalsIgnoreCase("200")) {
+                        AppPref.getInstance().setMobileVerify(true);
+                        Intent intent = new Intent(getApplicationContext(), DrawerActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                } catch (Exception e) {
+
+                }
+
             }
         });
         getDataUsingWService.execute();
