@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
-import com.colaborotech.thehinduwedlock.activity.DrawerActivity;
+import com.colaborotech.thehinduwedlock.activity.MobileVerificationActivity;
 import com.colaborotech.thehinduwedlock.activity.ProfileEditActivity;
 import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
 import com.colaborotech.thehinduwedlock.models.SliderIconModel;
@@ -79,8 +79,7 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.ReturnView
 
     private void setMobileNoVerifyed() {
         if (!AppPref.getInstance().getMobileVerify()) {
-            AppPref.getInstance().setMobileVerify(true);
-            Intent intent = new Intent(getActivity(), DrawerActivity.class);
+            Intent intent = new Intent(getActivity(), MobileVerificationActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             getActivity().finish();

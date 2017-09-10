@@ -33,27 +33,22 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class VerificationScreenActivity extends BaseActivity implements View.OnClickListener {
+    private static final String TAG = "PhoneAuthActivity";
     String phoneNo;
     String countryCode;
-
-    private static final String TAG = "PhoneAuthActivity";
-
-    // [START declare_auth]
-    private FirebaseAuth mAuth;
-    // [END declare_auth]
-
-    private boolean mVerificationInProgress = false;
-    private String mVerificationId;
-    private PhoneAuthProvider.ForceResendingToken mResendToken;
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-
     ImageView ivBack;
+    // [END declare_auth]
     TextView tvHeader;
     TextView tvMobileNo;
     TextView tvResend;
     EditText etCode1, etCode2, etCode3, etCode4, etCode5, etCode6;
     TextView tvSubmit;
-
+    // [START declare_auth]
+    private FirebaseAuth mAuth;
+    private boolean mVerificationInProgress = false;
+    private String mVerificationId;
+    private PhoneAuthProvider.ForceResendingToken mResendToken;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     @Override
     public int getActivityLayout() {

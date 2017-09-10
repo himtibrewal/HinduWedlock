@@ -1,7 +1,6 @@
 package com.colaborotech.thehinduwedlock.activity;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.fragment.DrawerFragment;
 import com.colaborotech.thehinduwedlock.fragment.HomeFragment;
-import com.colaborotech.thehinduwedlock.utility.AppPref;
 
 
 public class DrawerActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,7 +38,7 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ivBack.setOnClickListener(this);
         setFragment(new HomeFragment());
-        sendToActivity();
+
     }
 
     @Override
@@ -87,16 +85,6 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-
-    private void sendToActivity() {
-        if (!AppPref.getInstance().getMobileVerify()) {
-            Intent intent = new Intent(this, MobileVerificationActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-
-        }
-    }
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
