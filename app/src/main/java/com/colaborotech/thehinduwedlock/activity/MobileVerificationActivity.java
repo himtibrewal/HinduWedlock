@@ -15,12 +15,12 @@ import com.colaborotech.thehinduwedlock.utility.AppPref;
  */
 
 public class MobileVerificationActivity extends BaseActivity implements View.OnClickListener {
-    ImageView ivBack;
-    TextView tvHeader;
-    TextView tvLogout;
-    TextView tvSubmit;
-    EditText etcountryCode;
-    EditText etPhoneNo;
+    private ImageView ivBack;
+    private TextView tvHeader;
+    private TextView tvLogout;
+    private TextView tvSubmit;
+    private EditText etcountryCode;
+    private EditText etPhoneNo;
 
     @Override
     public int getActivityLayout() {

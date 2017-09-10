@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -40,22 +42,22 @@ import java.util.List;
  */
 
 public class FamilyDetailActivity extends BaseActivity implements View.OnClickListener, SliderFragment.ReturnView, GetWebServiceData {
-    ImageView ivBack;
-    TextView tvHeader;
-    DrawerLayout drawerLayout;
-    CustomLayoutTitleValue ctvFamilyStatus;
-    CustomLayoutTitleValue ctvFamilyValues;
-    CustomLayoutTitleValue ctvFamilyType;
-    CustomLayoutTitleValue ctvFamilyIncome;
-    CustomLayoutTitleValue ctvFatherOccupation;
-    CustomLayoutTitleValue ctvMotherOccupation;
-    CustomLayoutTitleValue ctvBrothers;
-    CustomLayoutTitleValue ctvSisters;
-    CustomLayoutTitleValue ctvFamilyBasedOutOf;
-    CustomLayoutTitleValue ctvGotra;
-    TextView tvNext;
-    Dialog secondDialog;
-    Dialog inputDialog;
+    private ImageView ivBack;
+    private TextView tvHeader;
+    private DrawerLayout drawerLayout;
+    private CustomLayoutTitleValue ctvFamilyStatus;
+    private CustomLayoutTitleValue ctvFamilyValues;
+    private CustomLayoutTitleValue ctvFamilyType;
+    private CustomLayoutTitleValue ctvFamilyIncome;
+    private CustomLayoutTitleValue ctvFatherOccupation;
+    private CustomLayoutTitleValue ctvMotherOccupation;
+    private CustomLayoutTitleValue ctvBrothers;
+    private CustomLayoutTitleValue ctvSisters;
+    private CustomLayoutTitleValue ctvFamilyBasedOutOf;
+    private CustomLayoutTitleValue ctvGotra;
+    private TextView tvNext;
+    private Dialog secondDialog;
+    private Dialog inputDialog;
 
     @Override
     public int getActivityLayout() {
@@ -199,6 +201,7 @@ public class FamilyDetailActivity extends BaseActivity implements View.OnClickLi
             if (response_code.equalsIgnoreCase("200")) {
                 AppPref.getInstance().setFamilyFilled(true);
                 sendToThisActivity(WriteAboutActivity.class, new String[]{"from;FamilyDetailActivity"});
+                finish();
             }
         } catch (JSONException e) {
 
@@ -307,6 +310,11 @@ public class FamilyDetailActivity extends BaseActivity implements View.OnClickLi
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
+        DividerItemDecoration divider = new
+                DividerItemDecoration(recyclerView.getContext(),
+                DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.line_divider));
+        recyclerView.addItemDecoration(divider);
 
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list, this, R.layout.layout_slider_item, new RecyclerAdapter.ReturnView() {
             @Override

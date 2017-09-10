@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.colaborotech.thehinduwedlock.activity.DrawerActivity">
 
-    <include layout="@layout/layout_toolbar" />
+    <include layout="@layout/layout_toolbar_drawer" />
 
 
     <FrameLayout

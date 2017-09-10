@@ -11,23 +11,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.fragment.DrawerFragment;
 import com.colaborotech.thehinduwedlock.fragment.HomeFragment;
+import com.colaborotech.thehinduwedlock.utility.AppPref;
 
 
 public class DrawerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView ivBack;
-    TextView tvHeader;
-    DrawerLayout drawerLayout;
+    private ImageView ivBack;
+    private TextView tvHeader;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +40,7 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ivBack.setOnClickListener(this);
         setFragment(new HomeFragment());
-
+        sendToActivity();
     }
 
     @Override
@@ -89,31 +87,42 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.drawer, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_notification) {
-            Toast.makeText(this, "notification", Toast.LENGTH_LONG).show();
-            return true;
-        } else if (id == R.id.action_search) {
-            Intent intent = new Intent(this, SearchActivity.class);
+    private void sendToActivity() {
+        if (!AppPref.getInstance().getMobileVerify()) {
+            Intent intent = new Intent(this, MobileVerificationActivity.class);
             startActivity(intent);
-        }
+            finish();
+        } else {
 
-        return super.onOptionsItemSelected(item);
+        }
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.drawer, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_notification) {
+//            Toast.makeText(this, "notification", Toast.LENGTH_LONG).show();
+//            return true;
+//        } else if (id == R.id.action_search) {
+//            Intent intent = new Intent(this, SearchActivity.class);
+//            startActivity(intent);
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
 
 }
