@@ -19,11 +19,11 @@ import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.TheHinduWedLockApp;
+import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.fragment.SliderFragment;
 import com.colaborotech.thehinduwedlock.models.DataModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
-import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 
@@ -43,6 +43,7 @@ public class EthinicityActivity extends BaseActivity implements View.OnClickList
     CustomLayoutTitleValue ctvGotra;
     CustomLayoutTitleValue ctvFamilyBased;
     TextView tvCancel, tvHeader, tvSave;
+    Dialog inputDialog;
 
     @Override
     public int getActivityLayout() {
@@ -96,14 +97,12 @@ public class EthinicityActivity extends BaseActivity implements View.OnClickList
         setFragment(new SliderFragment());
     }
 
-
     public void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
     }
-
 
     private void validation() {
         AppPref.getInstance().setReligion(ctvReligion.getValue());
@@ -131,7 +130,6 @@ public class EthinicityActivity extends BaseActivity implements View.OnClickList
         });
         getDataUsingWService.execute();
     }
-
 
     @Override
     public void onClick(View v) {
@@ -218,8 +216,6 @@ public class EthinicityActivity extends BaseActivity implements View.OnClickList
     public void onBackPressed() {
         super.onBackPressed();
     }
-
-    Dialog inputDialog;
 
     private void secondDialog(String title, String hint, String data, final CustomLayoutTitleValue ctv) {
         inputDialog = new Dialog(this, R.style.DialogSlideAnim2);

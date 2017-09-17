@@ -19,10 +19,10 @@ import android.widget.TextView;
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.TheHinduWedLockApp;
 import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
+import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.fragment.SliderFragment;
 import com.colaborotech.thehinduwedlock.models.DataModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
-import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class SbilingsActivity extends BaseActivity implements View.OnClickListen
     CustomLayoutTitleValue ctvSister;
     TextView tvCancel, tvHeader, tvSave;
     String brother, sister, brotherMarried, sisterMarried;
-
+    Dialog dateOfBirthDialog;
 
     @Override
     public int getActivityLayout() {
@@ -62,7 +62,6 @@ public class SbilingsActivity extends BaseActivity implements View.OnClickListen
         ctvSister.setOnClickListener(this);
     }
 
-
     @Override
     public void init(Bundle save) {
         ctvBrothers.setValue(AppPref.getInstance().getBrother() + " Brother of which married " + AppPref.getInstance().getMarriedBrother());
@@ -80,14 +79,12 @@ public class SbilingsActivity extends BaseActivity implements View.OnClickListen
         setFragment(new SliderFragment());
     }
 
-
     public void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
     }
-
 
     private void validation() {
         AppPref.getInstance().setBrother(brother);
@@ -217,7 +214,5 @@ public class SbilingsActivity extends BaseActivity implements View.OnClickListen
         recyclerView.setAdapter(recyclerAdapter);
         dateOfBirthDialog.show();
     }
-
-    Dialog dateOfBirthDialog;
 
 }

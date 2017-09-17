@@ -15,12 +15,12 @@ import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.TheHinduWedLockApp;
+import com.colaborotech.thehinduwedlock.custom.CustomTextView;
 import com.colaborotech.thehinduwedlock.fragment.DrawerFragment;
 import com.colaborotech.thehinduwedlock.fragment.SliderFragment;
 import com.colaborotech.thehinduwedlock.models.DataModel;
 import com.colaborotech.thehinduwedlock.models.MultipleModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
-import com.colaborotech.thehinduwedlock.custom.CustomTextView;
 import com.google.gson.Gson;
 
 import java.util.HashMap;

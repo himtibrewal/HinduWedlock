@@ -35,13 +35,13 @@ import java.util.Map;
 
 public class ShortListProfileActivity extends BaseActivity implements View.OnClickListener, RecyclerAdapter.ReturnView, GetWebServiceData {
 
+    RecyclerAdapter recyclerAdapter;
     private ImageView ivBack;
     private TextView tvHeader;
     private RecyclerView rlList;
     private TextView tvNoData;
     private LinearLayout llTab;
     private List<UserModel> shortlistList = new ArrayList<UserModel>();
-    RecyclerAdapter recyclerAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private boolean isLoading = false;
     private boolean isLastPage = false;

@@ -25,11 +25,11 @@ import org.json.JSONObject;
 
 public class ProfileDetailActivity extends BaseActivity implements GetWebServiceData {
 
+    public FragementData fragementData;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private CollapsingToolbarLayout collapsing_container;
     private String userModelData = "";
-    public FragementData fragementData;
 
     @Override
     public int getActivityLayout() {

@@ -273,8 +273,6 @@ public class ProfileVisitorsActivity extends BaseActivity implements View.OnClic
     }
 
 
-
-
     private void getProfileVisitors(String userid, int page) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("user_id=").append(userid);

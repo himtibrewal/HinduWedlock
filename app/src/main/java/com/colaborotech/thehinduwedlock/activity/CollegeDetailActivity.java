@@ -20,11 +20,11 @@ import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.TheHinduWedLockApp;
+import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.fragment.SliderFragment;
 import com.colaborotech.thehinduwedlock.models.DataModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
-import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.webservice.GetDataUsingWService;
 import com.colaborotech.thehinduwedlock.webservice.GetWebServiceData;
 
@@ -47,7 +47,7 @@ public class CollegeDetailActivity extends BaseActivity implements View.OnClickL
     CustomLayoutTitleValue ctvSchoolName;
     LinearLayout llpgclg, llugclg, llpgdeg, llugdeg;
     TextView tvCancel, tvHeader, tvSave;
-
+    Dialog inputDialog;
 
     @Override
     public int getActivityLayout() {
@@ -94,7 +94,6 @@ public class CollegeDetailActivity extends BaseActivity implements View.OnClickL
         llugdeg.setVisibility(View.GONE);
     }
 
-
     @Override
     public void init(Bundle save) {
         ctvHighestEducation.setValue(AppPref.getInstance().getHighestEducation());
@@ -116,7 +115,6 @@ public class CollegeDetailActivity extends BaseActivity implements View.OnClickL
         super.onStart();
         setFragment(new SliderFragment());
     }
-
 
     public void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -228,7 +226,6 @@ public class CollegeDetailActivity extends BaseActivity implements View.OnClickL
         });
     }
 
-
     private void validation() {
         AppPref.getInstance().setHighestEducation(ctvHighestEducation.getValue());
         AppPref.getInstance().setUgDegree(ctvUgDegree.getValue());
@@ -238,7 +235,6 @@ public class CollegeDetailActivity extends BaseActivity implements View.OnClickL
         AppPref.getInstance().setSchoolName(ctvSchoolName.getValue());
         sendDataToServer();
     }
-
 
     private void sendDataToServer() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -270,13 +266,10 @@ public class CollegeDetailActivity extends BaseActivity implements View.OnClickL
         getDataUsingWService.execute();
     }
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
-
-    Dialog inputDialog;
 
     private void secondDialog(String title, String hint, String data, final CustomLayoutTitleValue ctv) {
         inputDialog = new Dialog(this, R.style.DialogSlideAnim2);

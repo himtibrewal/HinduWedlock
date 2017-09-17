@@ -18,10 +18,10 @@ import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.TheHinduWedLockApp;
+import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 import com.colaborotech.thehinduwedlock.fragment.SliderFragment;
 import com.colaborotech.thehinduwedlock.models.DataModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
-import com.colaborotech.thehinduwedlock.custom.CustomLayoutTitleValue;
 
 import java.util.List;
 
@@ -35,6 +35,7 @@ public class EditCareerDetailActivity extends BaseActivity implements View.OnCli
     CustomLayoutTitleValue ctvOccupation;
     CustomLayoutTitleValue ctvAnnualIncome;
     TextView tvCancel, tvHeader, tvSave;
+    Dialog inputDialog;
 
     @Override
     public int getActivityLayout() {
@@ -61,7 +62,6 @@ public class EditCareerDetailActivity extends BaseActivity implements View.OnCli
 
     }
 
-
     @Override
     public void init(Bundle save) {
         ctvOrganizationName.setValue(AppPref.getInstance().getOrganizationName());
@@ -80,7 +80,6 @@ public class EditCareerDetailActivity extends BaseActivity implements View.OnCli
         super.onStart();
         setFragment(new SliderFragment());
     }
-
 
     public void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -148,13 +147,10 @@ public class EditCareerDetailActivity extends BaseActivity implements View.OnCli
         });
     }
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
-
-    Dialog inputDialog;
 
     private void secondDialog(String title, String hint, String data, final CustomLayoutTitleValue ctv) {
         inputDialog = new Dialog(this, R.style.DialogSlideAnim2);
