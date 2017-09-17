@@ -1,18 +1,15 @@
 package com.colaborotech.thehinduwedlock.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
@@ -44,12 +41,14 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
     TextView tvTitle;
     StringBuilder stringBuilderData = new StringBuilder();
     Map<String, String> seacrhdata;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private boolean isLoading = false;
     private boolean isLastPage = false;
     private int TOTAL_PAGES = 1;
     private int currentPage = 0;
     private int activeTab = -1;
-    private int limit = 10;
+    private int limit = 5;
+    private int deleteposition = 0;
 
     @Override
     public int getActivityLayout() {
@@ -106,6 +105,16 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swifeRefresh);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                currentPage = 0;
+                getdatafromServer(currentPage);
+
+            }
+        });
         recyclerView.addOnScrollListener(new PaginationScrollListener(llm) {
             @Override
             protected void loadMoreItems() {
@@ -125,11 +134,14 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
                 return isLoading;
             }
         });
+
+
     }
 
     @Override
     public void init(Bundle save) {
         getdatafromServer(0);
+        recyclerAdapter = new RecyclerAdapter(list, this, R.layout.item_search_result, this, 0);
     }
 
     @Override
@@ -239,10 +251,12 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
     }
 
     private void getdatafromServer(int page_no) {
-        stringBuilderData.append("&page_no=").append(page_no);
-        String content = stringBuilderData.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(stringBuilderData.toString());
+        stringBuilder.append("&page_no=").append(page_no);
+        String content = stringBuilder.toString();
         Log.e("content", "is :" + content);
-        GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.USER_LIST, 0, content, true, "please wait..", this);
+        GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.USER_LIST, 0, content, false, "please wait..", this);
         getDataUsingWService.execute();
     }
 
@@ -267,15 +281,20 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
 
 
     private void parseUserList(String responseData) {
+        mSwipeRefreshLayout.setRefreshing(false);
+
         int count = 0;
         try {
             Log.e("user_list", "is" + responseData);
             JSONObject jsonObject = new JSONObject(responseData);
             String response_code = jsonObject.getString("response_code");
             if (response_code.equalsIgnoreCase("200")) {
+                if (currentPage == 0) {
+                    list.clear();
+                }
                 JSONObject jsonObject1 = jsonObject.getJSONObject("results");
-                int usercount = jsonObject1.getInt("user_count");
-                tvTitle.setText(usercount + " Matches found");
+                count = jsonObject1.getInt("user_count");
+                tvTitle.setText(count + " Matches found");
                 JSONArray jsonArray = jsonObject1.getJSONArray("user_data");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Map<String, Object> loginMapObject = new Gson().fromJson(jsonArray.getJSONObject(i).toString(), Map.class);
@@ -322,7 +341,7 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
                     list.add(userModel);
                 }
             }
-            recyclerAdapter = new RecyclerAdapter(list, this, R.layout.item_search_result, this, 0);
+
             recyclerView.setAdapter(recyclerAdapter);
             recyclerAdapter.notifyDataSetChanged();
         } catch (Exception e) {
@@ -340,29 +359,29 @@ public class ProfileListActivity extends BaseActivity implements RecyclerAdapter
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.search_result, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_notification) {
-            Toast.makeText(this, "notification", Toast.LENGTH_LONG).show();
-            return true;
-        } else if (id == R.id.action_search) {
-            Intent intent = new Intent(this, SearchActivity.class);
-            startActivity(intent);
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.search_result, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_notification) {
+//            Toast.makeText(this, "notification", Toast.LENGTH_LONG).show();
+//            return true;
+//        } else if (id == R.id.action_search) {
+//            Intent intent = new Intent(this, SearchActivity.class);
+//            startActivity(intent);
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }

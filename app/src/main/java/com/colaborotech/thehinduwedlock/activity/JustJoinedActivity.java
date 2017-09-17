@@ -16,9 +16,7 @@ import android.widget.TextView;
 
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.adapter.RecyclerAdapter;
-import com.colaborotech.thehinduwedlock.fragment.DrawerFragment;
 import com.colaborotech.thehinduwedlock.fragment.FilterFragment;
-import com.colaborotech.thehinduwedlock.fragment.SliderFragment;
 import com.colaborotech.thehinduwedlock.models.UserModel;
 import com.colaborotech.thehinduwedlock.utility.AppPref;
 import com.colaborotech.thehinduwedlock.utility.AppUrls;
@@ -51,7 +49,7 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
     private boolean isLastPage = false;
     private int TOTAL_PAGES = 1;
     private int currentPage = 0;
-    private int limit = 10;
+    private int limit = 5;
     private DrawerLayout drawerLayout;
 
 
@@ -67,6 +65,7 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
         ivBack = (ImageView) findViewById(R.id.iv_back);
         tvHeader = (TextView) findViewById(R.id.toolbar_title);
         ivFilter = (ImageView) findViewById(R.id.toolbar_last);
+        ivFilter.setVisibility(View.GONE);
         rlJustJoined = (RecyclerView) findViewById(R.id.rv_list);
         tvNoData = (TextView) findViewById(R.id.tv_no_data);
         ivBack.setOnClickListener(this);
@@ -151,6 +150,7 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
                 JSONObject jsonObject1 = jsonObject.getJSONObject("results");
                 count = jsonObject1.getInt("user_count");
                 // tvTitle.setText(usercount + " Matches found");
+                tvHeader.setText("Just Joined Matches(" + count + ")");
                 JSONArray jsonArray = jsonObject1.getJSONArray("user_data");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Map<String, Object> loginMapObject = new Gson().fromJson(jsonArray.getJSONObject(i).toString(), Map.class);
@@ -197,9 +197,8 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
                     justJoinedList.add(userModel);
                 }
             }
-            recyclerAdapter = new RecyclerAdapter(justJoinedList, this, R.layout.item_search_result, this, 0);
+
             rlJustJoined.setAdapter(recyclerAdapter);
-            tvHeader.setText("Just Joined Matches(" + justJoinedList.size() + ")");
             recyclerAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             Log.e("error", e.toString());
@@ -221,8 +220,8 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
     }
 
     @Override
-    public void getAdapterView(View view, List objects, int position, int from) {
-        ImageView listImage = (ImageView) view.findViewById(R.id.iv_profile_pic_item_search);
+    public void getAdapterView(View view, final List objects, final int position, int from) {
+        ImageView listImage = (ImageView) view.findViewById(R.id.iv_profile_pic);
         TextView tvUserId = (TextView) view.findViewById(R.id.userid_item_searchResult);
         TextView tvLastOnline = (TextView) view.findViewById(R.id.lastOnline_item_searchResult);
         TextView tvAge = (TextView) view.findViewById(R.id.age_item_searchResult);
@@ -233,10 +232,10 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
         TextView tvQualification = (TextView) view.findViewById(R.id.study_item_searchResult);
         TextView tvCity = (TextView) view.findViewById(R.id.city_item_searchResult);
         TextView tvMemberShip = (TextView) view.findViewById(R.id.membership_item_searchResult);
-        RelativeLayout rlSendInterest = (RelativeLayout) view.findViewById(R.id.rl_interest_item_interest_received);
-        RelativeLayout rlSendShortList = (RelativeLayout) view.findViewById(R.id.rl_shortlist_item_interest_received);
-        RelativeLayout rlBlockThisUser = (RelativeLayout) view.findViewById(R.id.rl_decline_item_interest_received);
-        RelativeLayout rlContact = (RelativeLayout) view.findViewById(R.id.rl_contact_item_interest_received);
+        RelativeLayout rlSendInterest = (RelativeLayout) view.findViewById(R.id.rl_item1);
+        RelativeLayout rlSendShortList = (RelativeLayout) view.findViewById(R.id.rl_item2);
+        RelativeLayout rlBlockThisUser = (RelativeLayout) view.findViewById(R.id.rl_item3);
+        RelativeLayout rlContact = (RelativeLayout) view.findViewById(R.id.rl_item4);
         tvUserId.setText(((UserModel) objects.get(position)).getUserId());
         tvLastOnline.setText("Today");
         tvAge.setText(((UserModel) objects.get(position)).getAge());
@@ -250,7 +249,7 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
         listImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //   sendToThisActivity(ProfileDetailActivity.class, new String[]{"profile_id;" + ((UserModel) objects.get(position)).getUserId()});
+                sendToThisActivity(ProfileDetailActivity.class, new String[]{"profile_id;" + ((UserModel) objects.get(position)).getUserId()});
             }
         });
         rlSendInterest.setOnClickListener(new View.OnClickListener() {
@@ -287,8 +286,14 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
 
 
     private void getJustJoinedList(String userid, int page) {
+        String gender = "";
+        if (AppPref.getInstance().getGender().equalsIgnoreCase("1")) {
+            gender = "0";
+        } else {
+            gender = "1";
+        }
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("gender=").append(0);
+        stringBuilder.append("gender=").append(gender);
         stringBuilder.append("&page_no=").append(page);
         String content = stringBuilder.toString();
         GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.USER_LIST, 0, content, true, "Please Wait", this);

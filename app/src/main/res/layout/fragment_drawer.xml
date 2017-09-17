@@ -248,7 +248,8 @@
             android:paddingLeft="@dimen/_8sdp"
             android:text="Matches Verified by Visit"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/drawer_desired_partner_match"
@@ -270,7 +271,8 @@
             android:paddingLeft="@dimen/_8sdp"
             android:text="Daily Recommendation"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/drawer_kundli_match"
@@ -281,7 +283,8 @@
             android:paddingLeft="@dimen/_8sdp"
             android:text="Kundli Matches"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/drawer_member_looking_for_me"

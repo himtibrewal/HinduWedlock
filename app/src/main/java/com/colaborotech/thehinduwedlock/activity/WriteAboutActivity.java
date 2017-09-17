@@ -134,7 +134,7 @@ public class WriteAboutActivity extends BaseActivity implements View.OnClickList
         stringBuilder.append("about_family=").append(data);
         stringBuilder.append("&user_id=").append(AppPref.getInstance().getuserId());
         String content = stringBuilder.toString();
-        AppPref.getInstance().setAboutYourSelf(data);
+        AppPref.getInstance().setAboutFamily(data);
         Log.e("content", "is" + content);
         GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.UPDATE_ABOUT_FAMILY, 1, content, true, "Please wait", this);
         getDataUsingWService.execute();
