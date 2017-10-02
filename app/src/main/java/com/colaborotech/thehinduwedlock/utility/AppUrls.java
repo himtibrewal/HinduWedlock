@@ -13,6 +13,8 @@ public class AppUrls {
     //login_register
     public static final String LOGIN = BASE_URL + "user_login"; //
     public static final String REGISTER_URL = BASE_URL + "register_user";
+    public static final String COUNT_DATA = BASE_URL + "get_count";
+
     //update Url
     public static final String UPDATE_ABOUT_YOURSELF = UPDATE_URL + "update_your_self";
     public static final String UPDATE_FAMILY_DETAIL = UPDATE_URL + "update_family_detail";
@@ -52,6 +54,7 @@ public class AppUrls {
     //image
     public static final String MAKE_PROFILE_PIC = UPDATE_URL + "make_profile";
     public static final String DELETE_IMAGE = UPDATE_URL + "delete_image";
+    public static final String ALL_IMAGE = UPDATE_URL + "all_image";
 
 
 }

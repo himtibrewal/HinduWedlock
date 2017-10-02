@@ -73,6 +73,24 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
     private Uri mFileUri = null;
     private List<ImageModel> imageList = new ArrayList<ImageModel>();
 
+
+    public static PhotoUploadFragment newInstance(int from, String image) {
+        PhotoUploadFragment proPhotoUploadFragment = new PhotoUploadFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("image", "");
+        bundle.putInt("from", from);
+        proPhotoUploadFragment.setArguments(bundle);
+        return proPhotoUploadFragment;
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // String[] className = getArguments().getStringArray("image");
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -97,6 +115,8 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
 
             }
         };
+
+        getAllImage();
 
         // onNewIntent(getIntent());
         return photoView;
@@ -256,6 +276,11 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
         startActivityForResult(intent, RC_TAKE_PICTURE);
     }
 
+
+    private void CaptureImage() {
+
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
@@ -347,4 +372,44 @@ public class PhotoUploadFragment extends Fragment implements View.OnClickListene
         });
 
     }
+
+
+    private void getAllImage() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("user_id=").append(AppPref.getInstance().getuserId());
+        String content = stringBuilder.toString();
+        GetDataUsingWService getDataUsingWService = new GetDataUsingWService(getActivity(), AppUrls.ALL_IMAGE, 0, content, true, "Please wait", new GetWebServiceData() {
+            @Override
+            public void getWebServiceResponse(String responseData, int serviceCounter) {
+                Log.e("responsse", "is" + responseData);
+                try {
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    String response_code = jsonObject.getString("response_code");
+                    if (response_code.equalsIgnoreCase("200")) {
+                        JSONArray jsonArray = jsonObject.getJSONArray("data");
+                        int imageCount = jsonArray.length();
+                        AppPref.getInstance().setNoOfImage(imageCount);
+                        List<ImageModel> imageList = new ArrayList<ImageModel>();
+                        for (int i = 0; i < imageCount; i++) {
+                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                            int image_id = jsonObject1.getInt("image_id");
+                            String imageurl = "https://firebasestorage.googleapis.com/v0/b/thehindu-24e87.appspot.com/o/" + jsonObject1.getString("image") + "?alt=media";
+                            String profile = jsonObject1.getString("profile");
+                            imageList.add(new ImageModel(image_id, imageurl, profile));
+                        }
+                        Gson gson = new Gson();
+                        String imageUrls = gson.toJson(imageList);
+                        AppPref.getInstance().setImageUrls(imageUrls);
+                        tvPhotoCount.setText(imageCount + " Photo");
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+        });
+        getDataUsingWService.execute();
+    }
+
 }

@@ -295,6 +295,7 @@ public class JustJoinedActivity extends BaseActivity implements View.OnClickList
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("gender=").append(gender);
         stringBuilder.append("&page_no=").append(page);
+        stringBuilder.append("&just_join=").append("1");
         String content = stringBuilder.toString();
         GetDataUsingWService getDataUsingWService = new GetDataUsingWService(this, AppUrls.USER_LIST, 0, content, true, "Please Wait", this);
         getDataUsingWService.execute();

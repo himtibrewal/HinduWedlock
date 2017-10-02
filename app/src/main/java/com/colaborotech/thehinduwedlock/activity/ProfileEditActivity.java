@@ -75,6 +75,7 @@ public class ProfileEditActivity extends BaseActivity implements
     Dialog dateOfBirthDialog;
     private int OpenFragmentIndex = 0;
 
+
     @Override
     public int getActivityLayout() {
         return R.layout.activity_edit_profile;
@@ -147,7 +148,7 @@ public class ProfileEditActivity extends BaseActivity implements
 
     private void setupViewPager(ViewPager viewPager) {
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PhotoUploadFragment(), "Photo");
+        adapter.addFragment(PhotoUploadFragment.newInstance(1, ""), "Photo");
         adapter.addFragment(new BasicinfoFragment(), "Basic Info");
         adapter.addFragment(new KundliFragment(), "Kundli");
         adapter.addFragment(new EducationFragment(), "Education");
