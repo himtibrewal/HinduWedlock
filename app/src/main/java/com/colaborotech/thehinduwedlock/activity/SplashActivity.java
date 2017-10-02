@@ -23,13 +23,18 @@ import org.json.JSONObject;
  * Created by him on 27-May-17.
  */
 
-public class SplashActivty extends AppCompatActivity implements GetWebServiceData {
+public class SplashActivity extends AppCompatActivity implements GetWebServiceData {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getAlldata();
+        if (AppPref.getInstance().getAllData().equalsIgnoreCase("")) {
+            getAlldata();
+        } else {
+            parseData(AppPref.getInstance().getAllData());
+        }
+
         getDeviceId();
     }
 
@@ -47,6 +52,13 @@ public class SplashActivty extends AppCompatActivity implements GetWebServiceDat
     @Override
     public void getWebServiceResponse(String responseData, int serviceCounter) {
         Log.e("response", "is" + responseData);
+        AppPref.getInstance().setAllData(responseData);
+        parseData(responseData);
+
+    }
+
+    private void parseData(String responseData) {
+
         TheHinduWedLockApp.complexionModelList.clear();
         TheHinduWedLockApp.countryModelList.clear();
         TheHinduWedLockApp.languageModelList.clear();
@@ -230,7 +242,5 @@ public class SplashActivty extends AppCompatActivity implements GetWebServiceDat
         } catch (Exception e) {
             Log.e("exception", "in All data service" + e.toString());
         }
-
-
     }
 }
