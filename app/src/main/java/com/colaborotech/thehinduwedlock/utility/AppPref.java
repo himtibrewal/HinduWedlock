@@ -113,6 +113,7 @@ public class AppPref {
     private final String PREF_MANGLIK_ID = "manglik_id";
     private final String PREF_DEVICE_ID = "device_id";
     private final String PREF_OPEN_FOR_ALL = "open_for_all";
+    private final String PREF_ALL_DATA = "all_data";
     private final String PREF_FAMILY_DETAIL_FILLED = "faily_detail_filled";
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sEditor;
@@ -178,6 +179,15 @@ public class AppPref {
 
     public void setCreateFor(String createFor) {
         sEditor.putString(PREF_CREATE_FOR, createFor);
+        sEditor.commit();
+    }
+
+    public String getAllData() {
+        return sharedPreferences.getString(PREF_ALL_DATA, "");
+    }
+
+    public void setAllData(String allData) {
+        sEditor.putString(PREF_ALL_DATA, allData);
         sEditor.commit();
     }
 
