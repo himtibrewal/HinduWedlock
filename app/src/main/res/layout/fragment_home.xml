@@ -83,7 +83,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/firstList1"
                 android:padding="@dimen/_5sdp"
-                android:text="Match Of the  the Day" />
+                android:text="View All" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/firstList11"

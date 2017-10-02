@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.colaborotech.thehinduwedlock.R;
 import com.colaborotech.thehinduwedlock.activity.AcceptedMembersActivity;
 import com.colaborotech.thehinduwedlock.activity.FamilyDetailActivity;
+import com.colaborotech.thehinduwedlock.activity.InterestsActivity;
 import com.colaborotech.thehinduwedlock.activity.JustJoinedActivity;
 import com.colaborotech.thehinduwedlock.activity.MobileVerificationActivity;
 import com.colaborotech.thehinduwedlock.activity.ProfileEditActivity;
@@ -56,6 +57,9 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.ReturnView
     private TextView tvJustJoined;
     private List<UserModel> interestList = new ArrayList<UserModel>();
     private List<UserModel> matchOfTheDayList = new ArrayList<UserModel>();
+    private TextView tvInterestReceived;
+    private TextView tvinteestViewAll;
+    private TextView tvMatchOfThedayAll;
 
 
     @Override
@@ -111,6 +115,11 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.ReturnView
         llJustJoined = (LinearLayout) view.findViewById(R.id.ll_just_joined);
         tvAllAccept = (TextView) view.findViewById(R.id.tv_all_accept);
         tvJustJoined = (TextView) view.findViewById(R.id.tv_just_joined);
+        tvInterestReceived = (TextView) view.findViewById(R.id.tv_interest_received_home);
+        tvinteestViewAll = (TextView) view.findViewById(R.id.tv_view_all_interest_received_home);
+        tvMatchOfThedayAll = (TextView) view.findViewById(R.id.view_all);
+        tvMatchOfThedayAll.setOnClickListener(this);
+        tvinteestViewAll.setOnClickListener(this);
         llAllAccept.setOnClickListener(this);
         llJustJoined.setOnClickListener(this);
     }
@@ -137,6 +146,12 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.ReturnView
                 sendTothisActivity(AcceptedMembersActivity.class);
                 break;
             case R.id.ll_just_joined:
+                sendTothisActivity(JustJoinedActivity.class);
+                break;
+            case R.id.tv_view_all_interest_received_home:
+                sendTothisActivity(InterestsActivity.class);
+                break;
+            case R.id.view_all:
                 sendTothisActivity(JustJoinedActivity.class);
                 break;
         }
@@ -258,6 +273,7 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.ReturnView
                     String response_code = jsonObject.getString("response_code");
                     if (response_code.equalsIgnoreCase("200")) {
                         int count = jsonObject.getInt("count");
+                        tvInterestReceived.setText("nterest Received " + count);
                         JSONArray jsonArray = jsonObject.getJSONArray("results");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             Map<String, Object> userMapObject = new Gson().fromJson(jsonArray.getJSONObject(i).toString(), Map.class);
