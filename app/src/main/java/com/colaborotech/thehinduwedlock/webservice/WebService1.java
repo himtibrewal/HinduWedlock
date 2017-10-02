@@ -44,6 +44,7 @@ public class WebService1 {
         } catch (Exception e) {
             Log.d("Response Code", "::::Exception " + e.getMessage());
             return "Invalid";
+            // return messagebuffer.toString();
 
         } finally {
             if (urlConnection != null) {
